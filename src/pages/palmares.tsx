@@ -3,40 +3,47 @@ import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight, Medal, Target, Calendar, Globe2, Trophy, BarChart } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "@/components/ui/table";
 
 export default function Palmares() {
-  const teamEvents = [
-    { year: "2016", event: "European Championships", location: "Grande-Bretagne", ranking: "5th" },
-    { year: "2013", event: "Archery World Cup Stage 4", location: "Wroclaw (POL)", ranking: "9th" },
-    { year: "2012", event: "World University Championship", location: "Espagne", ranking: "6th" },
-    { year: "2011", event: "Archery World Cup Stage 3", location: "Ogden (USA)", ranking: "5th" },
-    { year: "2011", event: "EMAU Grand Prix", location: "France", ranking: "4th" },
-    { year: "2010", event: "World University Championship", location: "Chine", ranking: "5th" },
-    { year: "2009", event: "World Archery Championships", location: "Ulsan (KOR)", ranking: "2nd", medal: "Argent" },
-    { year: "2009", event: "Archery World Cup Stage 3", location: "Antalya (TUR)", ranking: "5th" },
-    { year: "2008", event: "Archery World Cup Stage 4", location: "Boé (FRA)", ranking: "5th" },
-    { year: "2008", event: "Archery World Cup Stage 2", location: "Croatie", ranking: "4th" },
-    { year: "2008", event: "Archery World Cup Stage 1", location: "Saint-Domingue", ranking: "5th" },
+  const unifiedEvents = [
+    { year: "2016", event: "Championnats d'Europe", location: "Nottingham (GBR)", ind: "57th", team: "5th", mixed: "-" },
+    { year: "2016", event: "Grand Prix Européen", location: "Sofia (BUL)", ind: "17th", team: "9th", mixed: "5th" },
+    { year: "2015", event: "Grand Prix Européen", location: "Marathon (GRE)", ind: "17th", team: "28th", mixed: "8th" },
+    { year: "2013", event: "Coupe du Monde (Étape 4)", location: "Wroclaw (POL)", ind: "9th", team: "9th", mixed: "-" },
+    { year: "2013", event: "Grand Prix Européen", location: "Riom (FRA)", ind: "-", team: "-", mixed: "5th" },
+    { year: "2012", event: "Championnat du Monde Universitaire", location: "Cordoue (ESP)", ind: "5th", team: "6th", mixed: "6th" },
+    { year: "2012", event: "Coupe du Monde (Étape 1)", location: "Shanghai (CHN)", ind: "4th", team: "-", mixed: "-" },
+    { year: "2012", event: "Coupe du Monde Indoor (Finale)", location: "Las Vegas (USA)", ind: "4th", team: "-", mixed: "-" },
+    { year: "2011", event: "Universiade d'Été", location: "Shenzhen (CHN)", ind: "9th", team: "-", mixed: "-" },
+    { year: "2011", event: "Coupe du Monde (Étape 3)", location: "Ogden (USA)", ind: "17th", team: "5th", mixed: "-" },
+    { year: "2011", event: "Coupe du Monde (Étape 2)", location: "Antalya (TUR)", ind: "8th", team: "-", mixed: "-" },
+    { year: "2011", event: "Grand Prix Européen", location: "Boé (FRA)", ind: "9th", team: "4th", mixed: "-" },
+    { year: "2010", event: "Championnat du Monde Universitaire", location: "Shenzhen (CHN)", ind: "9th", team: "5th", mixed: "9th" },
+    { year: "2009", event: "Championnats du Monde", location: "Ulsan (KOR)", ind: "52nd", team: "2nd", teamMedal: "silver", mixed: "-" },
+    { year: "2009", event: "Coupe du Monde (Étape 3)", location: "Antalya (TUR)", ind: "-", team: "5th", mixed: "-" },
+    { year: "2008", event: "Coupe du Monde (Étape 4)", location: "Boé (FRA)", ind: "33rd", team: "5th", mixed: "-" },
+    { year: "2008", event: "Coupe du Monde (Étape 2)", location: "Porec (CRO)", ind: "24th", team: "4th", mixed: "-" },
+    { year: "2008", event: "Coupe du Monde (Étape 1)", location: "St-Domingue (DOM)", ind: "27th", team: "5th", mixed: "-" },
+    { year: "2007", event: "Championnats du Monde", location: "Leipzig (GER)", ind: "101st", team: "-", mixed: "-" },
+    { year: "2006", event: "Grand Prix Européen", location: "Sassari (ITA)", ind: "4th", team: "-", mixed: "-" },
   ];
 
-  const mixedTeamEvents = [
-    { year: "2016", event: "European Grand Prix", location: "Bulgarie", ranking: "5th" },
-    { year: "2015", event: "European Grand Prix", location: "Grèce", ranking: "8th" },
-    { year: "2013", event: "European Grand Prix", location: "France", ranking: "5th" },
-    { year: "2012", event: "European Grand Prix", location: "Bulgarie", ranking: "5th" },
-    { year: "2012", event: "World University Championship", location: "Espagne", ranking: "6th" },
-    { year: "2010", event: "World University Championship", location: "Chine", ranking: "9th" },
-  ];
-
-  const indEvents = [
-    { year: "2012", event: "Archery World Cup Stage 1", location: "Shanghai (CHN)", ranking: "4th" },
-    { year: "2012", event: "Indoor Archery World Cup Final", location: "Las Vegas (USA)", ranking: "4th" },
-    { year: "2012", event: "9th World University Archery Championship", location: "Espagne", ranking: "5th" },
-    { year: "2011", event: "Archery World Cup Stage 2", location: "Antalya (TUR)", ranking: "8th" },
-    { year: "2009", event: "World Archery Championships", location: "Ulsan (KOR)", ranking: "52nd" },
-    { year: "2007", event: "World Archery Championships", location: "Leipzig (GER)", ranking: "101st" },
-    { year: "2006", event: "European Grand Prix", location: "Sassari (ITA)", ranking: "4th" },
-  ];
+  const renderRank = (rank: string, medal?: "gold" | "silver" | "bronze" | string) => {
+    if (!rank || rank === "-") return <span className="text-white/20">-</span>;
+    if (medal === "gold") return <div className="flex justify-center" title="Médaille d'Or"><Medal className="w-6 h-6 text-yellow-400 drop-shadow-[0_0_8px_rgba(250,204,21,0.5)]" /></div>;
+    if (medal === "silver") return <div className="flex justify-center" title="Médaille d'Argent"><Medal className="w-6 h-6 text-gray-300 drop-shadow-[0_0_8px_rgba(209,213,219,0.5)]" /></div>;
+    if (medal === "bronze") return <div className="flex justify-center" title="Médaille de Bronze"><Medal className="w-6 h-6 text-amber-700 drop-shadow-[0_0_8px_rgba(180,83,9,0.5)]" /></div>;
+    
+    return <span className="font-heading font-extrabold text-lg md:text-xl tracking-tighter">{rank}</span>;
+  };
 
   return (
     <div className="bg-background min-h-screen pt-24">
@@ -187,93 +194,49 @@ export default function Palmares() {
 
       {/* Competitions Lists */}
       <section className="py-32">
-        <div className="container">
-          <div className="grid lg:grid-cols-3 gap-10 xl:gap-16">
-            {/* Team */}
-            <div>
-              <div className="flex items-center gap-4 mb-10 pb-4 border-b border-white/10">
-                <Target className="w-6 h-6 text-accent" />
-                <h3 className="text-xl xl:text-2xl font-heading font-bold uppercase tracking-widest">Par Équipe</h3>
-              </div>
-              <div className="space-y-6">
-                {teamEvents.map((evt, idx) => (
-                  <div key={idx} className="flex justify-between items-center group border-b border-white/5 pb-4 last:border-0">
-                    <div className="flex items-center gap-4 xl:gap-6">
-                      <span className="font-heading text-lg xl:text-xl font-bold text-white/30 group-hover:text-accent transition-colors">{evt.year}</span>
-                      <div>
-                        <p className="font-bold text-xs xl:text-sm uppercase tracking-wider">{evt.event}</p>
-                        <p className="text-[10px] xl:text-xs text-muted-foreground uppercase tracking-widest mt-1">{evt.location}</p>
-                      </div>
-                    </div>
-                    <div className="flex items-center gap-3 text-right shrink-0">
-                      {evt.medal && (
-                        <span className="hidden lg:inline-block text-[10px] font-bold uppercase tracking-widest text-background bg-accent px-2 py-1 rounded-sm">{evt.medal}</span>
-                      )}
-                      {evt.ranking && (
-                        <span className="font-heading text-xl xl:text-2xl font-extrabold tracking-tighter">{evt.ranking}</span>
-                      )}
-                    </div>
-                  </div>
-                ))}
-              </div>
+        <div className="container max-w-5xl">
+          <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 mb-12">
+            <div className="flex items-center gap-4 pb-4 md:pb-0 md:border-none border-b border-white/10">
+              <Target className="w-8 h-8 text-accent" />
+              <h3 className="text-2xl md:text-4xl font-heading font-extrabold uppercase tracking-tighter">Résultats <span className="text-transparent [-webkit-text-stroke:1px_theme(colors.foreground)] opacity-80">Majeurs.</span></h3>
             </div>
+            <p className="text-sm text-muted-foreground font-light max-w-xs md:text-right">
+              Synthèse chronologique des classements sur les compétitions internationales.
+            </p>
+          </div>
 
-            {/* Mixed Team */}
-            <div>
-              <div className="flex items-center gap-4 mb-10 pb-4 border-b border-white/10">
-                <Target className="w-6 h-6 text-accent/60" />
-                <h3 className="text-xl xl:text-2xl font-heading font-bold uppercase tracking-widest">Équipe Mixte</h3>
-              </div>
-              <div className="space-y-6">
-                {mixedTeamEvents.map((evt, idx) => (
-                  <div key={idx} className="flex justify-between items-center group border-b border-white/5 pb-4 last:border-0">
-                    <div className="flex items-center gap-4 xl:gap-6">
-                      <span className="font-heading text-lg xl:text-xl font-bold text-white/30 group-hover:text-accent/60 transition-colors">{evt.year}</span>
-                      <div>
-                        <p className="font-bold text-xs xl:text-sm uppercase tracking-wider">{evt.event}</p>
-                        <p className="text-[10px] xl:text-xs text-muted-foreground uppercase tracking-widest mt-1">{evt.location}</p>
-                      </div>
-                    </div>
-                    {evt.ranking && (
-                      <div className="text-right shrink-0">
-                        <span className="font-heading text-xl xl:text-2xl font-extrabold tracking-tighter">{evt.ranking}</span>
-                      </div>
-                    )}
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            {/* Individual */}
-            <div>
-              <div className="flex items-center gap-4 mb-10 pb-4 border-b border-white/10">
-                <Target className="w-6 h-6 text-white/30" />
-                <h3 className="text-xl xl:text-2xl font-heading font-bold uppercase tracking-widest">Individuel</h3>
-              </div>
-              <div className="space-y-6">
-                {indEvents.map((evt, idx) => (
-                  <div key={idx} className="flex justify-between items-center group border-b border-white/5 pb-4 last:border-0">
-                    <div className="flex items-center gap-4 xl:gap-6">
-                      <span className="font-heading text-lg xl:text-xl font-bold text-white/30 group-hover:text-white transition-colors">{evt.year}</span>
-                      <div>
-                        <p className="font-bold text-xs xl:text-sm uppercase tracking-wider">{evt.event}</p>
-                        <p className="text-[10px] xl:text-xs text-muted-foreground uppercase tracking-widest mt-1">{evt.location}</p>
-                      </div>
-                    </div>
-                    {evt.ranking && (
-                      <div className="text-right shrink-0">
-                        <span className="font-heading text-xl xl:text-2xl font-extrabold tracking-tighter">{evt.ranking}</span>
-                      </div>
-                    )}
-                  </div>
-                ))}
-              </div>
+          <div className="rounded-xl border border-white/10 bg-secondary/10 overflow-hidden">
+            <div className="overflow-x-auto">
+              <Table>
+                <TableHeader className="bg-white/5">
+                  <TableRow className="hover:bg-transparent border-white/10">
+                    <TableHead className="w-24 font-bold text-accent uppercase tracking-widest text-xs">Année</TableHead>
+                    <TableHead className="font-bold text-white uppercase tracking-widest text-xs min-w-[200px]">Compétition</TableHead>
+                    <TableHead className="font-bold text-white uppercase tracking-widest text-xs">Lieu</TableHead>
+                    <TableHead className="text-center font-bold text-white uppercase tracking-widest text-xs">Ind.</TableHead>
+                    <TableHead className="text-center font-bold text-white uppercase tracking-widest text-xs">Équipe</TableHead>
+                    <TableHead className="text-center font-bold text-white uppercase tracking-widest text-xs">Mixte</TableHead>
+                  </TableRow>
+                </TableHeader>
+                <TableBody>
+                  {unifiedEvents.map((evt, idx) => (
+                    <TableRow key={idx} className="border-white/5 hover:bg-white/5 transition-colors">
+                      <TableCell className="font-heading font-bold text-lg text-white/50">{evt.year}</TableCell>
+                      <TableCell className="font-bold text-sm tracking-wide">{evt.event}</TableCell>
+                      <TableCell className="text-[10px] text-muted-foreground uppercase tracking-widest">{evt.location}</TableCell>
+                      <TableCell className="text-center">{renderRank(evt.ind, (evt as any).indMedal)}</TableCell>
+                      <TableCell className="text-center">{renderRank(evt.team, (evt as any).teamMedal)}</TableCell>
+                      <TableCell className="text-center">{renderRank(evt.mixed, (evt as any).mixedMedal)}</TableCell>
+                    </TableRow>
+                  ))}
+                </TableBody>
+              </Table>
             </div>
           </div>
           
-          <div className="pt-16 mt-16 border-t border-white/5">
+          <div className="pt-10 mt-10">
              <p className="text-xs text-muted-foreground font-light italic text-center max-w-2xl mx-auto">
-               Données officielles World Archery (2006 &mdash; 2025). Cette liste met en avant les classements majeurs (Top 10) et participations aux phases finales mondiales.
+               Données officielles World Archery (2006 &mdash; 2025). Le tableau synthétise les classements majeurs obtenus lors des Championnats du Monde, Coupes du Monde et Grands Prix.
              </p>
           </div>
         </div>
