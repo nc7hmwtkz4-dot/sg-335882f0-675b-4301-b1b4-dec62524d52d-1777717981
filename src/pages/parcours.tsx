@@ -1,4 +1,5 @@
 import Head from "next/head";
+import Image from "next/image";
 import Link from "next/link";
 import { Briefcase, GraduationCap, Languages, ShieldCheck } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -113,6 +114,47 @@ export default function Parcours() {
                 </div>
               </div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Leadership Gallery Section */}
+      <section className="py-32 border-t border-white/5 relative bg-secondary/10">
+        <div className="container">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-5xl font-heading font-extrabold uppercase tracking-tighter mb-4">
+              Au cœur de <span className="text-transparent [-webkit-text-stroke:1px_theme(colors.foreground)] opacity-80">l'organisation.</span>
+            </h2>
+            <p className="text-muted-foreground font-light max-w-2xl mx-auto">
+              Direction d'équipes internationales, gestion de congrès mondiaux et coordination avec les comités d'organisation locaux. Une décennie à faire avancer le sport dans l'ombre.
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-12 gap-8">
+            {/* Main large photo */}
+            <div className="md:col-span-8 space-y-4">
+              <div className="relative aspect-[16/9] w-full border border-white/10 overflow-hidden group">
+                <Image src="/X17_6847.jpg" alt="Staff World Archery et Comité d'organisation Mexico 2017" fill className="object-cover grayscale group-hover:grayscale-0 transition-all duration-700" />
+              </div>
+              <p className="text-xs text-muted-foreground font-medium uppercase tracking-widest">Championnats du Monde Mexico 2017 &mdash; Staff World Archery et Comité d'Organisation</p>
+            </div>
+
+            {/* Smaller side photos */}
+            <div className="md:col-span-4 space-y-8">
+              <div className="space-y-4">
+                <div className="relative aspect-[4/3] w-full border border-white/10 overflow-hidden group">
+                  <Image src="/A16_7589.jpg" alt="Championnat du Monde indoor Ankara 2016" fill className="object-cover grayscale group-hover:grayscale-0 transition-all duration-700" />
+                </div>
+                <p className="text-xs text-muted-foreground font-medium uppercase tracking-widest leading-relaxed">Championnat du Monde indoor Ankara 2016<br/><span className="text-accent">Avec Fernando Suarez et Andrea Vasquez</span></p>
+              </div>
+
+              <div className="space-y-4">
+                <div className="relative aspect-[4/3] w-full border border-white/10 overflow-hidden group">
+                  <Image src="/X17_3731.jpg" alt="WA staff au congrès de Mexico 2017" fill className="object-cover grayscale group-hover:grayscale-0 transition-all duration-700" />
+                </div>
+                <p className="text-xs text-muted-foreground font-medium uppercase tracking-widest">Congrès de Mexico 2017 &mdash; Staff World Archery</p>
+              </div>
+            </div>
           </div>
         </div>
       </section>
