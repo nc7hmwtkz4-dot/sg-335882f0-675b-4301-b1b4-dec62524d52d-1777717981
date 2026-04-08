@@ -26,14 +26,13 @@ export default function Home() {
               </div>
               
               <h1 className="text-6xl md:text-8xl lg:text-[7rem] font-heading font-extrabold leading-[0.9] tracking-tighter uppercase">
-                Faire la <br/>
-                <span className="text-transparent [-webkit-text-stroke:2px_theme(colors.foreground)] opacity-80">flèche</span><br/>
-                de plus.
+                Ne rien laisser <br/>
+                <span className="text-transparent [-webkit-text-stroke:2px_theme(colors.foreground)] opacity-80">au hasard.</span>
               </h1>
               
               <p className="text-lg md:text-xl text-muted-foreground max-w-xl leading-relaxed font-light">
                 Ancien médaillé mondial de tir à l'arc devenu stratège des événements olympiques. 
-                Je conjugue la discipline du sportif de haut niveau à l'exigence de la gouvernance internationale.
+                J'agis dans l'ombre pour faire avancer les organisations avec précision, loin de la politique et au plus près de l'efficacité.
               </p>
               
               <div className="flex flex-col sm:flex-row gap-6 pt-8">
@@ -68,26 +67,28 @@ export default function Home() {
           <div className="grid lg:grid-cols-2 gap-20 items-center">
             <div className="order-2 lg:order-1 relative aspect-square w-full">
               <Image 
-                src="/IMG_5604.JPG" 
-                alt="Thomas Aubert en compétition" 
+                src="/DA6_1669.jpg" 
+                alt="Thomas Aubert et Chris Wells" 
                 fill 
                 className="object-cover grayscale contrast-125"
               />
-              <div className="absolute inset-0 bg-background/20"></div>
+              <div className="absolute bottom-0 left-0 bg-background/90 p-4 border-t border-r border-white/10 max-w-sm">
+                <p className="text-xs font-medium text-muted-foreground leading-relaxed">Avec Chris Wells, Directeur de la Communication World Archery, lors du Congrès de Gwangju 2025.</p>
+              </div>
             </div>
             
             <div className="order-1 lg:order-2">
               <h2 className="text-4xl md:text-6xl font-heading font-extrabold mb-10 uppercase tracking-tighter leading-none">
-                L'exigence du terrain, <br/>
-                <span className="text-accent">appliquée à la stratégie.</span>
+                Le pragmatisme <br/>
+                <span className="text-accent">de l'action.</span>
               </h2>
               
               <div className="space-y-6 text-muted-foreground text-lg font-light leading-relaxed mb-12">
                 <p>
-                  Rien n'est simple. Faire le centimètre de plus, ou la flèche de plus même quand l'envie n'y est plus est ce qui fait la différence sur le long terme.
+                  Rien n'est simple. Faire le centimètre de plus, ou la flèche de plus même quand l'envie n'y est plus est ce qui fait la différence sur le long terme. La patience, la détermination et la concentration sont mes atouts.
                 </p>
                 <p>
-                  J'applique cette même patience, détermination et concentration acquises sur les pas de tir mondiaux à la gestion des événements sportifs d'envergure.
+                  Mon combat est de faire bouger les choses dans l'ombre, sans tirer la couverture à moi, pour contourner les lenteurs administratives et transformer la complexité en efficacité au bénéfice du collectif.
                 </p>
               </div>
 
@@ -113,6 +114,33 @@ export default function Home() {
               </div>
             </div>
           </div>
+        </div>
+      </section>
+
+      {/* Leadership Gallery */}
+      <section className="py-20 border-t border-white/5 bg-background">
+        <div className="container">
+           <div className="grid lg:grid-cols-2 gap-12 items-center">
+             <div>
+                <h2 className="text-3xl md:text-5xl font-heading font-extrabold mb-6 uppercase tracking-tighter">
+                  Une expertise <span className="text-transparent [-webkit-text-stroke:1px_theme(colors.foreground)] opacity-80">transférable.</span>
+                </h2>
+                <p className="text-muted-foreground leading-relaxed mb-8">
+                  De la gestion des Jeux Olympiques à la refonte du calendrier international, je prouve au quotidien que mes compétences de sportif de haut niveau sont un moteur de transformation puissant pour les organisations.
+                </p>
+             </div>
+             <div className="relative aspect-[16/9] md:aspect-[21/9] w-full border border-white/10">
+                <Image 
+                  src="/R3X_0332.jpg" 
+                  alt="Remise de t-shirt" 
+                  fill 
+                  className="object-cover grayscale hover:grayscale-0 transition-all duration-700"
+                />
+                <div className="absolute bottom-0 right-0 bg-background/90 p-4 border-t border-l border-white/10 max-w-sm">
+                  <p className="text-xs font-medium text-muted-foreground text-right leading-relaxed">Dernier événement en tant que Head of Events & Marketing (Gwangju 2025) : remise d'un t-shirt signé au juge international Graham Potts pour sa retraite.</p>
+                </div>
+             </div>
+           </div>
         </div>
       </section>
 
@@ -175,7 +203,7 @@ export default function Home() {
       </section>
 
       {/* Huge CTA Section */}
-      <section id="contact" className="py-40 relative overflow-hidden">
+      <section id="contact" className="py-40 relative overflow-hidden border-t border-white/5">
         <div className="absolute inset-0 bg-accent/5"></div>
         <div className="container relative z-10 text-center">
           <h2 className="text-5xl md:text-8xl font-heading font-extrabold mb-10 uppercase tracking-tighter">

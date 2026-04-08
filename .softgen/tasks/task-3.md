@@ -1,6 +1,6 @@
 ---
 title: Créer la page Palmarès Sportif
-status: todo
+status: done
 priority: high
 type: feature
 tags: [pages, sport]
@@ -13,6 +13,6 @@ position: 3
 Une page dédiée pour lister les médailles, records et participations (2005-2014) en équipe de France et de Suisse.
 
 ## Checklist
-- [ ] Créer pages/palmares.tsx
-- [ ] Ajouter une timeline ou une grille des médailles internationales
-- [ ] Intégrer la photo d'action (IMG_5604.JPG)
+- [x] Créer pages/palmares.tsx
+- [x] Ajouter une timeline ou une grille des médailles internationales
+- [x] Intégrer la photo d'action (IMG_5604.JPG)
