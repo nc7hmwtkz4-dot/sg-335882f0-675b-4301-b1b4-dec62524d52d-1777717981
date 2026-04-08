@@ -16,6 +16,15 @@ export default function Palmares() {
     { year: "2005", event: "Championnats d'Europe Jeunes", location: "Silkeborg (DEN)" },
   ];
 
+  const mixedTeamEvents = [
+    { year: "2016", event: "European Grand Prix", location: "Bulgarie", ranking: "5th" },
+    { year: "2015", event: "European Grand Prix", location: "Grèce", ranking: "8th" },
+    { year: "2013", event: "European Grand Prix", location: "France", ranking: "5th" },
+    { year: "2012", event: "European Grand Prix", location: "Bulgarie", ranking: "5th" },
+    { year: "2012", event: "World University Championship", location: "Espagne", ranking: "6th" },
+    { year: "2010", event: "World University Championship", location: "Chine", ranking: "9th" },
+  ];
+
   const indEvents = [
     { year: "2012", event: "Archery World Cup Stage 1", location: "Shanghai (CHN)", ranking: "4th" },
     { year: "2012", event: "Indoor Archery World Cup Final", location: "Las Vegas (USA)", ranking: "4th" },
@@ -176,25 +185,51 @@ export default function Palmares() {
       {/* Competitions Lists */}
       <section className="py-32">
         <div className="container">
-          <div className="grid lg:grid-cols-2 gap-16">
+          <div className="grid lg:grid-cols-3 gap-10 xl:gap-16">
             {/* Team */}
             <div>
               <div className="flex items-center gap-4 mb-10 pb-4 border-b border-white/10">
                 <Target className="w-6 h-6 text-accent" />
-                <h3 className="text-2xl font-heading font-bold uppercase tracking-widest">Compétitions par Équipe</h3>
+                <h3 className="text-xl xl:text-2xl font-heading font-bold uppercase tracking-widest">Par Équipe</h3>
               </div>
               <div className="space-y-6">
                 {teamEvents.map((evt, idx) => (
-                  <div key={idx} className="flex justify-between items-center group">
-                    <div className="flex items-center gap-6">
-                      <span className="font-heading text-xl font-bold text-white/30 group-hover:text-accent transition-colors">{evt.year}</span>
+                  <div key={idx} className="flex justify-between items-center group border-b border-white/5 pb-4 last:border-0">
+                    <div className="flex items-center gap-4 xl:gap-6">
+                      <span className="font-heading text-lg xl:text-xl font-bold text-white/30 group-hover:text-accent transition-colors">{evt.year}</span>
                       <div>
-                        <p className="font-bold text-sm uppercase tracking-wider">{evt.event}</p>
-                        <p className="text-xs text-muted-foreground uppercase tracking-widest mt-1">{evt.location}</p>
+                        <p className="font-bold text-xs xl:text-sm uppercase tracking-wider">{evt.event}</p>
+                        <p className="text-[10px] xl:text-xs text-muted-foreground uppercase tracking-widest mt-1">{evt.location}</p>
                       </div>
                     </div>
                     {evt.medal && (
-                      <span className="text-xs font-bold uppercase tracking-widest text-background bg-accent px-3 py-1">{evt.medal}</span>
+                      <span className="text-[10px] xl:text-xs font-bold uppercase tracking-widest text-background bg-accent px-2 xl:px-3 py-1">{evt.medal}</span>
+                    )}
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Mixed Team */}
+            <div>
+              <div className="flex items-center gap-4 mb-10 pb-4 border-b border-white/10">
+                <Target className="w-6 h-6 text-accent/60" />
+                <h3 className="text-xl xl:text-2xl font-heading font-bold uppercase tracking-widest">Équipe Mixte</h3>
+              </div>
+              <div className="space-y-6">
+                {mixedTeamEvents.map((evt, idx) => (
+                  <div key={idx} className="flex justify-between items-center group border-b border-white/5 pb-4 last:border-0">
+                    <div className="flex items-center gap-4 xl:gap-6">
+                      <span className="font-heading text-lg xl:text-xl font-bold text-white/30 group-hover:text-accent/60 transition-colors">{evt.year}</span>
+                      <div>
+                        <p className="font-bold text-xs xl:text-sm uppercase tracking-wider">{evt.event}</p>
+                        <p className="text-[10px] xl:text-xs text-muted-foreground uppercase tracking-widest mt-1">{evt.location}</p>
+                      </div>
+                    </div>
+                    {evt.ranking && (
+                      <div className="text-right shrink-0">
+                        <span className="font-heading text-xl xl:text-2xl font-extrabold tracking-tighter">{evt.ranking}</span>
+                      </div>
                     )}
                   </div>
                 ))}
@@ -204,34 +239,34 @@ export default function Palmares() {
             {/* Individual */}
             <div>
               <div className="flex items-center gap-4 mb-10 pb-4 border-b border-white/10">
-                <Target className="w-6 h-6 text-white/50" />
-                <h3 className="text-2xl font-heading font-bold uppercase tracking-widest">Résultats Majeurs (Individuel)</h3>
+                <Target className="w-6 h-6 text-white/30" />
+                <h3 className="text-xl xl:text-2xl font-heading font-bold uppercase tracking-widest">Individuel</h3>
               </div>
               <div className="space-y-6">
                 {indEvents.map((evt, idx) => (
                   <div key={idx} className="flex justify-between items-center group border-b border-white/5 pb-4 last:border-0">
-                    <div className="flex items-center gap-6">
-                      <span className="font-heading text-xl font-bold text-white/30 group-hover:text-white transition-colors">{evt.year}</span>
+                    <div className="flex items-center gap-4 xl:gap-6">
+                      <span className="font-heading text-lg xl:text-xl font-bold text-white/30 group-hover:text-white transition-colors">{evt.year}</span>
                       <div>
-                        <p className="font-bold text-sm uppercase tracking-wider">{evt.event}</p>
-                        <p className="text-xs text-muted-foreground uppercase tracking-widest mt-1">{evt.location}</p>
+                        <p className="font-bold text-xs xl:text-sm uppercase tracking-wider">{evt.event}</p>
+                        <p className="text-[10px] xl:text-xs text-muted-foreground uppercase tracking-widest mt-1">{evt.location}</p>
                       </div>
                     </div>
                     {evt.ranking && (
-                      <div className="text-right">
-                        <span className="font-heading text-2xl font-extrabold tracking-tighter">{evt.ranking}</span>
+                      <div className="text-right shrink-0">
+                        <span className="font-heading text-xl xl:text-2xl font-extrabold tracking-tighter">{evt.ranking}</span>
                       </div>
                     )}
                   </div>
                 ))}
-                
-                <div className="pt-6 mt-6">
-                   <p className="text-xs text-muted-foreground font-light italic text-center">
-                     Données officielles World Archery (2006 &mdash; 2025). Liste non exhaustive des classements individuels (4 places dans le Top 5 mondial).
-                   </p>
-                </div>
               </div>
             </div>
+          </div>
+          
+          <div className="pt-16 mt-16 border-t border-white/5">
+             <p className="text-xs text-muted-foreground font-light italic text-center max-w-2xl mx-auto">
+               Données officielles World Archery (2006 &mdash; 2025). Cette liste met en avant les classements majeurs (Top 10) et participations aux phases finales mondiales.
+             </p>
           </div>
         </div>
       </section>
