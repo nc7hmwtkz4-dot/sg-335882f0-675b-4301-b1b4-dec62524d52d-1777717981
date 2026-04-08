@@ -1,7 +1,7 @@
 import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight, Medal, Target, Calendar } from "lucide-react";
+import { ArrowRight, Medal, Target, Calendar, Globe2, Trophy, BarChart } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 export default function Palmares() {
@@ -17,12 +17,13 @@ export default function Palmares() {
   ];
 
   const indEvents = [
-    { year: "2013", event: "Grand Prix Européen", location: "Riom (FRA)" },
-    { year: "2011", event: "Grand Prix Européen", location: "Antalya (TUR)" },
-    { year: "2009", event: "Coupe du Monde", location: "Antalya (TUR)" },
-    { year: "2007", event: "Coupe du Monde", location: "Varese (ITA)" },
-    { year: "2006", event: "Championnats d'Europe Jeunes en salle", location: "Jaen (ESP)" },
-    { year: "2005", event: "Coupe d'Europe Junior", location: "Cles (ITA)" },
+    { year: "2012", event: "Archery World Cup Stage 1", location: "Shanghai (CHN)", ranking: "4th" },
+    { year: "2012", event: "Indoor Archery World Cup Final", location: "Las Vegas (USA)", ranking: "4th" },
+    { year: "2012", event: "9th World University Archery Championship", location: "Espagne", ranking: "5th" },
+    { year: "2011", event: "Archery World Cup Stage 2", location: "Antalya (TUR)", ranking: "8th" },
+    { year: "2009", event: "World Archery Championships", location: "Ulsan (KOR)", ranking: "52nd" },
+    { year: "2007", event: "World Archery Championships", location: "Leipzig (GER)", ranking: "101st" },
+    { year: "2006", event: "European Grand Prix", location: "Sassari (ITA)", ranking: "4th" },
   ];
 
   return (
@@ -79,6 +80,34 @@ export default function Palmares() {
               <p className="text-sm text-muted-foreground font-light leading-relaxed">
                 Distinction honorifique décernée en 2007, marquant les premiers succès internationaux majeurs en catégorie jeune.
               </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Key Stats Section */}
+      <section className="py-20 bg-background border-y border-white/5">
+        <div className="container">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12 divide-x divide-white/5">
+            <div className="space-y-4 px-4">
+              <Globe2 className="w-8 h-8 text-accent/50" />
+              <p className="text-5xl md:text-7xl font-heading font-extrabold tracking-tighter text-transparent [-webkit-text-stroke:1px_theme(colors.foreground)]">+60</p>
+              <p className="text-sm font-bold uppercase tracking-widest text-muted-foreground">Compétitions<br/>Internationales</p>
+            </div>
+            <div className="space-y-4 px-4">
+              <Calendar className="w-8 h-8 text-accent/50" />
+              <p className="text-5xl md:text-7xl font-heading font-extrabold tracking-tighter text-transparent [-webkit-text-stroke:1px_theme(colors.foreground)]">19</p>
+              <p className="text-sm font-bold uppercase tracking-widest text-muted-foreground">Années de<br/>Haut Niveau</p>
+            </div>
+            <div className="space-y-4 px-4">
+              <Target className="w-8 h-8 text-accent/50" />
+              <p className="text-5xl md:text-7xl font-heading font-extrabold tracking-tighter text-white">4</p>
+              <p className="text-sm font-bold uppercase tracking-widest text-accent">Top 5<br/>Mondiaux (Ind.)</p>
+            </div>
+            <div className="space-y-4 px-4">
+              <Trophy className="w-8 h-8 text-accent/50" />
+              <p className="text-5xl md:text-7xl font-heading font-extrabold tracking-tighter text-transparent [-webkit-text-stroke:1px_theme(colors.foreground)]">16</p>
+              <p className="text-sm font-bold uppercase tracking-widest text-muted-foreground">Pays<br/>Hôtes</p>
             </div>
           </div>
         </div>
@@ -176,11 +205,11 @@ export default function Palmares() {
             <div>
               <div className="flex items-center gap-4 mb-10 pb-4 border-b border-white/10">
                 <Target className="w-6 h-6 text-white/50" />
-                <h3 className="text-2xl font-heading font-bold uppercase tracking-widest">Compétitions Individuelles</h3>
+                <h3 className="text-2xl font-heading font-bold uppercase tracking-widest">Résultats Majeurs (Individuel)</h3>
               </div>
               <div className="space-y-6">
                 {indEvents.map((evt, idx) => (
-                  <div key={idx} className="flex justify-between items-center group">
+                  <div key={idx} className="flex justify-between items-center group border-b border-white/5 pb-4 last:border-0">
                     <div className="flex items-center gap-6">
                       <span className="font-heading text-xl font-bold text-white/30 group-hover:text-white transition-colors">{evt.year}</span>
                       <div>
@@ -188,8 +217,19 @@ export default function Palmares() {
                         <p className="text-xs text-muted-foreground uppercase tracking-widest mt-1">{evt.location}</p>
                       </div>
                     </div>
+                    {evt.ranking && (
+                      <div className="text-right">
+                        <span className="font-heading text-2xl font-extrabold tracking-tighter">{evt.ranking}</span>
+                      </div>
+                    )}
                   </div>
                 ))}
+                
+                <div className="pt-6 mt-6">
+                   <p className="text-xs text-muted-foreground font-light italic text-center">
+                     Données officielles World Archery (2006 &mdash; 2025). Liste non exhaustive des classements individuels (4 places dans le Top 5 mondial).
+                   </p>
+                </div>
               </div>
             </div>
           </div>
