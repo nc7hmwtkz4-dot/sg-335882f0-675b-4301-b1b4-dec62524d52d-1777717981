@@ -6,35 +6,36 @@
 
 @layer base {
   :root {
-    --background: 40 33% 96%; /* Sable clair / Beige */
-    --foreground: 222 47% 11%; /* Bleu Nuit profond */
+    /* Premium Dark Theme */
+    --background: 222 47% 8%; /* Very deep navy/black */
+    --foreground: 40 33% 96%; /* Sand/Off-white */
 
-    --card: 0 0% 100%;
-    --card-foreground: 222 47% 11%;
+    --card: 222 40% 12%;
+    --card-foreground: 40 33% 96%;
  
-    --popover: 0 0% 100%;
-    --popover-foreground: 222 47% 11%;
+    --popover: 222 40% 12%;
+    --popover-foreground: 40 33% 96%;
  
-    --primary: 222 47% 11%; /* Bleu Nuit profond */
-    --primary-foreground: 40 33% 96%; /* Sable clair */
+    --primary: 40 33% 96%; /* Sand */
+    --primary-foreground: 222 47% 8%; /* Deep navy */
  
-    --secondary: 40 20% 90%;
-    --secondary-foreground: 222 47% 11%;
+    --secondary: 222 30% 15%;
+    --secondary-foreground: 40 33% 96%;
  
-    --muted: 40 20% 90%;
-    --muted-foreground: 215.4 16.3% 46.9%;
+    --muted: 222 30% 15%;
+    --muted-foreground: 215 20% 65%;
  
-    --accent: 43 74% 49%; /* Or / Bronze */
-    --accent-foreground: 0 0% 100%;
+    --accent: 43 74% 49%; /* Gold / Bronze */
+    --accent-foreground: 222 47% 8%;
  
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 210 40% 98%;
 
-    --border: 40 20% 85%;
-    --input: 40 20% 85%;
-    --ring: 222 47% 11%;
+    --border: 222 30% 15%;
+    --input: 222 30% 15%;
+    --ring: 43 74% 49%;
  
-    --radius: 0rem; /* Bords droits pour un côté rationnel/précis */
+    --radius: 0rem;
   }
 }
 
@@ -43,9 +44,9 @@
     @apply border-border;
   }
   body {
-    @apply bg-background text-foreground font-sans antialiased;
+    @apply bg-background text-foreground font-sans antialiased selection:bg-accent selection:text-accent-foreground;
   }
   h1, h2, h3, h4, h5, h6 {
-    @apply font-serif tracking-tight;
+    @apply font-heading tracking-tight;
   }
 }
