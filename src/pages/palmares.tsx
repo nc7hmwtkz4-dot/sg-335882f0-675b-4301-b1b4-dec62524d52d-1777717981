@@ -6,14 +6,17 @@ import { Button } from "@/components/ui/button";
 
 export default function Palmares() {
   const teamEvents = [
-    { year: "2013", event: "Coupe du Monde", location: "Shanghai (CHN)" },
-    { year: "2013", event: "Grand Prix Européen", location: "Riom (FRA)" },
-    { year: "2011", event: "Universiade", location: "Shenzhen (CHN)" },
-    { year: "2009", event: "Coupe du Monde", location: "Shanghai (CHN)" },
-    { year: "2009", event: "Championnats du Monde", location: "Ulsan (KOR)", medal: "Argent" },
-    { year: "2008", event: "Championnats d'Europe", location: "Vittel (FRA)" },
-    { year: "2007", event: "Coupe du Monde", location: "Ulsan (KOR)" },
-    { year: "2005", event: "Championnats d'Europe Jeunes", location: "Silkeborg (DEN)" },
+    { year: "2016", event: "European Championships", location: "Grande-Bretagne", ranking: "5th" },
+    { year: "2013", event: "Archery World Cup Stage 4", location: "Wroclaw (POL)", ranking: "9th" },
+    { year: "2012", event: "World University Championship", location: "Espagne", ranking: "6th" },
+    { year: "2011", event: "Archery World Cup Stage 3", location: "Ogden (USA)", ranking: "5th" },
+    { year: "2011", event: "EMAU Grand Prix", location: "France", ranking: "4th" },
+    { year: "2010", event: "World University Championship", location: "Chine", ranking: "5th" },
+    { year: "2009", event: "World Archery Championships", location: "Ulsan (KOR)", ranking: "2nd", medal: "Argent" },
+    { year: "2009", event: "Archery World Cup Stage 3", location: "Antalya (TUR)", ranking: "5th" },
+    { year: "2008", event: "Archery World Cup Stage 4", location: "Boé (FRA)", ranking: "5th" },
+    { year: "2008", event: "Archery World Cup Stage 2", location: "Croatie", ranking: "4th" },
+    { year: "2008", event: "Archery World Cup Stage 1", location: "Saint-Domingue", ranking: "5th" },
   ];
 
   const mixedTeamEvents = [
@@ -202,9 +205,14 @@ export default function Palmares() {
                         <p className="text-[10px] xl:text-xs text-muted-foreground uppercase tracking-widest mt-1">{evt.location}</p>
                       </div>
                     </div>
-                    {evt.medal && (
-                      <span className="text-[10px] xl:text-xs font-bold uppercase tracking-widest text-background bg-accent px-2 xl:px-3 py-1">{evt.medal}</span>
-                    )}
+                    <div className="flex items-center gap-3 text-right shrink-0">
+                      {evt.medal && (
+                        <span className="hidden lg:inline-block text-[10px] font-bold uppercase tracking-widest text-background bg-accent px-2 py-1 rounded-sm">{evt.medal}</span>
+                      )}
+                      {evt.ranking && (
+                        <span className="font-heading text-xl xl:text-2xl font-extrabold tracking-tighter">{evt.ranking}</span>
+                      )}
+                    </div>
                   </div>
                 ))}
               </div>
