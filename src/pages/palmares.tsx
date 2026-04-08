@@ -1,5 +1,6 @@
 import Head from "next/head";
 import Image from "next/image";
+import Link from "next/link";
 import { ArrowRight, Medal, Target, Calendar } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
@@ -180,7 +181,7 @@ export default function Palmares() {
             De la cible aux <span className="text-accent">instances dirigeantes.</span>
           </h2>
           <Button size="lg" asChild className="bg-foreground text-background hover:bg-accent hover:text-accent-foreground rounded-none h-16 px-10 text-sm font-bold uppercase tracking-widest transition-all duration-300">
-            <a href="/">Retour à l'expertise</a>
+            <Link href="/">Retour à l'expertise</Link>
           </Button>
         </div>
       </section>
