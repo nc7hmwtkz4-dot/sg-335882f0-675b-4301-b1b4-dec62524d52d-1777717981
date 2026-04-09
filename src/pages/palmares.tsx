@@ -202,6 +202,62 @@ export default function Palmares() {
         </div>
       </section>
 
+      {/* Archives Photographiques (Masonry Grid) */}
+      <section className="py-32 border-b border-white/5 bg-secondary/10">
+        <div className="container">
+          <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-16">
+            <div>
+              <div className="inline-flex items-center gap-3 mb-6">
+                <span className="h-[1px] w-12 bg-accent"></span>
+                <span className="text-accent text-xs font-bold uppercase tracking-[0.2em]">Galerie</span>
+              </div>
+              <h2 className="text-4xl md:text-6xl font-heading font-extrabold uppercase tracking-tighter">
+                Archives <br />
+                <span className="text-transparent [-webkit-text-stroke:1px_theme(colors.foreground)] opacity-80">Historiques.</span>
+              </h2>
+            </div>
+            <p className="text-muted-foreground font-light max-w-sm md:text-right">
+              Une rétrospective en images des moments forts de ma carrière internationale. Podiums, esprit d'équipe et concentration absolue.
+            </p>
+          </div>
+
+          <div className="columns-1 md:columns-2 lg:columns-3 gap-6 space-y-6">
+            {[
+              { src: "/IMG_1731.jpg", alt: "Podium Varese 2007", caption: "Médaille de Bronze (Varese 2007)" },
+              { src: "/IMG_1597.jpg", alt: "Victoire par équipe", caption: "Célébration par équipe (Ulsan 2007)" },
+              { src: "/IMG_9605.jpg", alt: "Complicité entraîneur", caption: "Partage avec l'entraîneur" },
+              { src: "/IMG_1532.jpg", alt: "Équipe de France", caption: "Couleurs nationales" },
+              { src: "/IMG_1595.jpg", alt: "Célébration équipe", caption: "Esprit d'équipe" },
+              { src: "/IMG_9609.jpg", alt: "Amitié internationale", caption: "Rencontres internationales" },
+              { src: "/X17_3683.jpg", alt: "Action de tir" },
+              { src: "/X17_3690.jpg", alt: "Concentration" },
+              { src: "/IMG_1804.jpg", alt: "Podium par équipe" },
+              { src: "/IMG_0408.jpg", alt: "Compétition internationale" },
+              { src: "/IMG_2430.jpg", alt: "Phase de tir" },
+              { src: "/IMG_1121.jpg", alt: "Compétition" },
+              { src: "/IMG_6775.jpg", alt: "Moment décisif" },
+              { src: "/IMG_1169.jpg", alt: "Tir à l'arc" },
+              { src: "/file013532_5184x3456.jpg", alt: "Action en compétition" }
+            ].map((img, idx) => (
+              <div key={idx} className="break-inside-avoid relative group overflow-hidden border border-white/10 bg-background rounded-sm">
+                <Image 
+                  src={img.src} 
+                  alt={img.alt} 
+                  width={800} 
+                  height={600} 
+                  className="w-full h-auto object-cover grayscale group-hover:grayscale-0 transition-all duration-700"
+                />
+                {img.caption && (
+                  <div className="absolute bottom-0 left-0 w-full p-6 bg-gradient-to-t from-background/90 via-background/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                    <p className="text-xs font-bold uppercase tracking-widest text-accent">{img.caption}</p>
+                  </div>
+                )}
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* Competitions Lists */}
       <section className="py-32">
         <div className="container max-w-5xl">
