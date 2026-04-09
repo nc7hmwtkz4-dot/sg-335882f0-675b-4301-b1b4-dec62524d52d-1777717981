@@ -1,5 +1,6 @@
 import Head from "next/head";
 import Link from "next/link";
+import Image from "next/image";
 import { Award, Bike, Timer, TrendingUp, Trophy } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
@@ -75,9 +76,22 @@ export default function Performances() {
               </div>
             </div>
 
-            <div className="bg-secondary/20 border border-white/10 p-12 space-y-8">
-              <h3 className="text-2xl font-heading font-bold uppercase tracking-wider">Parcours</h3>
-              <div className="space-y-6">
+            <div className="bg-secondary/20 border border-white/10 p-8 md:p-12 space-y-8">
+              <div className="flex justify-between items-center">
+                <h3 className="text-2xl font-heading font-bold uppercase tracking-wider">Certificat</h3>
+                <span className="text-accent text-xs font-bold uppercase tracking-widest">Finisher 2023</span>
+              </div>
+              
+              <div className="relative aspect-[3/4] w-full border border-white/10 overflow-hidden group bg-black/20">
+                <Image 
+                  src="/cyclotour-2023.jpg" 
+                  alt="Certificat Finisher Cyclotour du Léman 2023" 
+                  fill 
+                  className="object-contain p-2 group-hover:scale-105 transition-transform duration-700" 
+                />
+              </div>
+
+              <div className="space-y-6 pt-4 border-t border-white/5">
                 <div className="flex justify-between items-center border-b border-white/5 pb-4">
                   <span className="font-bold text-sm uppercase tracking-wider">Lausanne</span>
                   <span className="text-accent text-xs uppercase tracking-widest">Départ</span>
