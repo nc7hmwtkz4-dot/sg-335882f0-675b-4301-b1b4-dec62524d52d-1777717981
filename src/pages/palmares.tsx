@@ -1,7 +1,7 @@
 import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight, Medal, Target, Calendar, Globe2, Trophy, BarChart } from "lucide-react";
+import { ArrowRight, Medal, Target, Calendar, Globe2, Trophy, BarChart, Camera } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
   Table,
@@ -11,8 +11,44 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
+import { useState } from "react";
 
 export default function Palmares() {
+  const [selectedEvent, setSelectedEvent] = useState<string | null>(null);
+
+  // Photo gallery organized by event
+  const eventPhotos: Record<string, Array<{ src: string; alt: string; caption: string }>> = {
+    "Varese 2007": [
+      { src: "/IMG_1731.jpg", alt: "Podium Varese 2007", caption: "Podium Varese 2007 / Médaille de Bronze" },
+      { src: "/IMG_9605.jpg", alt: "High-five avec Lee Tae-Hoon", caption: "High-five avec l'entraîneur coréen Lee Tae-Hoon à Varese en 2007" },
+      { src: "/IMG_1532.jpg", alt: "Présentation avant match", caption: "Présentation d'avant match, match pour la médaille de bronze Varese 2007" },
+      { src: "/IMG_9609.jpg", alt: "Coupe du Monde Varese 2007", caption: "Coupe du Monde Varese 2007 avec Mauro Nespoli (ITA)" },
+    ],
+    "Ulsan 2007": [
+      { src: "/IMG_1597.jpg", alt: "Célébration par équipe Ulsan 2007", caption: "Célébration par équipe Ulsan 2007, médaille de bronze par équipe" },
+      { src: "/IMG_1595.jpg", alt: "Match pour la médaille de bronze par équipes Ulsan 2007", caption: "Match pour la médaille de bronze par équipes Ulsan 2007" },
+    ],
+    "Shanghai 2009": [
+      { src: "/IMG_1804.jpg", alt: "Shanghai 2009 avec le staff", caption: "Avec le staff de l'équipe de France (Anne Reculet et Marc Saunier) ainsi que mon coéquipier Jean-Charles Valladont, à la coupe du Monde de Shanghai 2009" },
+      { src: "/IMG_2430.jpg", alt: "Podium par équipes Shanghai 2009", caption: "Podium par équipes Shanghai 2009 aux côtés de la Corée du Sud et du Mexique." },
+      { src: "/IMG_1121.jpg", alt: "Finale par équipe Shanghai 2009", caption: "Finale par équipe de la coupe du monde de Shanghai 2009 contre la Corée du Sud." },
+    ],
+    "Antalya 2009": [
+      { src: "/IMG_6775.jpg", alt: "Podium individuel Antalya 2009", caption: "Podium individuel (argent) de la coupe du monde Antalya 2009 aux côtés de Simon Terry (GBR) et Jayanta Talukdar (IND)" },
+    ],
+    "Antalya 2012": [
+      { src: "/file013532_5184x3456.jpg", alt: "Coupe du Monde Antalya 2012", caption: "Sur le terrain de compétition lors de la coupe du Monde Antalya 2012" },
+    ],
+  };
+
   const unifiedEvents = [
     { year: "2025", event: "Championnats d'Europe Indoor", location: "Samsun (TUR)", ind: "9th", team: "-", mixed: "-", country: "SUI" },
     { year: "2016", event: "Championnats d'Europe", location: "Nottingham (GBR)", ind: "57th", team: "5th", mixed: "-", country: "SUI" },
@@ -53,6 +89,21 @@ export default function Palmares() {
     if (medal === "bronze") return <div className="flex justify-center" title="Médaille de Bronze"><Medal className="w-7 h-7 text-orange-500 fill-orange-500/40 drop-shadow-[0_0_12px_rgba(249,115,22,1)]" strokeWidth={2} /></div>;
     
     return <span className="font-heading font-extrabold text-lg md:text-xl tracking-tighter text-white/50">{rank}</span>;
+  };
+
+  // Helper to find event photos by matching event name and year
+  const getEventKey = (event: string, location: string): string | null => {
+    const year = location.match(/\d{4}/)?.[0];
+    if (!year) return null;
+    
+    // Map event names to simplified keys
+    if (event.includes("Coupe du Monde") && location.includes("Varese")) return "Varese 2007";
+    if (event.includes("Coupe du Monde") && location.includes("Ulsan")) return "Ulsan 2007";
+    if (event.includes("Coupe du Monde") && location.includes("Shanghai") && year === "2009") return "Shanghai 2009";
+    if (event.includes("Coupe du Monde") && location.includes("Antalya") && year === "2009") return "Antalya 2009";
+    if (event.includes("Coupe du Monde") && location.includes("Antalya") && year === "2012") return "Antalya 2012";
+    
+    return null;
   };
 
   return (
@@ -281,7 +332,11 @@ export default function Palmares() {
                   </TableRow>
                 </TableHeader>
                 <TableBody>
-                  {unifiedEvents.map((evt, idx) => (
+                  {unifiedEvents.map((evt, idx) => {
+                    const eventKey = getEventKey(evt.event, evt.location);
+                    const hasPhotos = eventKey && eventPhotos[eventKey];
+                    
+                    return (
                     <TableRow key={idx} className="border-white/5 hover:bg-white/5 transition-colors">
                       <TableCell>
                         <div className="flex items-center gap-3">
@@ -289,13 +344,51 @@ export default function Palmares() {
                           <span className="font-heading font-bold text-lg text-white/70">{evt.year}</span>
                         </div>
                       </TableCell>
-                      <TableCell className="font-bold text-sm tracking-wide">{evt.event}</TableCell>
+                      <TableCell>
+                        <div className="flex items-center gap-3">
+                          <span className="font-bold text-sm tracking-wide">{evt.event}</span>
+                          {hasPhotos && (
+                            <Dialog>
+                              <DialogTrigger asChild>
+                                <button className="text-accent/60 hover:text-accent transition-colors" title="Voir les photos">
+                                  <Camera className="w-4 h-4" />
+                                </button>
+                              </DialogTrigger>
+                              <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto bg-background border-white/10">
+                                <DialogHeader>
+                                  <DialogTitle className="text-2xl font-heading font-bold uppercase tracking-wider text-foreground">
+                                    {eventKey}
+                                  </DialogTitle>
+                                  <DialogDescription className="text-muted-foreground">
+                                    {eventPhotos[eventKey!].length} photo{eventPhotos[eventKey!].length > 1 ? "s" : ""} disponible{eventPhotos[eventKey!].length > 1 ? "s" : ""}
+                                  </DialogDescription>
+                                </DialogHeader>
+                                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
+                                  {eventPhotos[eventKey!].map((photo, photoIdx) => (
+                                    <div key={photoIdx} className="space-y-3">
+                                      <div className="relative aspect-[4/3] w-full border border-white/10 overflow-hidden group bg-black/20">
+                                        <Image 
+                                          src={photo.src} 
+                                          alt={photo.alt} 
+                                          fill 
+                                          className="object-cover grayscale group-hover:grayscale-0 transition-all duration-700" 
+                                        />
+                                      </div>
+                                      <p className="text-xs text-muted-foreground font-medium leading-relaxed">{photo.caption}</p>
+                                    </div>
+                                  ))}
+                                </div>
+                              </DialogContent>
+                            </Dialog>
+                          )}
+                        </div>
+                      </TableCell>
                       <TableCell className="text-[10px] text-muted-foreground uppercase tracking-widest">{evt.location}</TableCell>
                       <TableCell className="text-center">{renderRank(evt.ind, (evt as any).indMedal)}</TableCell>
                       <TableCell className="text-center">{renderRank(evt.team, (evt as any).teamMedal)}</TableCell>
                       <TableCell className="text-center">{renderRank(evt.mixed, (evt as any).mixedMedal)}</TableCell>
                     </TableRow>
-                  ))}
+                  )})}
                 </TableBody>
               </Table>
             </div>
