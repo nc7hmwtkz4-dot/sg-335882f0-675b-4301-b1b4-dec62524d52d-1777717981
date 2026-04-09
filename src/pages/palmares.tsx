@@ -44,9 +44,6 @@ export default function Palmares() {
     "Antalya 2009": [
       { src: "/IMG_6775.jpg", alt: "Podium individuel Antalya 2009", caption: "Podium individuel (argent) de la coupe du monde Antalya 2009 aux côtés de Simon Terry (GBR) et Jayanta Talukdar (IND)" },
     ],
-    "Antalya 2012": [
-      { src: "/file013532_5184x3456.jpg", alt: "Coupe du Monde Antalya 2012", caption: "Sur le terrain de compétition lors de la coupe du Monde Antalya 2012" },
-    ],
   };
 
   const unifiedEvents = [
@@ -191,66 +188,6 @@ export default function Palmares() {
               <Trophy className="w-8 h-8 text-accent/50" />
               <p className="text-5xl md:text-7xl font-heading font-extrabold tracking-tighter text-transparent [-webkit-text-stroke:1px_theme(colors.foreground)]">16</p>
               <p className="text-sm font-bold uppercase tracking-widest text-muted-foreground">Pays<br/>Hôtes</p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Gallery Section */}
-      <section className="py-32 border-y border-white/5">
-        <div className="container">
-          <div className="grid lg:grid-cols-2 gap-20 items-center">
-            <div className="space-y-10">
-              <h2 className="text-4xl md:text-5xl font-heading font-extrabold uppercase tracking-tighter">
-                Coupe du Monde <br />
-                <span className="text-accent">Boé 2008.</span>
-              </h2>
-              <p className="text-muted-foreground text-lg font-light leading-relaxed">
-                Images d'archives lors de la Coupe du Monde de tir à l'arc à Boé en France, une étape clé dans le parcours international.
-              </p>
-              <div className="grid grid-cols-2 gap-6">
-                <div className="space-y-4">
-                  <div className="relative aspect-square w-full border border-white/10 overflow-hidden group">
-                    <Image src="/IMG_0373.JPG" alt="Match contre Sky Kim (AUS)" fill className="object-cover grayscale group-hover:grayscale-0 transition-all duration-700" />
-                  </div>
-                  <p className="text-xs text-muted-foreground font-medium uppercase tracking-widest">Match vs Sky Kim (AUS)</p>
-                </div>
-                <div className="space-y-4">
-                  <div className="relative aspect-square w-full border border-white/10 overflow-hidden group">
-                    <Image src="/IMG_0723.JPG" alt="Match par équipe France-Italie" fill className="object-cover grayscale group-hover:grayscale-0 transition-all duration-700" />
-                  </div>
-                  <p className="text-xs text-muted-foreground font-medium uppercase tracking-widest">Équipe France-Italie</p>
-                </div>
-              </div>
-            </div>
-            
-            <div className="relative aspect-[3/4] w-full border border-white/10 group">
-              <Image src="/IMG_5604.JPG" alt="Thomas Aubert en action" fill className="object-cover grayscale group-hover:grayscale-0 transition-all duration-700" />
-              <div className="absolute bottom-0 left-0 bg-background/90 backdrop-blur-sm p-6 border-t border-r border-white/10">
-                <p className="text-xs font-bold uppercase tracking-widest text-accent">La concentration absolue.</p>
-              </div>
-            </div>
-          </div>
-          
-          <div className="grid md:grid-cols-2 gap-10 mt-20 pt-20 border-t border-white/5">
-            <div className="space-y-6">
-              <div className="relative aspect-[16/9] w-full border border-white/10 overflow-hidden group">
-                <Image src="/IMG_0123.jpg" alt="Equipe de France Leipzig 2007" fill className="object-cover grayscale group-hover:grayscale-0 transition-all duration-700" />
-              </div>
-              <div>
-                <p className="text-accent text-xs font-bold uppercase tracking-widest mb-1">Leipzig (GER) &mdash; 2007</p>
-                <p className="text-sm text-muted-foreground font-medium">Équipe de France aux Championnats du Monde extérieur.</p>
-              </div>
-            </div>
-            
-            <div className="space-y-6">
-              <div className="relative aspect-[16/9] w-full border border-white/10 overflow-hidden group">
-                <Image src="/IMG_8423.jpg" alt="Championnat du Monde Llwynypia 2008" fill className="object-cover grayscale group-hover:grayscale-0 transition-all duration-700" />
-              </div>
-              <div>
-                <p className="text-accent text-xs font-bold uppercase tracking-widest mb-1">Llwynypia (WAL) &mdash; 2008</p>
-                <p className="text-sm text-muted-foreground font-medium">Championnat du Monde de tir en campagne.</p>
-              </div>
             </div>
           </div>
         </div>
