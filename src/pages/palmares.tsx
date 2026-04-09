@@ -223,21 +223,17 @@ export default function Palmares() {
 
           <div className="columns-1 md:columns-2 lg:columns-3 gap-6 space-y-6">
             {[
-              { src: "/IMG_1731.jpg", alt: "Podium Varese 2007", caption: "Médaille de Bronze (Varese 2007)" },
-              { src: "/IMG_1597.jpg", alt: "Victoire par équipe", caption: "Célébration par équipe (Ulsan 2007)" },
-              { src: "/IMG_9605.jpg", alt: "Complicité entraîneur", caption: "Partage avec l'entraîneur" },
-              { src: "/IMG_1532.jpg", alt: "Équipe de France", caption: "Couleurs nationales" },
-              { src: "/IMG_1595.jpg", alt: "Célébration équipe", caption: "Esprit d'équipe" },
-              { src: "/IMG_9609.jpg", alt: "Amitié internationale", caption: "Rencontres internationales" },
-              { src: "/X17_3683.jpg", alt: "Action de tir" },
-              { src: "/X17_3690.jpg", alt: "Concentration" },
-              { src: "/IMG_1804.jpg", alt: "Podium par équipe" },
-              { src: "/IMG_0408.jpg", alt: "Compétition internationale" },
-              { src: "/IMG_2430.jpg", alt: "Phase de tir" },
-              { src: "/IMG_1121.jpg", alt: "Compétition" },
-              { src: "/IMG_6775.jpg", alt: "Moment décisif" },
-              { src: "/IMG_1169.jpg", alt: "Tir à l'arc" },
-              { src: "/file013532_5184x3456.jpg", alt: "Action en compétition" }
+              { src: "/IMG_1731.jpg", alt: "Podium Varese 2007", caption: "Podium Varese 2007 / Médaille de Bronze" },
+              { src: "/IMG_1597.jpg", alt: "Célébration par équipe Ulsan 2007", caption: "Célébration par équipe Ulsan 2007, médaille de bronze par équipe" },
+              { src: "/IMG_9605.jpg", alt: "High-five avec Lee Tae-Hoon", caption: "High-five avec l'entraîneur coréen Lee Tae-Hoon à Varese en 2007" },
+              { src: "/IMG_1532.jpg", alt: "Présentation avant match", caption: "Présentation d’avant match, match pour la médaille de bronze Varese 2007" },
+              { src: "/IMG_1595.jpg", alt: "Match pour la médaille de bronze par équipes Ulsan 2007", caption: "Match pour la médaille de bronze par équipes Ulsan 2007" },
+              { src: "/IMG_9609.jpg", alt: "Coupe du Monde Varese 2007", caption: "Coupe du Monde Varese 2007 avec Mauro Nespoli (ITA)" },
+              { src: "/IMG_1804.jpg", alt: "Shanghai 2009 avec le staff", caption: "Avec le staff de l’équipe de France (Anne Reculet et Marc Saunier) ainsi que mon coéquipier Jean-Charles Valladont, à la coupe du Monde de Shanghai 2009" },
+              { src: "/IMG_2430.jpg", alt: "Podium par équipes Shanghai 2009", caption: "Podium par équipes Shanghai 2009 aux côtés de la Corée du Sud et du Mexique." },
+              { src: "/IMG_1121.jpg", alt: "Finale par équipe Shanghai 2009", caption: "Finale par équipe de la coupe du monde de Shanghai 2009 contre la Corée du Sud." },
+              { src: "/IMG_6775.jpg", alt: "Podium individuel Antalya 2009", caption: "Podium individuel (argent) de la coupe du monde Antalya 2009 aux côtés de Simon Terry (GBR) et Jayanta Talukdar (IND)" },
+              { src: "/file013532_5184x3456.jpg", alt: "Coupe du Monde Antalya 2012", caption: "Sur le terrain de compétition lors de la coupe du Monde Antalya 2012" }
             ].map((img, idx) => (
               <div key={idx} className="break-inside-avoid relative group overflow-hidden border border-white/10 bg-background rounded-sm">
                 <Image 
