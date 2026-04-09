@@ -88,20 +88,16 @@ export default function Palmares() {
     return <span className="font-heading font-extrabold text-lg md:text-xl tracking-tighter text-white/50">{rank}</span>;
   };
 
-  // Helper to find event photos by matching city and year from location
-  const getEventKey = (location: string): string | null => {
-    const year = location.match(/\d{4}/)?.[0];
-    if (!year) return null;
-    
+  // Helper to find event photos by matching city and year
+  const getEventKey = (location: string, year: string): string | null => {
     // Extract city from location (format: "City (COUNTRY)")
     const city = location.split("(")[0].trim();
     
-    // Map location to event keys
+    // Map city + year to event keys
     if (city === "Varese" && year === "2007") return "Varese 2007";
     if (city === "Ulsan" && year === "2007") return "Ulsan 2007";
     if (city === "Shanghai" && year === "2009") return "Shanghai 2009";
     if (city === "Antalya" && year === "2009") return "Antalya 2009";
-    if (city === "Antalya" && year === "2012") return "Antalya 2012";
     
     return null;
   };
@@ -221,7 +217,7 @@ export default function Palmares() {
                 </TableHeader>
                 <TableBody>
                   {unifiedEvents.map((evt, idx) => {
-                    const eventKey = getEventKey(evt.location);
+                    const eventKey = getEventKey(evt.location, evt.year);
                     const hasPhotos = eventKey && eventPhotos[eventKey];
                     
                     return (
