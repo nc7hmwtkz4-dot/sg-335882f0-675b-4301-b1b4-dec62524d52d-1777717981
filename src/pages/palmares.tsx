@@ -31,6 +31,9 @@ export default function Palmares() {
       { src: "/IMG_9605.jpg", alt: "High-five avec Lee Tae-Hoon", caption: "High-five avec l'entraîneur coréen Lee Tae-Hoon à Varese en 2007" },
       { src: "/IMG_1532.jpg", alt: "Présentation avant match", caption: "Présentation d'avant match, match pour la médaille de bronze Varese 2007" },
       { src: "/IMG_9609.jpg", alt: "Coupe du Monde Varese 2007", caption: "Coupe du Monde Varese 2007 avec Mauro Nespoli (ITA)" },
+      { src: "/IMG_9604.jpg", alt: "Match pour la médaille de bronze Varese 2007", caption: "Match pour la médaille de bronze Varese 2007" },
+      { src: "/IMG_9611.jpg", alt: "Avec Lee Tae-Hoon Varese 2007", caption: "Avec Lee Tae-Hoon après avoir gagné le match pour le bronze à Varese 2007" },
+      { src: "/IMG_1538.jpg", alt: "Match pour la médaille de bronze Varese 2007", caption: "Match pour la médaille de bronze Varese 2007" },
     ],
     "Ulsan 2007": [
       { src: "/IMG_1597.jpg", alt: "Célébration par équipe Ulsan 2007", caption: "Célébration par équipe Ulsan 2007, médaille de bronze par équipe" },
@@ -40,9 +43,15 @@ export default function Palmares() {
       { src: "/IMG_1804.jpg", alt: "Shanghai 2009 avec le staff", caption: "Avec le staff de l'équipe de France (Anne Reculet et Marc Saunier) ainsi que mon coéquipier Jean-Charles Valladont, à la coupe du Monde de Shanghai 2009" },
       { src: "/IMG_2430.jpg", alt: "Podium par équipes Shanghai 2009", caption: "Podium par équipes Shanghai 2009 aux côtés de la Corée du Sud et du Mexique." },
       { src: "/IMG_1121.jpg", alt: "Finale par équipe Shanghai 2009", caption: "Finale par équipe de la coupe du monde de Shanghai 2009 contre la Corée du Sud." },
+      { src: "/IMG_1105.jpg", alt: "Match pour la médaille d'or par équipe Shanghai 2009", caption: "Match pour la médaille d'or par équipe Shanghai 2009" },
+      { src: "/IMG_1699.jpg", alt: "Match à Shanghai 2009", caption: "Match à Shanghai 2009 contre Rafal Dobrowolski (POL)" },
     ],
     "Antalya 2009": [
       { src: "/IMG_6775.jpg", alt: "Podium individuel Antalya 2009", caption: "Podium individuel (argent) de la coupe du monde Antalya 2009 aux côtés de Simon Terry (GBR) et Jayanta Talukdar (IND)" },
+      { src: "/IMG_6079.jpg", alt: "Volée à 60 par équipes Antalya 2009", caption: "Volée à 60 par équipes à Antalya 2009, avec Jean Charles Valladont et Romain Girouille." },
+    ],
+    "Ogden 2011": [
+      { src: "/IMG_1550.jpg", alt: "Coupe du monde Ogden 2011", caption: "Coupe du monde Ogden 2011" },
     ],
   };
 
@@ -98,6 +107,7 @@ export default function Palmares() {
     if (city === "Ulsan" && year === "2007") return "Ulsan 2007";
     if (city === "Shanghai" && year === "2009") return "Shanghai 2009";
     if (city === "Antalya" && year === "2009") return "Antalya 2009";
+    if (city === "Ogden" && year === "2011") return "Ogden 2011";
     
     return null;
   };
