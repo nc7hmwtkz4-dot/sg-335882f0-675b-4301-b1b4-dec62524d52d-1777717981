@@ -10,6 +10,8 @@ export function Navigation() {
     { href: "/", label: "Index" },
     { href: "/parcours", label: "Parcours" },
     { href: "/palmares", label: "Palmarès" },
+    { href: "/performances", label: "Performances" },
+    { href: "/investissements", label: "Investissements" },
     { href: "/vision", label: "Vision" },
   ];
 
