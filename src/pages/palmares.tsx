@@ -38,6 +38,7 @@ export default function Palmares() {
     { year: "2007", event: "Championnats du Monde", location: "Leipzig (GER)", ind: "101st", team: "-", mixed: "-" },
     { year: "2007", event: "Coupe du Monde (Étape 2)", location: "Varese (ITA)", ind: "3rd", indMedal: "bronze", team: "-", mixed: "-" },
     { year: "2007", event: "Coupe du Monde (Étape 1)", location: "Ulsan (KOR)", ind: "13th", team: "3rd", teamMedal: "bronze", mixed: "-" },
+    { year: "2006", event: "Championnats du Monde Jeunes", location: "Mérida (MEX)", ind: "4th", team: "8th", mixed: "-" },
     { year: "2006", event: "Grand Prix Européen", location: "Sassari (ITA)", ind: "4th", team: "-", mixed: "-" },
     { year: "2006", event: "Championnat d'Europe Indoor Jeunes", location: "Jaen (ESP)", ind: "2nd", indMedal: "silver", team: "-", mixed: "-" },
     { year: "2005", event: "Coupe d'Europe Junior", location: "Cles (ITA)", ind: "2nd", indMedal: "silver", team: "-", mixed: "-" },
