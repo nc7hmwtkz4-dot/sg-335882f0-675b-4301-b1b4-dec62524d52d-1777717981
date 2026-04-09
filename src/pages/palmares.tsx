@@ -14,44 +14,45 @@ import {
 
 export default function Palmares() {
   const unifiedEvents = [
-    { year: "2016", event: "Championnats d'Europe", location: "Nottingham (GBR)", ind: "57th", team: "5th", mixed: "-" },
-    { year: "2016", event: "Grand Prix Européen", location: "Sofia (BUL)", ind: "17th", team: "9th", mixed: "5th" },
-    { year: "2015", event: "Grand Prix Européen", location: "Marathon (GRE)", ind: "17th", team: "28th", mixed: "8th" },
-    { year: "2013", event: "Coupe du Monde (Étape 4)", location: "Wroclaw (POL)", ind: "9th", team: "9th", mixed: "-" },
-    { year: "2013", event: "Coupe du Monde (Étape 1)", location: "Shanghai (CHN)", ind: "17th", team: "3rd", teamMedal: "bronze", mixed: "-" },
-    { year: "2013", event: "Grand Prix Européen", location: "Riom (FRA)", ind: "2nd", indMedal: "silver", team: "1st", teamMedal: "gold", mixed: "5th" },
-    { year: "2012", event: "Championnat du Monde Universitaire", location: "Cordoue (ESP)", ind: "5th", team: "6th", mixed: "6th" },
-    { year: "2012", event: "Coupe du Monde (Étape 1)", location: "Shanghai (CHN)", ind: "4th", team: "-", mixed: "-" },
-    { year: "2012", event: "Coupe du Monde Indoor (Finale)", location: "Las Vegas (USA)", ind: "4th", team: "-", mixed: "-" },
-    { year: "2011", event: "Universiade d'Été", location: "Shenzhen (CHN)", ind: "9th", team: "3rd", teamMedal: "bronze", mixed: "-" },
-    { year: "2011", event: "Coupe du Monde (Étape 3)", location: "Ogden (USA)", ind: "17th", team: "5th", mixed: "-" },
-    { year: "2011", event: "Grand Prix Européen", location: "Antalya (TUR)", ind: "2nd", indMedal: "silver", team: "-", mixed: "-" },
-    { year: "2011", event: "Grand Prix Européen", location: "Boé (FRA)", ind: "9th", team: "4th", mixed: "-" },
-    { year: "2010", event: "Championnat du Monde Universitaire", location: "Shenzhen (CHN)", ind: "9th", team: "5th", mixed: "9th" },
-    { year: "2009", event: "Championnats du Monde", location: "Ulsan (KOR)", ind: "52nd", team: "2nd", teamMedal: "silver", mixed: "-" },
-    { year: "2009", event: "Coupe du Monde (Étape 4)", location: "Shanghai (CHN)", ind: "25th", team: "2nd", teamMedal: "silver", mixed: "-" },
-    { year: "2009", event: "Coupe du Monde (Étape 3)", location: "Antalya (TUR)", ind: "2nd", indMedal: "silver", team: "5th", mixed: "-" },
-    { year: "2008", event: "Championnats d'Europe", location: "Vittel (FRA)", ind: "23rd", team: "2nd", teamMedal: "silver", mixed: "-" },
-    { year: "2008", event: "Coupe du Monde (Étape 4)", location: "Boé (FRA)", ind: "33rd", team: "5th", mixed: "-" },
-    { year: "2008", event: "Coupe du Monde (Étape 2)", location: "Porec (CRO)", ind: "24th", team: "4th", mixed: "-" },
-    { year: "2008", event: "Coupe du Monde (Étape 1)", location: "St-Domingue (DOM)", ind: "27th", team: "5th", mixed: "-" },
-    { year: "2007", event: "Championnats du Monde", location: "Leipzig (GER)", ind: "101st", team: "-", mixed: "-" },
-    { year: "2007", event: "Coupe du Monde (Étape 2)", location: "Varese (ITA)", ind: "3rd", indMedal: "bronze", team: "-", mixed: "-" },
-    { year: "2007", event: "Coupe du Monde (Étape 1)", location: "Ulsan (KOR)", ind: "13th", team: "3rd", teamMedal: "bronze", mixed: "-" },
-    { year: "2006", event: "Championnats du Monde Jeunes", location: "Mérida (MEX)", ind: "4th", team: "8th", mixed: "-" },
-    { year: "2006", event: "Grand Prix Européen", location: "Sassari (ITA)", ind: "4th", team: "-", mixed: "-" },
-    { year: "2006", event: "Championnat d'Europe Indoor Jeunes", location: "Jaen (ESP)", ind: "2nd", indMedal: "silver", team: "-", mixed: "-" },
-    { year: "2005", event: "Coupe d'Europe Junior", location: "Cles (ITA)", ind: "2nd", indMedal: "silver", team: "-", mixed: "-" },
-    { year: "2005", event: "Championnats d'Europe Jeunes", location: "Silkeborg (DEN)", ind: "-", team: "2nd", teamMedal: "silver", mixed: "-" },
+    { year: "2025", event: "Championnats d'Europe Indoor", location: "Samsun (TUR)", ind: "9th", team: "-", mixed: "-", country: "SUI" },
+    { year: "2016", event: "Championnats d'Europe", location: "Nottingham (GBR)", ind: "57th", team: "5th", mixed: "-", country: "SUI" },
+    { year: "2016", event: "Grand Prix Européen", location: "Sofia (BUL)", ind: "17th", team: "9th", mixed: "5th", country: "SUI" },
+    { year: "2015", event: "Grand Prix Européen", location: "Marathon (GRE)", ind: "17th", team: "28th", mixed: "8th", country: "SUI" },
+    { year: "2013", event: "Coupe du Monde (Étape 4)", location: "Wroclaw (POL)", ind: "9th", team: "9th", mixed: "-", country: "FRA" },
+    { year: "2013", event: "Coupe du Monde (Étape 1)", location: "Shanghai (CHN)", ind: "17th", team: "3rd", teamMedal: "bronze", mixed: "-", country: "FRA" },
+    { year: "2013", event: "Grand Prix Européen", location: "Riom (FRA)", ind: "2nd", indMedal: "silver", team: "1st", teamMedal: "gold", mixed: "5th", country: "FRA" },
+    { year: "2012", event: "Championnat du Monde Universitaire", location: "Cordoue (ESP)", ind: "5th", team: "6th", mixed: "6th", country: "FRA" },
+    { year: "2012", event: "Coupe du Monde (Étape 1)", location: "Shanghai (CHN)", ind: "4th", team: "-", mixed: "-", country: "FRA" },
+    { year: "2012", event: "Coupe du Monde Indoor (Finale)", location: "Las Vegas (USA)", ind: "4th", team: "-", mixed: "-", country: "FRA" },
+    { year: "2011", event: "Universiade d'Été", location: "Shenzhen (CHN)", ind: "9th", team: "3rd", teamMedal: "bronze", mixed: "-", country: "FRA" },
+    { year: "2011", event: "Coupe du Monde (Étape 3)", location: "Ogden (USA)", ind: "17th", team: "5th", mixed: "-", country: "FRA" },
+    { year: "2011", event: "Grand Prix Européen", location: "Antalya (TUR)", ind: "2nd", indMedal: "silver", team: "-", mixed: "-", country: "FRA" },
+    { year: "2011", event: "Grand Prix Européen", location: "Boé (FRA)", ind: "9th", team: "4th", mixed: "-", country: "FRA" },
+    { year: "2010", event: "Championnat du Monde Universitaire", location: "Shenzhen (CHN)", ind: "9th", team: "5th", mixed: "9th", country: "FRA" },
+    { year: "2009", event: "Championnats du Monde", location: "Ulsan (KOR)", ind: "52nd", team: "2nd", teamMedal: "silver", mixed: "-", country: "FRA" },
+    { year: "2009", event: "Coupe du Monde (Étape 4)", location: "Shanghai (CHN)", ind: "25th", team: "2nd", teamMedal: "silver", mixed: "-", country: "FRA" },
+    { year: "2009", event: "Coupe du Monde (Étape 3)", location: "Antalya (TUR)", ind: "2nd", indMedal: "silver", team: "5th", mixed: "-", country: "FRA" },
+    { year: "2008", event: "Championnats d'Europe", location: "Vittel (FRA)", ind: "23rd", team: "2nd", teamMedal: "silver", mixed: "-", country: "FRA" },
+    { year: "2008", event: "Coupe du Monde (Étape 4)", location: "Boé (FRA)", ind: "33rd", team: "5th", mixed: "-", country: "FRA" },
+    { year: "2008", event: "Coupe du Monde (Étape 2)", location: "Porec (CRO)", ind: "24th", team: "4th", mixed: "-", country: "FRA" },
+    { year: "2008", event: "Coupe du Monde (Étape 1)", location: "St-Domingue (DOM)", ind: "27th", team: "5th", mixed: "-", country: "FRA" },
+    { year: "2007", event: "Championnats du Monde", location: "Leipzig (GER)", ind: "101st", team: "-", mixed: "-", country: "FRA" },
+    { year: "2007", event: "Coupe du Monde (Étape 2)", location: "Varese (ITA)", ind: "3rd", indMedal: "bronze", team: "-", mixed: "-", country: "FRA" },
+    { year: "2007", event: "Coupe du Monde (Étape 1)", location: "Ulsan (KOR)", ind: "13th", team: "3rd", teamMedal: "bronze", mixed: "-", country: "FRA" },
+    { year: "2006", event: "Championnats du Monde Jeunes", location: "Mérida (MEX)", ind: "4th", team: "8th", mixed: "-", country: "FRA" },
+    { year: "2006", event: "Grand Prix Européen", location: "Sassari (ITA)", ind: "4th", team: "-", mixed: "-", country: "FRA" },
+    { year: "2006", event: "Championnat d'Europe Indoor Jeunes", location: "Jaen (ESP)", ind: "2nd", indMedal: "silver", team: "-", mixed: "-", country: "FRA" },
+    { year: "2005", event: "Coupe d'Europe Junior", location: "Cles (ITA)", ind: "2nd", indMedal: "silver", team: "-", mixed: "-", country: "FRA" },
+    { year: "2005", event: "Championnats d'Europe Jeunes", location: "Silkeborg (DEN)", ind: "-", team: "2nd", teamMedal: "silver", mixed: "-", country: "FRA" },
   ];
 
   const renderRank = (rank: string, medal?: "gold" | "silver" | "bronze" | string) => {
-    if (!rank || rank === "-") return <span className="text-white/20">-</span>;
-    if (medal === "gold") return <div className="flex justify-center" title="Médaille d'Or"><Medal className="w-6 h-6 text-yellow-400 drop-shadow-[0_0_8px_rgba(250,204,21,0.5)]" /></div>;
-    if (medal === "silver") return <div className="flex justify-center" title="Médaille d'Argent"><Medal className="w-6 h-6 text-gray-300 drop-shadow-[0_0_8px_rgba(209,213,219,0.5)]" /></div>;
-    if (medal === "bronze") return <div className="flex justify-center" title="Médaille de Bronze"><Medal className="w-6 h-6 text-amber-700 drop-shadow-[0_0_8px_rgba(180,83,9,0.5)]" /></div>;
+    if (!rank || rank === "-") return <span className="text-white/10">-</span>;
+    if (medal === "gold") return <div className="flex justify-center" title="Médaille d'Or"><Medal className="w-7 h-7 text-yellow-400 fill-yellow-400/40 drop-shadow-[0_0_12px_rgba(250,204,21,1)]" strokeWidth={2} /></div>;
+    if (medal === "silver") return <div className="flex justify-center" title="Médaille d'Argent"><Medal className="w-7 h-7 text-white fill-white/50 drop-shadow-[0_0_12px_rgba(255,255,255,1)]" strokeWidth={2} /></div>;
+    if (medal === "bronze") return <div className="flex justify-center" title="Médaille de Bronze"><Medal className="w-7 h-7 text-orange-500 fill-orange-500/40 drop-shadow-[0_0_12px_rgba(249,115,22,1)]" strokeWidth={2} /></div>;
     
-    return <span className="font-heading font-extrabold text-lg md:text-xl tracking-tighter">{rank}</span>;
+    return <span className="font-heading font-extrabold text-lg md:text-xl tracking-tighter text-white/50">{rank}</span>;
   };
 
   return (
@@ -219,7 +220,7 @@ export default function Palmares() {
               <Table>
                 <TableHeader className="bg-white/5">
                   <TableRow className="hover:bg-transparent border-white/10">
-                    <TableHead className="w-24 font-bold text-accent uppercase tracking-widest text-xs">Année</TableHead>
+                    <TableHead className="w-32 font-bold text-accent uppercase tracking-widest text-xs">Année</TableHead>
                     <TableHead className="font-bold text-white uppercase tracking-widest text-xs min-w-[200px]">Compétition</TableHead>
                     <TableHead className="font-bold text-white uppercase tracking-widest text-xs">Lieu</TableHead>
                     <TableHead className="text-center font-bold text-white uppercase tracking-widest text-xs">Ind.</TableHead>
@@ -230,7 +231,12 @@ export default function Palmares() {
                 <TableBody>
                   {unifiedEvents.map((evt, idx) => (
                     <TableRow key={idx} className="border-white/5 hover:bg-white/5 transition-colors">
-                      <TableCell className="font-heading font-bold text-lg text-white/50">{evt.year}</TableCell>
+                      <TableCell>
+                        <div className="flex items-center gap-3">
+                          <span className="text-xl opacity-90" title={evt.country === "SUI" ? "Équipe de Suisse" : "Équipe de France"}>{evt.country === "SUI" ? "🇨🇭" : "🇫🇷"}</span>
+                          <span className="font-heading font-bold text-lg text-white/70">{evt.year}</span>
+                        </div>
+                      </TableCell>
                       <TableCell className="font-bold text-sm tracking-wide">{evt.event}</TableCell>
                       <TableCell className="text-[10px] text-muted-foreground uppercase tracking-widest">{evt.location}</TableCell>
                       <TableCell className="text-center">{renderRank(evt.ind, (evt as any).indMedal)}</TableCell>
