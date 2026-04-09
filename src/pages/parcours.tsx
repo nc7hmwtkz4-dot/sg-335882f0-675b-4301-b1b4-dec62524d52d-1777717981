@@ -179,6 +179,15 @@ export default function Parcours() {
               <h3 className="text-2xl font-heading font-bold uppercase tracking-widest mb-8">Formation</h3>
               <div className="space-y-8">
                 <div>
+                  <p className="font-bold uppercase tracking-wider text-sm mb-1">Certificats de Participation</p>
+                  <p className="text-accent text-xs font-bold uppercase tracking-widest mb-2">JO & Paralympiques de Paris 2024</p>
+                  <p className="text-muted-foreground text-sm font-light mb-4">Reconnaissance officielle du Comité International Olympique et Paralympique pour la contribution au succès des Jeux.</p>
+                  <Button variant="outline" size="sm" asChild className="border-white/20 text-foreground hover:bg-white/5 rounded-none text-xs uppercase tracking-widest font-bold h-9">
+                    <a href="/Certificats_Paris_2024.pdf" target="_blank" rel="noopener noreferrer">Voir les certificats</a>
+                  </Button>
+                </div>
+                <div className="w-full h-[1px] bg-white/5"></div>
+                <div>
                   <p className="font-bold uppercase tracking-wider text-sm mb-1">Master en Management</p>
                   <p className="text-accent text-xs font-bold uppercase tracking-widest mb-2">ESCEM Tours-Poitiers (2012)</p>
                   <p className="text-muted-foreground text-sm font-light">Spécialisation Supply Chain Management et Achats.</p>
