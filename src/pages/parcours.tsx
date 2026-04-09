@@ -28,6 +28,15 @@ export default function Parcours() {
       ]
     },
     {
+      period: "Déc. 2015 — Oct. 2021",
+      role: "Substitute Technical Committee Chair - Archery",
+      company: "FISU, Lausanne (SUI)",
+      highlights: [
+        "Membre suppléant du comité technique pour le tir à l'arc",
+        "Support à l'organisation des compétitions universitaires mondiales",
+      ]
+    },
+    {
       period: "Jan. 2015 — Juil. 2019",
       role: "Marketing Services Manager",
       company: "World Archery Federation",
@@ -178,6 +187,12 @@ export default function Parcours() {
                 <div>
                   <p className="font-bold uppercase tracking-wider text-sm mb-1">BTS Commerce International</p>
                   <p className="text-accent text-xs font-bold uppercase tracking-widest mb-2">Lycée Maurice Ravel, Paris (2007)</p>
+                </div>
+                <div className="w-full h-[1px] bg-white/5"></div>
+                <div>
+                  <p className="font-bold uppercase tracking-wider text-sm mb-1">Sustainability Literacy Test (TASK)</p>
+                  <p className="text-accent text-xs font-bold uppercase tracking-widest mb-2">Sulitest (Juin 2024)</p>
+                  <p className="text-muted-foreground text-sm font-light">Score Global : 63,7/100 — Évaluation des connaissances en développement durable et responsabilité sociétale.</p>
                 </div>
               </div>
             </div>
