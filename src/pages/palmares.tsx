@@ -91,15 +91,15 @@ export default function Palmares() {
     return <span className="font-heading font-extrabold text-lg md:text-xl tracking-tighter text-white/50">{rank}</span>;
   };
 
-  // Helper to find event photos by matching event name and year
-  const getEventKey = (event: string, location: string): string | null => {
+  // Helper to find event photos by matching city and year from location
+  const getEventKey = (location: string): string | null => {
     const year = location.match(/\d{4}/)?.[0];
     if (!year) return null;
     
     // Extract city from location (format: "City (COUNTRY)")
     const city = location.split("(")[0].trim();
     
-    // Map event names to simplified keys - match by city and year
+    // Map location to event keys
     if (city === "Varese" && year === "2007") return "Varese 2007";
     if (city === "Ulsan" && year === "2007") return "Ulsan 2007";
     if (city === "Shanghai" && year === "2009") return "Shanghai 2009";
@@ -256,58 +256,6 @@ export default function Palmares() {
         </div>
       </section>
 
-      {/* Archives Photographiques (Masonry Grid) */}
-      <section className="py-32 border-b border-white/5 bg-secondary/10">
-        <div className="container">
-          <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-16">
-            <div>
-              <div className="inline-flex items-center gap-3 mb-6">
-                <span className="h-[1px] w-12 bg-accent"></span>
-                <span className="text-accent text-xs font-bold uppercase tracking-[0.2em]">Galerie</span>
-              </div>
-              <h2 className="text-4xl md:text-6xl font-heading font-extrabold uppercase tracking-tighter">
-                Archives <br />
-                <span className="text-transparent [-webkit-text-stroke:1px_theme(colors.foreground)] opacity-80">Historiques.</span>
-              </h2>
-            </div>
-            <p className="text-muted-foreground font-light max-w-sm md:text-right">
-              Une rétrospective en images des moments forts de ma carrière internationale. Podiums, esprit d'équipe et concentration absolue.
-            </p>
-          </div>
-
-          <div className="columns-1 md:columns-2 lg:columns-3 gap-6 space-y-6">
-            {[
-              { src: "/IMG_1731.jpg", alt: "Podium Varese 2007", caption: "Podium Varese 2007 / Médaille de Bronze" },
-              { src: "/IMG_1597.jpg", alt: "Célébration par équipe Ulsan 2007", caption: "Célébration par équipe Ulsan 2007, médaille de bronze par équipe" },
-              { src: "/IMG_9605.jpg", alt: "High-five avec Lee Tae-Hoon", caption: "High-five avec l'entraîneur coréen Lee Tae-Hoon à Varese en 2007" },
-              { src: "/IMG_1532.jpg", alt: "Présentation avant match", caption: "Présentation d’avant match, match pour la médaille de bronze Varese 2007" },
-              { src: "/IMG_1595.jpg", alt: "Match pour la médaille de bronze par équipes Ulsan 2007", caption: "Match pour la médaille de bronze par équipes Ulsan 2007" },
-              { src: "/IMG_9609.jpg", alt: "Coupe du Monde Varese 2007", caption: "Coupe du Monde Varese 2007 avec Mauro Nespoli (ITA)" },
-              { src: "/IMG_1804.jpg", alt: "Shanghai 2009 avec le staff", caption: "Avec le staff de l’équipe de France (Anne Reculet et Marc Saunier) ainsi que mon coéquipier Jean-Charles Valladont, à la coupe du Monde de Shanghai 2009" },
-              { src: "/IMG_2430.jpg", alt: "Podium par équipes Shanghai 2009", caption: "Podium par équipes Shanghai 2009 aux côtés de la Corée du Sud et du Mexique." },
-              { src: "/IMG_1121.jpg", alt: "Finale par équipe Shanghai 2009", caption: "Finale par équipe de la coupe du monde de Shanghai 2009 contre la Corée du Sud." },
-              { src: "/IMG_6775.jpg", alt: "Podium individuel Antalya 2009", caption: "Podium individuel (argent) de la coupe du monde Antalya 2009 aux côtés de Simon Terry (GBR) et Jayanta Talukdar (IND)" },
-              { src: "/file013532_5184x3456.jpg", alt: "Coupe du Monde Antalya 2012", caption: "Sur le terrain de compétition lors de la coupe du Monde Antalya 2012" }
-            ].map((img, idx) => (
-              <div key={idx} className="break-inside-avoid relative group overflow-hidden border border-white/10 bg-background rounded-sm">
-                <Image 
-                  src={img.src} 
-                  alt={img.alt} 
-                  width={800} 
-                  height={600} 
-                  className="w-full h-auto object-cover grayscale group-hover:grayscale-0 transition-all duration-700"
-                />
-                {img.caption && (
-                  <div className="absolute bottom-0 left-0 w-full p-6 bg-gradient-to-t from-background/90 via-background/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-                    <p className="text-xs font-bold uppercase tracking-widest text-accent">{img.caption}</p>
-                  </div>
-                )}
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* Competitions Lists */}
       <section className="py-32">
         <div className="container max-w-5xl">
@@ -336,7 +284,7 @@ export default function Palmares() {
                 </TableHeader>
                 <TableBody>
                   {unifiedEvents.map((evt, idx) => {
-                    const eventKey = getEventKey(evt.event, evt.location);
+                    const eventKey = getEventKey(evt.location);
                     const hasPhotos = eventKey && eventPhotos[eventKey];
                     
                     return (
