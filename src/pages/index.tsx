@@ -96,18 +96,18 @@ export default function Home() {
                 <div>
                   <h4 className="font-heading text-sm font-bold text-foreground uppercase tracking-widest mb-6">Valeurs</h4>
                   <ul className="space-y-3 text-sm text-muted-foreground">
-                    <li className="flex items-center gap-3"><span className="w-1.5 h-1.5 bg-accent rounded-full"></span> Précision</li>
+                    <li className="flex items-center gap-3"><span className="w-1.5 h-1.5 bg-accent rounded-full"></span> Précision & Fiabilité</li>
                     <li className="flex items-center gap-3"><span className="w-1.5 h-1.5 bg-accent rounded-full"></span> Loyauté & Honnêteté</li>
-                    <li className="flex items-center gap-3"><span className="w-1.5 h-1.5 bg-accent rounded-full"></span> Concentration</li>
-                    <li className="flex items-center gap-3"><span className="w-1.5 h-1.5 bg-accent rounded-full"></span> Rationalité</li>
+                    <li className="flex items-center gap-3"><span className="w-1.5 h-1.5 bg-accent rounded-full"></span> Concentration totale</li>
+                    <li className="flex items-center gap-3"><span className="w-1.5 h-1.5 bg-accent rounded-full"></span> Capacité d'adaptation</li>
                   </ul>
                 </div>
                 <div>
                   <h4 className="font-heading text-sm font-bold text-foreground uppercase tracking-widest mb-6">Forces</h4>
                   <ul className="space-y-3 text-sm text-muted-foreground">
-                    <li className="flex items-center gap-3"><span className="w-1.5 h-1.5 bg-white/30 rounded-full"></span> Prise de décision rapide</li>
-                    <li className="flex items-center gap-3"><span className="w-1.5 h-1.5 bg-white/30 rounded-full"></span> Analyse complexe</li>
-                    <li className="flex items-center gap-3"><span className="w-1.5 h-1.5 bg-white/30 rounded-full"></span> Gestion budgétaire</li>
+                    <li className="flex items-center gap-3"><span className="w-1.5 h-1.5 bg-white/30 rounded-full"></span> Grande autonomie décisionnelle</li>
+                    <li className="flex items-center gap-3"><span className="w-1.5 h-1.5 bg-white/30 rounded-full"></span> Analyse et dossiers solides</li>
+                    <li className="flex items-center gap-3"><span className="w-1.5 h-1.5 bg-white/30 rounded-full"></span> Organisation & Réactivité</li>
                     <li className="flex items-center gap-3"><span className="w-1.5 h-1.5 bg-white/30 rounded-full"></span> Trilingue (FR, EN, ES)</li>
                   </ul>
                 </div>

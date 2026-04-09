@@ -7,17 +7,17 @@ import { Button } from "@/components/ui/button";
 export default function Parcours() {
   const experiences = [
     {
-      period: "Août 2019 — Présent",
+      period: "Août 2012 — Présent",
       role: "Head of Events & Marketing",
       company: "World Archery Federation, Lausanne (SUI)",
       highlights: [
-        "Délégué technique aux JO Paris 2024",
-        "Gestion globale des événements mondiaux et coordination d'équipe",
-        "Revenus de sponsoring multipliés par 14 en 10 ans",
-        "Refonte des règlements : nouveau classement mondial, augmentation des primes, structuration du calendrier",
-        "Création d'une formation pour les délégués techniques",
-        "Responsabilité budgétaire et protection de la propriété intellectuelle",
-      ]
+        "Événements : Direction stratégique et opérationnelle des événements mondiaux, gestion du calendrier, procédures de candidature, budgétisation et supervision des règles d'accréditation.",
+        "Délégué technique aux JO Paris 2024 : nomination et assistance des délégués techniques, supervision de la documentation officielle et des manuels d'événements.",
+        "Marketing & Sponsoring : revenus de sponsoring multipliés par 14 en 10 ans, gestion du merchandising (stocks, ventes), octroi de licences et protection de la propriété intellectuelle.",
+        "Refonte structurelle : création d'un nouveau classement mondial, augmentation des primes et élaboration de stratégies approuvées par le Bureau Exécutif.",
+        "Ressources Humaines & Formation : officier de liaison des comités (entraîneurs, tir en campagne, 3D), création d'une formation pour les délégués techniques.",
+      ],
+      certificate: "/Certificat_Travail_WA.pdf"
     },
     {
       period: "Nov. 2021 — Présent",
@@ -109,7 +109,14 @@ export default function Parcours() {
                   <div className="hidden md:block absolute left-[-3rem] top-2 w-3 h-3 bg-white/10 rounded-full group-hover:bg-foreground transition-colors border border-background"></div>
                   <div className="hidden md:block absolute left-[-2.7rem] top-5 bottom-[-4rem] w-[1px] bg-white/5 group-last:bg-transparent"></div>
                   
-                  <h3 className="text-2xl font-heading font-bold uppercase tracking-wider mb-2">{exp.role}</h3>
+                  <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-2">
+                    <h3 className="text-2xl font-heading font-bold uppercase tracking-wider">{exp.role}</h3>
+                    {exp.certificate && (
+                      <Button variant="outline" size="sm" asChild className="border-white/20 text-foreground hover:bg-white/5 rounded-none text-xs uppercase tracking-widest font-bold shrink-0">
+                        <a href={exp.certificate} target="_blank" rel="noopener noreferrer">Voir le certificat</a>
+                      </Button>
+                    )}
+                  </div>
                   <p className="text-accent font-medium uppercase tracking-widest text-sm mb-6">{exp.company}</p>
                   
                   <ul className="space-y-3">
@@ -211,10 +218,10 @@ export default function Parcours() {
               <ShieldCheck className="w-10 h-10 text-white/50 mb-8" strokeWidth={1} />
               <h3 className="text-2xl font-heading font-bold uppercase tracking-widest mb-8">Compétences</h3>
               <ul className="space-y-4 text-sm text-muted-foreground font-light">
-                <li className="border-b border-white/5 pb-4">Analyse de situations complexes</li>
-                <li className="border-b border-white/5 pb-4">Prise de décision rapide et stratégique</li>
-                <li className="border-b border-white/5 pb-4">Gestion et optimisation budgétaire</li>
-                <li className="border-b border-white/5 pb-4">Négociation de sponsoring & partenariats</li>
+                <li className="border-b border-white/5 pb-4">Constitution de dossiers solides et hiérarchisation</li>
+                <li className="border-b border-white/5 pb-4">Analyse pertinente et prise de décision rapide</li>
+                <li className="border-b border-white/5 pb-4">Grande autonomie et sens de l'organisation</li>
+                <li className="border-b border-white/5 pb-4">Négociation de contrats de marketing & sponsoring</li>
                 <li className="pb-2">Direction de projets internationaux (Asana, Suite Office, Keynote)</li>
               </ul>
             </div>
