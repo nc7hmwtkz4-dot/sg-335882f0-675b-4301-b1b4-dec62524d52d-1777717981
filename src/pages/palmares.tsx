@@ -96,12 +96,15 @@ export default function Palmares() {
     const year = location.match(/\d{4}/)?.[0];
     if (!year) return null;
     
-    // Map event names to simplified keys
-    if (event.includes("Coupe du Monde") && location.includes("Varese")) return "Varese 2007";
-    if (event.includes("Coupe du Monde") && location.includes("Ulsan")) return "Ulsan 2007";
-    if (event.includes("Coupe du Monde") && location.includes("Shanghai") && year === "2009") return "Shanghai 2009";
-    if (event.includes("Coupe du Monde") && location.includes("Antalya") && year === "2009") return "Antalya 2009";
-    if (event.includes("Coupe du Monde") && location.includes("Antalya") && year === "2012") return "Antalya 2012";
+    // Extract city from location (format: "City (COUNTRY)")
+    const city = location.split("(")[0].trim();
+    
+    // Map event names to simplified keys - match by city and year
+    if (city === "Varese" && year === "2007") return "Varese 2007";
+    if (city === "Ulsan" && year === "2007") return "Ulsan 2007";
+    if (city === "Shanghai" && year === "2009") return "Shanghai 2009";
+    if (city === "Antalya" && year === "2009") return "Antalya 2009";
+    if (city === "Antalya" && year === "2012") return "Antalya 2012";
     
     return null;
   };
