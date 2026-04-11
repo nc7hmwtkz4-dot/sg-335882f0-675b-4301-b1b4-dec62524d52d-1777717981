@@ -49,9 +49,36 @@ export default function Palmares() {
     "Antalya 2009": [
       { src: "/IMG_6775.jpg", alt: "Podium individuel Antalya 2009", caption: "Podium individuel (argent) de la coupe du monde Antalya 2009 aux côtés de Simon Terry (GBR) et Jayanta Talukdar (IND)" },
       { src: "/IMG_6079.jpg", alt: "Volée à 60 par équipes Antalya 2009", caption: "Volée à 60 par équipes à Antalya 2009, avec Jean Charles Valladont et Romain Girouille." },
+      { src: "/IMG_6654.jpg", alt: "Finale individuelle Antalya 2009", caption: "Finale individuelle coupe du monde Antalya 2009 contre Simon Terry (GBR)" },
+      { src: "/IMG_3659.jpg", alt: "Finale individuelle Antalya 2009", caption: "Finale individuelle coupe du monde Antalya 2009 contre Simon Terry (GBR)" },
+      { src: "/IMG_3709.jpg", alt: "Finale individuelle Antalya 2009", caption: "Finale individuelle coupe du monde Antalya 2009 contre Simon Terry (GBR)" },
+      { src: "/IMG_3642.jpg", alt: "Finale individuelle Antalya 2009", caption: "Finale individuelle coupe du monde Antalya 2009 contre Simon Terry (GBR)" },
+      { src: "/IMG_5881.jpg", alt: "Éliminatoires individuelles Antalya 2009", caption: "Eliminatoires individuelles coupe du monde Antalya 2009" },
+      { src: "/IMG_1567.jpg", alt: "Qualifications Antalya 2009", caption: "Qualifications coupe du monde Antalya 2009" },
+    ],
+    "Antalya 2010": [
+      { src: "/IMG_7800.jpg", alt: "Coupe du Monde Antalya 2010", caption: "Coupe du Monde Antalya 2010" },
+    ],
+    "Ogden 2010": [
+      { src: "/IMG_2442.jpg", alt: "Ogden 2010", caption: "Ogden 2010 avec Jean-Charles Valladont, Romain Girouille, Jean-Denis Gitton, Cyrielle Cotry et Franck Fisseux" },
     ],
     "Ogden 2011": [
       { src: "/IMG_1550.jpg", alt: "Coupe du monde Ogden 2011", caption: "Coupe du monde Ogden 2011" },
+    ],
+    "Shanghai 2012": [
+      { src: "/file011716_5184x3456.jpg", alt: "Match pour la médaille de bronze Shanghai 2012", caption: "Match pour la médaille de bronze Shanghai 2012" },
+      { src: "/file011717_5184x3456.jpg", alt: "Match pour la médaille de bronze individuelle Shanghai 2012", caption: "Match pour la médaille de bronze individuelle Shanghai 2012" },
+      { src: "/file012775_5184x3456.jpg", alt: "Shanghai 2012 avec le staff World Archery", caption: "Shanghai 2012, avec Didier Miéville et Ludivine Maitre Wicki, staff de World Archery, juste avant le début de ma carrière professionnelle." },
+      { src: "/file011718_5184x3456.jpg", alt: "Match pour la médaille de bronze Shanghai 2012", caption: "Match pour la médaille de bronze individuelle Shanghai 2012 avec Marc Dellenbach." },
+      { src: "/file009856_3264x4896.jpg", alt: "1/16 de finale Shanghai 2012", caption: "1/16 de final individuel Shanghai 2012 contre Gael Prevost (FRA)" },
+      { src: "/file011115_4896x3264.jpg", alt: "Match pour la médaille de bronze Shanghai 2012", caption: "Match pour la médaille de bronze individuelle Shanghai 2012 avec Marc Dellenbach" },
+      { src: "/file011121_4896x3264.jpg", alt: "Match pour la médaille de bronze Shanghai 2012", caption: "Match pour la médaille de bronze individuelle Shanghai 2012" },
+    ],
+    "Antalya 2012": [
+      { src: "/file014023_5184x3456.jpg", alt: "Coupe du Monde Antalya 2012", caption: "Coupe du Monde 2012 à Antalya avec René Kouassi (CIV)" },
+    ],
+    "Chicago 2025": [
+      { src: "/R3X_4192.jpg", alt: "The Great Chicago Open 2025", caption: "The Great Chicago Open 2025, qualifications" },
     ],
   };
 
@@ -107,7 +134,11 @@ export default function Palmares() {
     if (city === "Ulsan" && year === "2007") return "Ulsan 2007";
     if (city === "Shanghai" && year === "2009") return "Shanghai 2009";
     if (city === "Antalya" && year === "2009") return "Antalya 2009";
+    if (city === "Antalya" && year === "2010") return "Antalya 2010";
+    if (city === "Ogden" && year === "2010") return "Ogden 2010";
     if (city === "Ogden" && year === "2011") return "Ogden 2011";
+    if (city === "Shanghai" && year === "2012") return "Shanghai 2012";
+    if (city === "Antalya" && year === "2012") return "Antalya 2012";
     
     return null;
   };
