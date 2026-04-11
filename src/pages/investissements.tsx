@@ -1,49 +1,49 @@
 import Head from "next/head";
 import Link from "next/link";
-import { TrendingUp, Building2, Sparkles } from "lucide-react";
+import { TrendingUp, Building2, Sparkles, ExternalLink } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 export default function Investissements() {
   const companies = [
-    "LA BELLE VIE",
-    "PONY",
-    "OVERSEED",
-    "BLAST. ROUND 2",
-    "KEEWE ROUND 2",
-    "ZIWIG",
-    "OPTEE",
-    "YUMGO",
-    "FINOVOX",
-    "YC SPRING 25",
-    "MINT BIKES ROUND 2",
-    "AUUM",
-    "ONEFLASH",
-    "CHIPIRON",
-    "NOOTA",
-    "TOMORROW BIO",
-    "HEXANA",
-    "MINDSTATE DESIGN LABS",
-    "FEELS ROUND 2",
-    "PLAYRUO",
-    "LATTICE MEDICAL",
-    "YC SUMMER 25",
-    "AVIWELL",
-    "ONE BIOSCIENCES",
-    "DEFACTO",
-    "U-SPACE",
-    "BLAST. ROUND 3",
-    "YUNO",
-    "THE SANCTUARY GROUP",
-    "YC SPRING 26",
-    "ASTRAL",
-    "AURA AERO",
-    "PONY - ROUND 2",
-    "HEXANA - TRANCHE 2",
-    "UNIVITY",
-    "YC WINTER 26",
-    "WHITELAB GENOMICS",
-    "CEMENTIC",
-    "YC FALL 25"
+    { name: "FINOVOX", sector: "Deeptech & IA", website: "https://www.finovox.com/en", description: "IA et computer vision pour détecter les falsifications documentaires" },
+    { name: "LA BELLE VIE", sector: "", website: "", description: "" },
+    { name: "PONY", sector: "", website: "", description: "" },
+    { name: "OVERSEED", sector: "", website: "", description: "" },
+    { name: "BLAST. ROUND 2", sector: "", website: "", description: "" },
+    { name: "KEEWE ROUND 2", sector: "", website: "", description: "" },
+    { name: "ZIWIG", sector: "", website: "", description: "" },
+    { name: "OPTEE", sector: "", website: "", description: "" },
+    { name: "YUMGO", sector: "", website: "", description: "" },
+    { name: "YC SPRING 25", sector: "", website: "", description: "" },
+    { name: "MINT BIKES ROUND 2", sector: "", website: "", description: "" },
+    { name: "AUUM", sector: "", website: "", description: "" },
+    { name: "ONEFLASH", sector: "", website: "", description: "" },
+    { name: "CHIPIRON", sector: "", website: "", description: "" },
+    { name: "NOOTA", sector: "", website: "", description: "" },
+    { name: "TOMORROW BIO", sector: "", website: "", description: "" },
+    { name: "HEXANA", sector: "", website: "", description: "" },
+    { name: "MINDSTATE DESIGN LABS", sector: "", website: "", description: "" },
+    { name: "FEELS ROUND 2", sector: "", website: "", description: "" },
+    { name: "PLAYRUO", sector: "", website: "", description: "" },
+    { name: "LATTICE MEDICAL", sector: "", website: "", description: "" },
+    { name: "YC SUMMER 25", sector: "", website: "", description: "" },
+    { name: "AVIWELL", sector: "", website: "", description: "" },
+    { name: "ONE BIOSCIENCES", sector: "", website: "", description: "" },
+    { name: "DEFACTO", sector: "", website: "", description: "" },
+    { name: "U-SPACE", sector: "", website: "", description: "" },
+    { name: "BLAST. ROUND 3", sector: "", website: "", description: "" },
+    { name: "YUNO", sector: "", website: "", description: "" },
+    { name: "THE SANCTUARY GROUP", sector: "", website: "", description: "" },
+    { name: "YC SPRING 26", sector: "", website: "", description: "" },
+    { name: "ASTRAL", sector: "", website: "", description: "" },
+    { name: "AURA AERO", sector: "", website: "", description: "" },
+    { name: "PONY - ROUND 2", sector: "", website: "", description: "" },
+    { name: "HEXANA - TRANCHE 2", sector: "", website: "", description: "" },
+    { name: "UNIVITY", sector: "", website: "", description: "" },
+    { name: "YC WINTER 26", sector: "", website: "", description: "" },
+    { name: "WHITELAB GENOMICS", sector: "", website: "", description: "" },
+    { name: "CEMENTIC", sector: "", website: "", description: "" },
+    { name: "YC FALL 25", sector: "", website: "", description: "" }
   ];
 
   return (
@@ -138,11 +138,26 @@ export default function Investissements() {
               {companies.map((company, idx) => (
                 <div 
                   key={idx} 
-                  className="bg-background border border-white/10 p-6 hover:border-accent/50 transition-colors duration-300 group"
+                  className="bg-background border border-white/10 p-6 hover:border-accent/50 transition-colors duration-300 group relative"
                 >
-                  <p className="font-heading font-bold text-sm tracking-wider uppercase group-hover:text-accent transition-colors">
-                    {company}
+                  <p className="font-heading font-bold text-sm tracking-wider uppercase group-hover:text-accent transition-colors mb-2">
+                    {company.name}
                   </p>
+                  {company.sector && (
+                    <p className="text-xs text-muted-foreground font-light">
+                      {company.sector}
+                    </p>
+                  )}
+                  {company.website && (
+                    <a 
+                      href={company.website} 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity"
+                    >
+                      <ExternalLink className="w-4 h-4 text-accent" />
+                    </a>
+                  )}
                 </div>
               ))}
             </div>
