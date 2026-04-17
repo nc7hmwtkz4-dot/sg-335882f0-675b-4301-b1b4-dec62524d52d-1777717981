@@ -56,26 +56,32 @@ export default function Palmares() {
       { src: "/IMG_5881.jpg", alt: "Éliminatoires individuelles Antalya 2009", caption: "Eliminatoires individuelles coupe du monde Antalya 2009" },
       { src: "/IMG_1567.jpg", alt: "Qualifications Antalya 2009", caption: "Qualifications coupe du monde Antalya 2009" },
     ],
+    "Ogden 2010": [
+      { src: "/IMG_2442.jpg", alt: "Ogden 2010 avec l'équipe", caption: "Ogden 2010 avec Jean-Charles Valladont, Romain Girouille, Jean-Denis Gitton, Cyrielle Cotry et Franck Fisseux" },
+    ],
     "Antalya 2010": [
       { src: "/IMG_7800.jpg", alt: "Coupe du Monde Antalya 2010", caption: "Coupe du Monde Antalya 2010" },
-    ],
-    "Ogden 2010": [
-      { src: "/IMG_2442.jpg", alt: "Ogden 2010", caption: "Ogden 2010 avec Jean-Charles Valladont, Romain Girouille, Jean-Denis Gitton, Cyrielle Cotry et Franck Fisseux" },
     ],
     "Ogden 2011": [
       { src: "/IMG_1550.jpg", alt: "Coupe du monde Ogden 2011", caption: "Coupe du monde Ogden 2011" },
     ],
     "Shanghai 2012": [
       { src: "/file011716_5184x3456.jpg", alt: "Match pour la médaille de bronze Shanghai 2012", caption: "Match pour la médaille de bronze Shanghai 2012" },
-      { src: "/file011717_5184x3456.jpg", alt: "Match pour la médaille de bronze individuelle Shanghai 2012", caption: "Match pour la médaille de bronze individuelle Shanghai 2012" },
-      { src: "/file012775_5184x3456.jpg", alt: "Shanghai 2012 avec le staff World Archery", caption: "Shanghai 2012, avec Didier Miéville et Ludivine Maitre Wicki, staff de World Archery, juste avant le début de ma carrière professionnelle." },
-      { src: "/file011718_5184x3456.jpg", alt: "Match pour la médaille de bronze Shanghai 2012", caption: "Match pour la médaille de bronze individuelle Shanghai 2012 avec Marc Dellenbach." },
-      { src: "/file009856_3264x4896.jpg", alt: "1/16 de finale Shanghai 2012", caption: "1/16 de final individuel Shanghai 2012 contre Gael Prevost (FRA)" },
-      { src: "/file011115_4896x3264.jpg", alt: "Match pour la médaille de bronze Shanghai 2012", caption: "Match pour la médaille de bronze individuelle Shanghai 2012 avec Marc Dellenbach" },
-      { src: "/file011121_4896x3264.jpg", alt: "Match pour la médaille de bronze Shanghai 2012", caption: "Match pour la médaille de bronze individuelle Shanghai 2012" },
+      { src: "/file008775_4640x3093.jpg", alt: "Shanghai 2012", caption: "Shanghai 2012" },
+      { src: "/file009712_4896x3264.jpg", alt: "Match contre Axel Müller Shanghai 2012", caption: "Shanghai 2012 - Match contre Axel Müller (SUI)" },
+      { src: "/file011690_5184x3456.jpg", alt: "Match pour la médaille de bronze Shanghai 2012", caption: "Shanghai 2012 - Match pour la médaille de Bronze individuel" },
     ],
     "Antalya 2012": [
       { src: "/file014023_5184x3456.jpg", alt: "Coupe du Monde Antalya 2012", caption: "Coupe du Monde 2012 à Antalya avec René Kouassi (CIV)" },
+    ],
+    "Shanghai 2013": [
+      { src: "/DT7_2845.jpg", alt: "Match pour la médaille de bronze Shanghai 2013", caption: "Shanghai 2013 - Match pour la médaille de bronze contre les Pays-Bas" },
+      { src: "/DA1_7883.jpg", alt: "Avant-match Shanghai 2013", caption: "Shanghai 2013 - Avant-Match pour la médaille de bronze Shanghai 2013 - Avec Gael Prevost et Jean Charles Valladont" },
+      { src: "/DT7_2871.jpg", alt: "Match pour la médaille de bronze Shanghai 2013", caption: "Match pour la médaille de bronze Shanghai 2013 - Avec Gael Prevost, Jean Charles Valladont et Marc Dellenbach" },
+      { src: "/DT7_2816.jpg", alt: "Match pour la médaille de bronze Shanghai 2013", caption: "Match pour la médaille de bronze Shanghai 2013 - Avec Gael Prevost, Jean Charles Valladont" },
+    ],
+    "Medellin 2013": [
+      { src: "/DT7_1565.jpg", alt: "Match par équipe Medellin 2013", caption: "Medellin 2013 - Match par équipe contre l'Inde" },
     ],
     "Chicago 2025": [
       { src: "/R3X_4192.jpg", alt: "The Great Chicago Open 2025", caption: "The Great Chicago Open 2025, qualifications" },
@@ -134,11 +140,14 @@ export default function Palmares() {
     if (city === "Ulsan" && year === "2007") return "Ulsan 2007";
     if (city === "Shanghai" && year === "2009") return "Shanghai 2009";
     if (city === "Antalya" && year === "2009") return "Antalya 2009";
-    if (city === "Antalya" && year === "2010") return "Antalya 2010";
     if (city === "Ogden" && year === "2010") return "Ogden 2010";
+    if (city === "Antalya" && year === "2010") return "Antalya 2010";
     if (city === "Ogden" && year === "2011") return "Ogden 2011";
     if (city === "Shanghai" && year === "2012") return "Shanghai 2012";
     if (city === "Antalya" && year === "2012") return "Antalya 2012";
+    if (city === "Shanghai" && year === "2013") return "Shanghai 2013";
+    if (city === "Medellin" && year === "2013") return "Medellin 2013";
+    if (city === "Chicago" && year === "2025") return "Chicago 2025";
     
     return null;
   };
