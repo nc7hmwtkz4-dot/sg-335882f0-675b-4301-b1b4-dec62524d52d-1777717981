@@ -181,6 +181,28 @@ export default function Investissements() {
               </div>
             )}
 
+            {publishedCompanies.includes("FINOVOX") && (
+              <div className="group relative rounded-2xl border border-white/10 bg-gradient-to-br from-white/[0.03] to-white/[0.01] p-8 hover:border-accent/30 transition-all duration-300">
+                <div className="flex items-start justify-between mb-6">
+                  <div className="w-32 h-12 bg-white/5 rounded-lg flex items-center justify-center overflow-hidden">
+                    <img 
+                      src="/finovox-logo.svg" 
+                      alt="Finovox Logo" 
+                      className="w-full h-full object-contain p-2"
+                    />
+                  </div>
+                  <div className="flex items-center gap-2 text-accent/70 text-sm">
+                    <TrendingUp className="w-4 h-4" />
+                    <span>FinTech</span>
+                  </div>
+                </div>
+                <h3 className="text-2xl font-heading font-bold mb-3">FINOVOX</h3>
+                <p className="text-foreground/60 leading-relaxed">
+                  Plateforme de gestion financière intelligente pour entrepreneurs et PME.
+                </p>
+              </div>
+            )}
+
             <p className="text-xs text-muted-foreground font-light italic text-center max-w-2xl mx-auto pt-12">
               Portfolio actif via Blast Club (février 2024 — présent). Les détails des entreprises sont publiés progressivement.
             </p>
