@@ -4,6 +4,9 @@ import { TrendingUp, Building2, Sparkles, ExternalLink } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 export default function Investissements() {
+  // Liste des entreprises dont la tâche est "done" - METTRE À JOUR MANUELLEMENT
+  const publishedCompanies = ["FINOVOX"];
+
   const companies = [
     { name: "FINOVOX", sector: "Deeptech & IA", website: "https://www.finovox.com/en", description: "IA et computer vision pour détecter les falsifications documentaires" },
     { name: "LA BELLE VIE", sector: "", website: "", description: "" },
@@ -45,6 +48,9 @@ export default function Investissements() {
     { name: "CEMENTIC", sector: "", website: "", description: "" },
     { name: "YC FALL 25", sector: "", website: "", description: "" }
   ];
+
+  // Filtrer pour n'afficher que les entreprises publiées
+  const displayedCompanies = companies.filter(c => publishedCompanies.includes(c.name));
 
   return (
     <div className="bg-background min-h-screen pt-24">
@@ -129,41 +135,54 @@ export default function Investissements() {
 
           {/* Portfolio Grid */}
           <div className="space-y-12">
-            <div className="flex items-center gap-4 pb-4 border-b border-white/10">
-              <TrendingUp className="w-8 h-8 text-accent" />
-              <h3 className="text-3xl font-heading font-extrabold uppercase tracking-tighter">Portefeuille</h3>
+            <div className="flex items-center justify-between pb-4 border-b border-white/10">
+              <div className="flex items-center gap-4">
+                <TrendingUp className="w-8 h-8 text-accent" />
+                <h3 className="text-3xl font-heading font-extrabold uppercase tracking-tighter">Portefeuille</h3>
+              </div>
+              <p className="text-sm text-muted-foreground font-light">
+                <span className="text-accent font-bold">{publishedCompanies.length}</span>/{companies.length} entreprises publiées
+              </p>
             </div>
 
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-              {companies.map((company, idx) => (
-                <div 
-                  key={idx} 
-                  className="bg-background border border-white/10 p-6 hover:border-accent/50 transition-colors duration-300 group relative"
-                >
-                  <p className="font-heading font-bold text-sm tracking-wider uppercase group-hover:text-accent transition-colors mb-2">
-                    {company.name}
-                  </p>
-                  {company.sector && (
-                    <p className="text-xs text-muted-foreground font-light">
-                      {company.sector}
+            {displayedCompanies.length > 0 ? (
+              <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+                {displayedCompanies.map((company, idx) => (
+                  <div 
+                    key={idx} 
+                    className="bg-background border border-white/10 p-6 hover:border-accent/50 transition-colors duration-300 group relative"
+                  >
+                    <p className="font-heading font-bold text-sm tracking-wider uppercase group-hover:text-accent transition-colors mb-2">
+                      {company.name}
                     </p>
-                  )}
-                  {company.website && (
-                    <a 
-                      href={company.website} 
-                      target="_blank" 
-                      rel="noopener noreferrer"
-                      className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity"
-                    >
-                      <ExternalLink className="w-4 h-4 text-accent" />
-                    </a>
-                  )}
-                </div>
-              ))}
-            </div>
+                    {company.sector && (
+                      <p className="text-xs text-muted-foreground font-light">
+                        {company.sector}
+                      </p>
+                    )}
+                    {company.website && (
+                      <a 
+                        href={company.website} 
+                        target="_blank" 
+                        rel="noopener noreferrer"
+                        className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity"
+                      >
+                        <ExternalLink className="w-4 h-4 text-accent" />
+                      </a>
+                    )}
+                  </div>
+                ))}
+              </div>
+            ) : (
+              <div className="bg-secondary/10 border border-white/10 p-12 text-center">
+                <p className="text-muted-foreground font-light">
+                  Détails du portefeuille en cours de publication.
+                </p>
+              </div>
+            )}
 
             <p className="text-xs text-muted-foreground font-light italic text-center max-w-2xl mx-auto pt-12">
-              Portfolio actif via Blast Club (février 2024 — présent). Les secteurs d'activité et liens vers les entreprises seront ajoutés prochainement.
+              Portfolio actif via Blast Club (février 2024 — présent). Les détails des entreprises sont publiés progressivement.
             </p>
           </div>
         </div>
