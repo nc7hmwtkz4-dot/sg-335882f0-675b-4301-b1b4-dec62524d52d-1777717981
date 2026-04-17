@@ -208,7 +208,7 @@ export default function Home() {
         <div className="container relative z-10 text-center">
           <h2 className="text-5xl md:text-8xl font-heading font-extrabold mb-10 uppercase tracking-tighter">
             Prêt pour le <br/>
-            <span className="text-transparent [-webkit-text-stroke:2px_theme(colors.accent)]">prochain défi.</span>
+            <span className="text-accent">prochain défi.</span>
           </h2>
           <p className="text-xl text-muted-foreground mb-16 max-w-2xl mx-auto font-light">
             15 années d'expérience dans le sport de haut niveau et l'événementiel international à disposition de projets ambitieux.
