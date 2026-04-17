@@ -70,6 +70,8 @@ export default function Palmares() {
       { src: "/file008775_4640x3093.jpg", alt: "Shanghai 2012", caption: "Shanghai 2012" },
       { src: "/file009712_4896x3264.jpg", alt: "Match contre Axel Müller Shanghai 2012", caption: "Shanghai 2012 - Match contre Axel Müller (SUI)" },
       { src: "/file011690_5184x3456.jpg", alt: "Match pour la médaille de bronze Shanghai 2012", caption: "Shanghai 2012 - Match pour la médaille de Bronze individuel" },
+      { src: "/file010264_4326x2884.jpg", alt: "Shanghai 2012", caption: "Shanghai 2012" },
+      { src: "/file010480_3264x4896.jpg", alt: "Photo d'accréditation Shanghai 2012", caption: "Shanghai 2012 - photo d'accréditation" },
     ],
     "Antalya 2012": [
       { src: "/file014023_5184x3456.jpg", alt: "Coupe du Monde Antalya 2012", caption: "Coupe du Monde 2012 à Antalya avec René Kouassi (CIV)" },
@@ -82,9 +84,11 @@ export default function Palmares() {
     ],
     "Medellin 2013": [
       { src: "/DT7_1565.jpg", alt: "Match par équipe Medellin 2013", caption: "Medellin 2013 - Match par équipe contre l'Inde" },
+      { src: "/DT7_1074.jpg", alt: "Medellin 2013", caption: "Medellin 2013" },
     ],
     "Chicago 2025": [
       { src: "/R3X_4192.jpg", alt: "The Great Chicago Open 2025", caption: "The Great Chicago Open 2025, qualifications" },
+      { src: "/R3X_4180.jpg", alt: "Qualifications Indoor World Series Chicago 2025", caption: "Qualifications Indoor World Series Chicago 2025" },
     ],
   };
 
