@@ -18,6 +18,8 @@ Interface permettant d'importer les fichiers CSV des sessions de tir à l'arc et
 - [x] Validation des données avant insertion
 - [x] Affichage des résultats d'import (succès/erreurs)
 - [x] Gestion des erreurs et messages utilisateur
+- [x] Support de 4 formats différents de fichiers de tir à l'arc
+- [x] Ajustement du schéma pour supporter tous les champs des CSV réels
 
 ## Acceptance
 - Les fichiers CSV peuvent être uploadés via l'interface
