@@ -3,6 +3,8 @@ import Link from "next/link";
 import Image from "next/image";
 import { Award, Bike, Timer, TrendingUp, Trophy } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { Navigation } from "@/components/Navigation";
+import { Footer } from "@/components/Footer";
 
 export default function Performances() {
   return (
@@ -11,6 +13,8 @@ export default function Performances() {
         <title>Performances Sportives | Thomas Aubert</title>
         <meta name="description" content="Performances sportives de Thomas Aubert au-delà du tir à l'arc." />
       </Head>
+
+      <Navigation />
 
       {/* Header Section */}
       <section className="py-20 border-b border-white/5">
@@ -197,6 +201,8 @@ export default function Performances() {
           </Button>
         </div>
       </section>
+      
+      <Footer />
     </div>
   );
 }

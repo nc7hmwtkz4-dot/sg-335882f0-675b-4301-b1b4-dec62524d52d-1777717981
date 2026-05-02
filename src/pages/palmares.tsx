@@ -3,6 +3,8 @@ import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight, Medal, Target, Calendar, Globe2, Trophy, BarChart, Camera } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { Navigation } from "@/components/Navigation";
+import { Footer } from "@/components/Footer";
 import {
   Table,
   TableBody,
@@ -162,6 +164,8 @@ export default function Palmares() {
         <title>Palmarès Sportif | Thomas Aubert</title>
         <meta name="description" content="Palmarès et médailles de Thomas Aubert, équipe de France et de Suisse de tir à l'arc." />
       </Head>
+
+      <Navigation />
 
       {/* Header Section */}
       <section className="py-20 border-b border-white/5">
@@ -351,6 +355,8 @@ export default function Palmares() {
           </Button>
         </div>
       </section>
+      
+      <Footer />
     </div>
   );
 }

@@ -2,6 +2,8 @@ import Head from "next/head";
 import Link from "next/link";
 import { TrendingUp, Building2, Sparkles, ExternalLink } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { Navigation } from "@/components/Navigation";
+import { Footer } from "@/components/Footer";
 
 export default function Investissements() {
   // Liste des entreprises dont la tâche est "done" - METTRE À JOUR MANUELLEMENT
@@ -58,6 +60,8 @@ export default function Investissements() {
         <title>Investissements | Thomas Aubert</title>
         <meta name="description" content="Portfolio d'investissements de Thomas Aubert via Blast Club." />
       </Head>
+
+      <Navigation />
 
       {/* Header Section */}
       <section className="py-20 border-b border-white/5">
@@ -221,6 +225,8 @@ export default function Investissements() {
           </Button>
         </div>
       </section>
+      
+      <Footer />
     </div>
   );
 }

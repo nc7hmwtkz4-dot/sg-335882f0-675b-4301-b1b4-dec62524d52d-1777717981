@@ -3,6 +3,8 @@ import Image from "next/image";
 import Link from "next/link";
 import { Briefcase, GraduationCap, Languages, ShieldCheck } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { Navigation } from "@/components/Navigation";
+import { Footer } from "@/components/Footer";
 
 export default function Parcours() {
   const experiences = [
@@ -72,6 +74,8 @@ export default function Parcours() {
         <title>Parcours Professionnel | Thomas Aubert</title>
         <meta name="description" content="Découvrez le parcours de Thomas Aubert, de stagiaire à Head of Events & Marketing à la World Archery Federation." />
       </Head>
+
+      <Navigation />
 
       {/* Header Section */}
       <section className="py-20 border-b border-white/5 relative overflow-hidden">
@@ -253,6 +257,8 @@ export default function Parcours() {
           </div>
         </div>
       </section>
+
+      <Footer />
     </div>
   );
 }

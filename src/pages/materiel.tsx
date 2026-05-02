@@ -1,4 +1,6 @@
 import { SEO } from "@/components/SEO";
+import { Navigation } from "@/components/Navigation";
+import { Footer } from "@/components/Footer";
 
 export default function MaterielPage() {
   return (
@@ -7,7 +9,8 @@ export default function MaterielPage() {
         title="Mon Matériel - Thomas Aubert"
         description="Équipement et matériel de tir à l'arc de Thomas Aubert"
       />
-      <div className="min-h-screen bg-background">
+      <Navigation />
+      <div className="min-h-screen bg-background pt-24">
         <div className="container mx-auto px-4 py-16">
           <h1 className="font-outfit text-4xl md:text-5xl font-bold text-foreground mb-8">
             Mon Matériel
@@ -17,6 +20,7 @@ export default function MaterielPage() {
           </p>
         </div>
       </div>
+      <Footer />
     </>
   );
 }

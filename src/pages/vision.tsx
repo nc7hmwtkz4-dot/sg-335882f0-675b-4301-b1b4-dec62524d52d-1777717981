@@ -2,6 +2,8 @@ import Head from "next/head";
 import { Quote, Target, Crosshair, Anchor, Shield } from "lucide-react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
+import { Navigation } from "@/components/Navigation";
+import { Footer } from "@/components/Footer";
 
 export default function Vision() {
   const valeurs = [
@@ -15,6 +17,8 @@ export default function Vision() {
         <title>Vision & Valeurs | Thomas Aubert</title>
         <meta name="description" content="Plateforme de marque personnelle, valeurs et philosophie d'action de Thomas Aubert." />
       </Head>
+
+      <Navigation />
 
       {/* Header */}
       <section className="py-20 border-b border-white/5 text-center">
@@ -124,6 +128,8 @@ export default function Vision() {
           </div>
         </div>
       </section>
+      
+      <Footer />
     </div>
   );
 }
