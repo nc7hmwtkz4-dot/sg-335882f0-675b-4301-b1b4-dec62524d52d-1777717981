@@ -1,6 +1,6 @@
 ---
 title: Interface d'import CSV (Tir et Santé)
-status: in_progress
+status: done
 priority: high
 type: feature
 created_by: agent
