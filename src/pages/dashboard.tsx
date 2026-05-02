@@ -1,3 +1,4 @@
+import { useState, useEffect } from "react";
 import { ProtectedRoute } from "@/components/ProtectedRoute";
 import { useAuth } from "@/contexts/AuthContext";
 import { SEO } from "@/components/SEO";
@@ -5,10 +6,32 @@ import { Navigation } from "@/components/Navigation";
 import { Footer } from "@/components/Footer";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Upload, Calendar, Activity, TrendingUp } from "lucide-react";
+import { Skeleton } from "@/components/ui/skeleton";
+import { Upload, Calendar, Activity, TrendingUp, TrendingDown } from "lucide-react";
+import { getDashboardStats, type DashboardStats } from "@/services/dashboardService";
+import Link from "next/link";
 
 function DashboardContent() {
-  const { profile } = useAuth();
+  const { profile, user } = useAuth();
+  const [stats, setStats] = useState<DashboardStats | null>(null);
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    async function loadStats() {
+      if (!user) return;
+      
+      try {
+        const data = await getDashboardStats(user.id);
+        setStats(data);
+      } catch (error) {
+        console.error("Error loading dashboard stats:", error);
+      } finally {
+        setIsLoading(false);
+      }
+    }
+
+    loadStats();
+  }, [user]);
 
   return (
     <>
@@ -36,8 +59,14 @@ function DashboardContent() {
                   <CardTitle className="text-sm font-medium text-muted-foreground">Sessions</CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <div className="text-3xl font-bold">0</div>
-                  <p className="text-xs text-muted-foreground mt-1">Ce mois</p>
+                  {isLoading ? (
+                    <Skeleton className="h-10 w-16" />
+                  ) : (
+                    <>
+                      <div className="text-3xl font-bold">{stats?.sessionsThisMonth || 0}</div>
+                      <p className="text-xs text-muted-foreground mt-1">Ce mois</p>
+                    </>
+                  )}
                 </CardContent>
               </Card>
 
@@ -46,8 +75,16 @@ function DashboardContent() {
                   <CardTitle className="text-sm font-medium text-muted-foreground">Score moyen</CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <div className="text-3xl font-bold">-</div>
-                  <p className="text-xs text-muted-foreground mt-1">Sur 720</p>
+                  {isLoading ? (
+                    <Skeleton className="h-10 w-16" />
+                  ) : (
+                    <>
+                      <div className="text-3xl font-bold">
+                        {stats?.averageScore !== null ? stats.averageScore : "-"}
+                      </div>
+                      <p className="text-xs text-muted-foreground mt-1">Sur 720</p>
+                    </>
+                  )}
                 </CardContent>
               </Card>
 
@@ -56,8 +93,16 @@ function DashboardContent() {
                   <CardTitle className="text-sm font-medium text-muted-foreground">Récupération</CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <div className="text-3xl font-bold">-</div>
-                  <p className="text-xs text-muted-foreground mt-1">WHOOP</p>
+                  {isLoading ? (
+                    <Skeleton className="h-10 w-16" />
+                  ) : (
+                    <>
+                      <div className="text-3xl font-bold">
+                        {stats?.latestRecovery !== null ? `${stats.latestRecovery}%` : "-"}
+                      </div>
+                      <p className="text-xs text-muted-foreground mt-1">WHOOP</p>
+                    </>
+                  )}
                 </CardContent>
               </Card>
 
@@ -66,8 +111,34 @@ function DashboardContent() {
                   <CardTitle className="text-sm font-medium text-muted-foreground">Tendance</CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <div className="text-3xl font-bold">-</div>
-                  <p className="text-xs text-muted-foreground mt-1">30 derniers jours</p>
+                  {isLoading ? (
+                    <Skeleton className="h-10 w-16" />
+                  ) : (
+                    <>
+                      <div className="text-3xl font-bold flex items-center gap-2">
+                        {stats?.trend30Days !== null ? (
+                          <>
+                            {stats.trend30Days > 0 && (
+                              <>
+                                <TrendingUp className="w-6 h-6 text-green-600" />
+                                <span className="text-green-600">+{stats.trend30Days}</span>
+                              </>
+                            )}
+                            {stats.trend30Days < 0 && (
+                              <>
+                                <TrendingDown className="w-6 h-6 text-red-600" />
+                                <span className="text-red-600">{stats.trend30Days}</span>
+                              </>
+                            )}
+                            {stats.trend30Days === 0 && <span>→</span>}
+                          </>
+                        ) : (
+                          "-"
+                        )}
+                      </div>
+                      <p className="text-xs text-muted-foreground mt-1">30 derniers jours</p>
+                    </>
+                  )}
                 </CardContent>
               </Card>
             </div>
@@ -84,14 +155,18 @@ function DashboardContent() {
                   </CardDescription>
                 </CardHeader>
                 <CardContent className="space-y-3">
-                  <Button variant="outline" className="w-full justify-start">
-                    <Upload className="w-4 h-4 mr-2" />
-                    Import CSV entraînements
-                  </Button>
-                  <Button variant="outline" className="w-full justify-start">
-                    <Upload className="w-4 h-4 mr-2" />
-                    Import CSV WHOOP
-                  </Button>
+                  <Link href="/import">
+                    <Button variant="outline" className="w-full justify-start">
+                      <Upload className="w-4 h-4 mr-2" />
+                      Import CSV entraînements
+                    </Button>
+                  </Link>
+                  <Link href="/import">
+                    <Button variant="outline" className="w-full justify-start">
+                      <Upload className="w-4 h-4 mr-2" />
+                      Import CSV WHOOP
+                    </Button>
+                  </Link>
                 </CardContent>
               </Card>
 
@@ -106,11 +181,11 @@ function DashboardContent() {
                   </CardDescription>
                 </CardHeader>
                 <CardContent className="space-y-3">
-                  <Button variant="outline" className="w-full justify-start">
+                  <Button variant="outline" className="w-full justify-start" disabled>
                     <Calendar className="w-4 h-4 mr-2" />
                     Calendrier des sessions
                   </Button>
-                  <Button variant="outline" className="w-full justify-start">
+                  <Button variant="outline" className="w-full justify-start" disabled>
                     <TrendingUp className="w-4 h-4 mr-2" />
                     Analyse des performances
                   </Button>
