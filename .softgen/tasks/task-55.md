@@ -1,6 +1,6 @@
 ---
 title: "Tableau de bord et Calendrier Analytique"
-status: todo
+status: in_progress
 priority: high
 type: feature
 ---
