@@ -6,13 +6,17 @@ import { useState } from "react";
 
 export function Navigation() {
   const router = useRouter();
-  const [hoveredSection, setHoveredSection] = useState<string | null>(null);
+  const [openSection, setOpenSection] = useState<string | null>(null);
 
   const isActiveLink = (href: string) => router.pathname === href;
   const isActiveSection = (paths: string[]) => paths.includes(router.pathname);
 
   const professionalPaths = ["/parcours", "/investissements"];
   const sportPaths = ["/palmares", "/performances", "/materiel"];
+
+  const toggleSection = (section: string) => {
+    setOpenSection(openSection === section ? null : section);
+  };
 
   return (
     <header className="fixed top-0 z-50 w-full border-b border-white/5 bg-background/50 backdrop-blur-md">
@@ -30,39 +34,30 @@ export function Navigation() {
                   "text-xs font-semibold uppercase tracking-widest transition-colors hover:text-accent",
                   isActiveLink("/") ? "text-accent" : "text-muted-foreground"
                 )}
+                onClick={() => setOpenSection(null)}
               >
                 Accueil
               </Link>
 
-              <div
-                className="relative"
-                onMouseEnter={() => setHoveredSection("professional")}
-                onMouseLeave={() => setHoveredSection(null)}
+              <button
+                onClick={() => toggleSection("professional")}
+                className={cn(
+                  "text-xs font-semibold uppercase tracking-widest transition-colors hover:text-accent cursor-pointer",
+                  isActiveSection(professionalPaths) || openSection === "professional" ? "text-accent" : "text-muted-foreground"
+                )}
               >
-                <span
-                  className={cn(
-                    "text-xs font-semibold uppercase tracking-widest transition-colors hover:text-accent cursor-default",
-                    isActiveSection(professionalPaths) || hoveredSection === "professional" ? "text-accent" : "text-muted-foreground"
-                  )}
-                >
-                  Parcours Professionnel
-                </span>
-              </div>
+                Parcours Professionnel
+              </button>
 
-              <div
-                className="relative"
-                onMouseEnter={() => setHoveredSection("sport")}
-                onMouseLeave={() => setHoveredSection(null)}
+              <button
+                onClick={() => toggleSection("sport")}
+                className={cn(
+                  "text-xs font-semibold uppercase tracking-widest transition-colors hover:text-accent cursor-pointer",
+                  isActiveSection(sportPaths) || openSection === "sport" ? "text-accent" : "text-muted-foreground"
+                )}
               >
-                <span
-                  className={cn(
-                    "text-xs font-semibold uppercase tracking-widest transition-colors hover:text-accent cursor-default",
-                    isActiveSection(sportPaths) || hoveredSection === "sport" ? "text-accent" : "text-muted-foreground"
-                  )}
-                >
-                  Parcours Sportif
-                </span>
-              </div>
+                Parcours Sportif
+              </button>
 
               <Link
                 href="/vision"
@@ -70,6 +65,7 @@ export function Navigation() {
                   "text-xs font-semibold uppercase tracking-widest transition-colors hover:text-accent",
                   isActiveLink("/vision") ? "text-accent" : "text-muted-foreground"
                 )}
+                onClick={() => setOpenSection(null)}
               >
                 Vision
               </Link>
@@ -85,23 +81,20 @@ export function Navigation() {
         <div
           className="hidden md:block overflow-hidden transition-all duration-300"
           style={{
-            maxHeight: hoveredSection ? "60px" : "0px",
-            opacity: hoveredSection ? 1 : 0,
+            maxHeight: openSection ? "60px" : "0px",
+            opacity: openSection ? 1 : 0,
           }}
         >
           <div className="border-t border-white/5 py-4">
-            {hoveredSection === "professional" && (
-              <div
-                className="flex gap-8 justify-center"
-                onMouseEnter={() => setHoveredSection("professional")}
-                onMouseLeave={() => setHoveredSection(null)}
-              >
+            {openSection === "professional" && (
+              <div className="flex gap-8 justify-center">
                 <Link
                   href="/parcours"
                   className={cn(
                     "text-xs font-semibold uppercase tracking-widest transition-colors hover:text-accent",
                     isActiveLink("/parcours") ? "text-accent" : "text-muted-foreground"
                   )}
+                  onClick={() => setOpenSection(null)}
                 >
                   Parcours
                 </Link>
@@ -111,24 +104,22 @@ export function Navigation() {
                     "text-xs font-semibold uppercase tracking-widest transition-colors hover:text-accent",
                     isActiveLink("/investissements") ? "text-accent" : "text-muted-foreground"
                   )}
+                  onClick={() => setOpenSection(null)}
                 >
                   Investissements
                 </Link>
               </div>
             )}
 
-            {hoveredSection === "sport" && (
-              <div
-                className="flex gap-8 justify-center"
-                onMouseEnter={() => setHoveredSection("sport")}
-                onMouseLeave={() => setHoveredSection(null)}
-              >
+            {openSection === "sport" && (
+              <div className="flex gap-8 justify-center">
                 <Link
                   href="/palmares"
                   className={cn(
                     "text-xs font-semibold uppercase tracking-widest transition-colors hover:text-accent",
                     isActiveLink("/palmares") ? "text-accent" : "text-muted-foreground"
                   )}
+                  onClick={() => setOpenSection(null)}
                 >
                   Palmarès
                 </Link>
@@ -138,6 +129,7 @@ export function Navigation() {
                     "text-xs font-semibold uppercase tracking-widest transition-colors hover:text-accent",
                     isActiveLink("/performances") ? "text-accent" : "text-muted-foreground"
                   )}
+                  onClick={() => setOpenSection(null)}
                 >
                   Performances diverses
                 </Link>
@@ -147,6 +139,7 @@ export function Navigation() {
                     "text-xs font-semibold uppercase tracking-widest transition-colors hover:text-accent",
                     isActiveLink("/materiel") ? "text-accent" : "text-muted-foreground"
                   )}
+                  onClick={() => setOpenSection(null)}
                 >
                   Mon Matériel
                 </Link>
