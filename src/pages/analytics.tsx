@@ -8,11 +8,12 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { SessionCalendar } from "@/components/SessionCalendar";
 import { SessionDetail } from "@/components/SessionDetail";
-import { Activity, TrendingUp, Target } from "lucide-react";
+import { Activity, TrendingUp, Target, Trophy } from "lucide-react";
 import { 
   getSessionDetails, 
   getPerformanceEvolution, 
   getRecoveryPerformanceCorrelation,
+  getUpcomingCompetitions,
   type SessionWithDetails,
   type PerformanceData
 } from "@/services/calendarService";
@@ -24,9 +25,10 @@ function AnalyticsContent() {
   const [sessionDetails, setSessionDetails] = useState<SessionWithDetails[]>([]);
   const [performanceData, setPerformanceData] = useState<PerformanceData[]>([]);
   const [correlationData, setCorrelationData] = useState<{ recovery: number; avgScore: number }[]>([]);
+  const [upcomingCompetitions, setUpcomingCompetitions] = useState<SessionWithDetails[]>([]);
 
   useEffect(() => {
-    async function loadPerformanceData() {
+    async function loadData() {
       if (!user) return;
       
       const now = new Date();
@@ -46,9 +48,12 @@ function AnalyticsContent() {
         now.toISOString().split("T")[0]
       );
       setCorrelationData(corr);
+
+      const upcoming = await getUpcomingCompetitions(user.id);
+      setUpcomingCompetitions(upcoming);
     }
 
-    loadPerformanceData();
+    loadData();
   }, [user]);
 
   const handleDateClick = async (date: string) => {
@@ -78,8 +83,12 @@ function AnalyticsContent() {
               </p>
             </div>
 
-            <Tabs defaultValue="calendar" className="space-y-6">
-              <TabsList className="grid w-full grid-cols-3">
+            <Tabs defaultValue="upcoming" className="space-y-6">
+              <TabsList className="grid w-full grid-cols-4">
+                <TabsTrigger value="upcoming" className="gap-2">
+                  <Trophy className="h-4 w-4" />
+                  Compétitions
+                </TabsTrigger>
                 <TabsTrigger value="calendar" className="gap-2">
                   <Target className="h-4 w-4" />
                   Calendrier
@@ -93,6 +102,50 @@ function AnalyticsContent() {
                   Corrélation
                 </TabsTrigger>
               </TabsList>
+
+              <TabsContent value="upcoming">
+                <Card>
+                  <CardHeader>
+                    <CardTitle>Compétitions à venir</CardTitle>
+                    <CardDescription>
+                      Vos prochaines compétitions programmées
+                    </CardDescription>
+                  </CardHeader>
+                  <CardContent>
+                    {upcomingCompetitions.length > 0 ? (
+                      <div className="space-y-4">
+                        {upcomingCompetitions.map((comp) => (
+                          <div key={comp.id} className="p-4 border rounded-lg">
+                            <div className="flex items-center justify-between">
+                              <div>
+                                <h3 className="font-semibold flex items-center gap-2">
+                                  <Trophy className="h-4 w-4 text-accent" />
+                                  {new Date(comp.session_date).toLocaleDateString("fr-FR", { 
+                                    weekday: "long", 
+                                    day: "numeric", 
+                                    month: "long", 
+                                    year: "numeric" 
+                                  })}
+                                </h3>
+                                <p className="text-sm text-muted-foreground mt-1">
+                                  Distance: {comp.distance}m • Type: {comp.bow_type === "recurve" ? "Arc classique" : "Arc à poulies"}
+                                </p>
+                                {comp.notes && (
+                                  <p className="text-sm mt-2">{comp.notes}</p>
+                                )}
+                              </div>
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    ) : (
+                      <div className="flex items-center justify-center h-64 text-muted-foreground">
+                        Aucune compétition programmée
+                      </div>
+                    )}
+                  </CardContent>
+                </Card>
+              </TabsContent>
 
               <TabsContent value="calendar" className="space-y-6">
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">

@@ -26,7 +26,41 @@ export interface PerformanceData {
 }
 
 /**
- * Récupère les sessions pour un mois donné
+ * Récupère les compétitions à venir (futures)
+ */
+export async function getUpcomingCompetitions(
+  userId: string,
+  startDate?: string
+): Promise<SessionWithDetails[]> {
+  const today = startDate || new Date().toISOString().split("T")[0];
+
+  const { data: sessions, error } = await supabase
+    .from("archery_sessions")
+    .select(`
+      *,
+      matches(*),
+      arrows(*)
+    `)
+    .eq("user_id", userId)
+    .eq("session_type", "competition")
+    .gte("session_date", today)
+    .order("session_date", { ascending: true });
+
+  if (error) {
+    console.error("Error fetching upcoming competitions:", error);
+    return [];
+  }
+
+  return (sessions || []).map((session) => ({
+    ...session,
+    matches: Array.isArray(session.matches) ? session.matches : [],
+    arrows: Array.isArray(session.arrows) ? session.arrows : [],
+    health_metric: null,
+  }));
+}
+
+/**
+ * Récupère les sessions pour un mois donné (historique)
  */
 export async function getMonthSessions(
   userId: string,
@@ -49,7 +83,6 @@ export async function getMonthSessions(
     return [];
   }
 
-  // Créer un objet avec toutes les dates du mois
   const days: Record<string, CalendarDay> = {};
   for (let d = 1; d <= lastDay.getDate(); d++) {
     const date = new Date(year, month - 1, d);
@@ -62,7 +95,6 @@ export async function getMonthSessions(
     };
   }
 
-  // Ajouter les sessions
   sessions?.forEach((session) => {
     const dateStr = session.session_date.split("T")[0];
     if (days[dateStr]) {
@@ -100,7 +132,6 @@ export async function getSessionDetails(
     return [];
   }
 
-  // Récupérer la métrique de santé du même jour
   const { data: healthMetric } = await supabase
     .from("health_metrics")
     .select("*")
@@ -124,14 +155,15 @@ export async function getPerformanceEvolution(
   startDate: string,
   endDate: string
 ): Promise<PerformanceData[]> {
-  // Récupérer les sessions avec leurs scores
   const { data: sessions, error: sessionsError } = await supabase
     .from("archery_sessions")
-    .select("session_date, total_score")
+    .select(`
+      session_date,
+      matches(score)
+    `)
     .eq("user_id", userId)
     .gte("session_date", startDate)
     .lte("session_date", endDate)
-    .not("total_score", "is", null)
     .order("session_date", { ascending: true });
 
   if (sessionsError) {
@@ -139,7 +171,6 @@ export async function getPerformanceEvolution(
     return [];
   }
 
-  // Récupérer les métriques de santé
   const { data: healthMetrics, error: healthError } = await supabase
     .from("health_metrics")
     .select("metric_date, recovery_score")
@@ -153,18 +184,38 @@ export async function getPerformanceEvolution(
     console.error("Error fetching health data:", healthError);
   }
 
-  // Créer un map des métriques de santé par date
   const healthMap = new Map<string, number>();
   healthMetrics?.forEach((metric) => {
     healthMap.set(metric.metric_date.split("T")[0], metric.recovery_score || 0);
   });
 
-  // Combiner les données
-  return (sessions || []).map((session) => ({
-    date: session.session_date.split("T")[0],
-    score: session.total_score || 0,
-    recovery: healthMap.get(session.session_date.split("T")[0]),
-  }));
+  const performanceMap = new Map<string, number[]>();
+  
+  sessions?.forEach((session) => {
+    const dateStr = session.session_date.split("T")[0];
+    const matches = Array.isArray(session.matches) ? session.matches : [];
+    
+    matches.forEach((match: Match) => {
+      if (match.score) {
+        if (!performanceMap.has(dateStr)) {
+          performanceMap.set(dateStr, []);
+        }
+        performanceMap.get(dateStr)!.push(match.score);
+      }
+    });
+  });
+
+  const result: PerformanceData[] = [];
+  performanceMap.forEach((scores, dateStr) => {
+    const avgScore = Math.round(scores.reduce((a, b) => a + b, 0) / scores.length);
+    result.push({
+      date: dateStr,
+      score: avgScore,
+      recovery: healthMap.get(dateStr),
+    });
+  });
+
+  return result.sort((a, b) => a.date.localeCompare(b.date));
 }
 
 /**
@@ -177,11 +228,10 @@ export async function getRecoveryPerformanceCorrelation(
 ): Promise<{ recovery: number; avgScore: number }[]> {
   const performanceData = await getPerformanceEvolution(userId, startDate, endDate);
 
-  // Grouper par tranches de récupération
   const groups: Record<number, number[]> = {
-    0: [], // 0-33%
-    1: [], // 34-66%
-    2: [], // 67-100%
+    0: [],
+    1: [],
+    2: [],
   };
 
   performanceData.forEach((data) => {
@@ -193,19 +243,19 @@ export async function getRecoveryPerformanceCorrelation(
 
   return [
     {
-      recovery: 17, // Moyenne de 0-33%
+      recovery: 17,
       avgScore: groups[0].length > 0 
         ? Math.round(groups[0].reduce((a, b) => a + b, 0) / groups[0].length)
         : 0,
     },
     {
-      recovery: 50, // Moyenne de 34-66%
+      recovery: 50,
       avgScore: groups[1].length > 0
         ? Math.round(groups[1].reduce((a, b) => a + b, 0) / groups[1].length)
         : 0,
     },
     {
-      recovery: 84, // Moyenne de 67-100%
+      recovery: 84,
       avgScore: groups[2].length > 0
         ? Math.round(groups[2].reduce((a, b) => a + b, 0) / groups[2].length)
         : 0,
