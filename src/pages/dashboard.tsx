@@ -181,14 +181,18 @@ function DashboardContent() {
                   </CardDescription>
                 </CardHeader>
                 <CardContent className="space-y-3">
-                  <Button variant="outline" className="w-full justify-start" disabled>
-                    <Calendar className="w-4 h-4 mr-2" />
-                    Calendrier des sessions
-                  </Button>
-                  <Button variant="outline" className="w-full justify-start" disabled>
-                    <TrendingUp className="w-4 h-4 mr-2" />
-                    Analyse des performances
-                  </Button>
+                  <Link href="/analytics">
+                    <Button variant="outline" className="w-full justify-start">
+                      <Calendar className="w-4 h-4 mr-2" />
+                      Calendrier des sessions
+                    </Button>
+                  </Link>
+                  <Link href="/analytics">
+                    <Button variant="outline" className="w-full justify-start">
+                      <TrendingUp className="w-4 h-4 mr-2" />
+                      Analyse des performances
+                    </Button>
+                  </Link>
                 </CardContent>
               </Card>
             </div>
