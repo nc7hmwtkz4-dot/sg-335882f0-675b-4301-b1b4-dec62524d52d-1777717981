@@ -8,7 +8,7 @@ import { LogOut } from "lucide-react";
 
 export function Navigation() {
   const router = useRouter();
-  const { isAuthenticated, signOut } = useAuth();
+  const { isAuthenticated, signOut, loading } = useAuth();
   const [openSection, setOpenSection] = useState<string | null>(null);
 
   const isActiveLink = (href: string) => router.pathname === href;
@@ -78,7 +78,7 @@ export function Navigation() {
                 Vision
               </Link>
 
-              {isAuthenticated && (
+              {!loading && isAuthenticated && (
                 <Link
                   href="/dashboard"
                   className={cn(
@@ -92,7 +92,7 @@ export function Navigation() {
               )}
             </div>
 
-            {isAuthenticated ? (
+            {!loading && isAuthenticated ? (
               <Button 
                 onClick={handleSignOut}
                 variant="outline"
