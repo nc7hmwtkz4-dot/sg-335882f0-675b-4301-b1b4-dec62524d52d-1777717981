@@ -1,4 +1,4 @@
- 
+/* eslint-disable @typescript-eslint/no-empty-object-type */
 export type Json =
   | string
   | number
@@ -15,42 +15,185 @@ export type Database = {
   }
   public: {
     Tables: {
+      archery_sessions: {
+        Row: {
+          bow_type: string
+          created_at: string | null
+          csv_data: Json | null
+          distance: number | null
+          energy_level: number | null
+          feelings: string | null
+          focus_level: number | null
+          id: string
+          notes: string | null
+          session_date: string
+          session_type: string
+          target_size: number | null
+          temperature: number | null
+          total_arrows: number | null
+          total_score: number | null
+          updated_at: string | null
+          user_id: string
+          weather_conditions: string | null
+          wind_speed: number | null
+        }
+        Insert: {
+          bow_type: string
+          created_at?: string | null
+          csv_data?: Json | null
+          distance?: number | null
+          energy_level?: number | null
+          feelings?: string | null
+          focus_level?: number | null
+          id?: string
+          notes?: string | null
+          session_date: string
+          session_type: string
+          target_size?: number | null
+          temperature?: number | null
+          total_arrows?: number | null
+          total_score?: number | null
+          updated_at?: string | null
+          user_id: string
+          weather_conditions?: string | null
+          wind_speed?: number | null
+        }
+        Update: {
+          bow_type?: string
+          created_at?: string | null
+          csv_data?: Json | null
+          distance?: number | null
+          energy_level?: number | null
+          feelings?: string | null
+          focus_level?: number | null
+          id?: string
+          notes?: string | null
+          session_date?: string
+          session_type?: string
+          target_size?: number | null
+          temperature?: number | null
+          total_arrows?: number | null
+          total_score?: number | null
+          updated_at?: string | null
+          user_id?: string
+          weather_conditions?: string | null
+          wind_speed?: number | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "archery_sessions_user_id_fkey"
+            columns: ["user_id"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      arrows: {
+        Row: {
+          arrow_number: number
+          horizontal_position: string | null
+          id: string
+          is_x: boolean | null
+          match_id: string | null
+          notes: string | null
+          score: number
+          session_id: string
+          timestamp: string | null
+          vertical_position: string | null
+        }
+        Insert: {
+          arrow_number: number
+          horizontal_position?: string | null
+          id?: string
+          is_x?: boolean | null
+          match_id?: string | null
+          notes?: string | null
+          score: number
+          session_id: string
+          timestamp?: string | null
+          vertical_position?: string | null
+        }
+        Update: {
+          arrow_number?: number
+          horizontal_position?: string | null
+          id?: string
+          is_x?: boolean | null
+          match_id?: string | null
+          notes?: string | null
+          score?: number
+          session_id?: string
+          timestamp?: string | null
+          vertical_position?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "arrows_match_id_fkey"
+            columns: ["match_id"]
+            isOneToOne: false
+            referencedRelation: "matches"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "arrows_session_id_fkey"
+            columns: ["session_id"]
+            isOneToOne: false
+            referencedRelation: "archery_sessions"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       health_metrics: {
         Row: {
+          blood_oxygen: number | null
           created_at: string | null
           csv_data: Json | null
           hrv: number | null
           id: string
           metric_date: string
           recovery_score: number | null
+          respiratory_rate: number | null
           resting_hr: number | null
+          skin_temperature: number | null
+          sleep_duration_hours: number | null
           sleep_performance: number | null
+          sleep_quality_score: number | null
           strain_score: number | null
           updated_at: string | null
           user_id: string
         }
         Insert: {
+          blood_oxygen?: number | null
           created_at?: string | null
           csv_data?: Json | null
           hrv?: number | null
           id?: string
           metric_date: string
           recovery_score?: number | null
+          respiratory_rate?: number | null
           resting_hr?: number | null
+          skin_temperature?: number | null
+          sleep_duration_hours?: number | null
           sleep_performance?: number | null
+          sleep_quality_score?: number | null
           strain_score?: number | null
           updated_at?: string | null
           user_id: string
         }
         Update: {
+          blood_oxygen?: number | null
           created_at?: string | null
           csv_data?: Json | null
           hrv?: number | null
           id?: string
           metric_date?: string
           recovery_score?: number | null
+          respiratory_rate?: number | null
           resting_hr?: number | null
+          skin_temperature?: number | null
+          sleep_duration_hours?: number | null
           sleep_performance?: number | null
+          sleep_quality_score?: number | null
           strain_score?: number | null
           updated_at?: string | null
           user_id?: string
@@ -61,6 +204,47 @@ export type Database = {
             columns: ["user_id"]
             isOneToOne: false
             referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      matches: {
+        Row: {
+          arrows_per_end: number | null
+          created_at: string | null
+          id: string
+          match_number: number
+          max_score: number | null
+          notes: string | null
+          score: number | null
+          session_id: string
+        }
+        Insert: {
+          arrows_per_end?: number | null
+          created_at?: string | null
+          id?: string
+          match_number: number
+          max_score?: number | null
+          notes?: string | null
+          score?: number | null
+          session_id: string
+        }
+        Update: {
+          arrows_per_end?: number | null
+          created_at?: string | null
+          id?: string
+          match_number?: number
+          max_score?: number | null
+          notes?: string | null
+          score?: number | null
+          session_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "matches_session_id_fkey"
+            columns: ["session_id"]
+            isOneToOne: false
+            referencedRelation: "archery_sessions"
             referencedColumns: ["id"]
           },
         ]
@@ -130,6 +314,50 @@ export type Database = {
             columns: ["viewer_id"]
             isOneToOne: false
             referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      situations: {
+        Row: {
+          arrows_count: number | null
+          created_at: string | null
+          description: string | null
+          id: string
+          notes: string | null
+          score: number | null
+          session_id: string
+          situation_type: string
+          success_rate: number | null
+        }
+        Insert: {
+          arrows_count?: number | null
+          created_at?: string | null
+          description?: string | null
+          id?: string
+          notes?: string | null
+          score?: number | null
+          session_id: string
+          situation_type: string
+          success_rate?: number | null
+        }
+        Update: {
+          arrows_count?: number | null
+          created_at?: string | null
+          description?: string | null
+          id?: string
+          notes?: string | null
+          score?: number | null
+          session_id?: string
+          situation_type?: string
+          success_rate?: number | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "situations_session_id_fkey"
+            columns: ["session_id"]
+            isOneToOne: false
+            referencedRelation: "archery_sessions"
             referencedColumns: ["id"]
           },
         ]
