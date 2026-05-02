@@ -44,12 +44,13 @@ export async function importArcherySessions(
         const sessionData: ArcherySession = {
           user_id: userId,
           session_date: new Date(row["date"] || row["Date"]).toISOString(),
+          session_type: row["session_type"] || row["type_session"] || "training",
           bow_type: row["bow_type"] || row["type_arc"] || "recurve",
           distance: parseInt(row["distance"] || "70"),
-          weather: row["weather"] || row["meteo"],
+          weather_conditions: row["weather"] || row["meteo"],
           temperature: row["temperature"] ? parseFloat(row["temperature"]) : null,
-          wind_speed: row["wind_speed"] || row["vent"] ? parseFloat(row["wind_speed"] || row["vent"]) : null,
-          feeling: row["feeling"] || row["sensations"],
+          wind_speed: row["wind_speed"] || row["vent"] ? parseInt(row["wind_speed"] || row["vent"]) : null,
+          feelings: row["feeling"] || row["sensations"],
           notes: row["notes"] || row["remarques"],
         };
 
@@ -69,8 +70,8 @@ export async function importArcherySessions(
           const matchData: Match = {
             session_id: session.id,
             match_number: 1,
-            total_score: parseInt(row["score"] || row["total_score"] || "0"),
-            arrows_count: parseInt(row["arrows"] || row["fleches"] || "72"),
+            score: parseInt(row["score"] || row["total_score"] || "0"),
+            arrows_per_end: parseInt(row["arrows"] || row["fleches"] || "3"),
           };
 
           await supabase.from("matches").insert(matchData);
@@ -123,15 +124,15 @@ export async function importHealthMetrics(
 
         const metricData: HealthMetric = {
           user_id: userId,
-          recorded_at: new Date(row["date"] || row["Date"] || row["Cycle start time"]).toISOString(),
-          sleep_hours: row["sleep_hours"] || row["Sleep duration"] ? parseFloat(row["sleep_hours"] || row["Sleep duration"]) : null,
-          sleep_quality: row["sleep_quality"] || row["Sleep quality"] ? parseFloat(row["sleep_quality"] || row["Sleep quality"]) : null,
-          resting_heart_rate: row["resting_hr"] || row["Resting heart rate"] ? parseInt(row["resting_hr"] || row["Resting heart rate"]) : null,
-          heart_rate_variability: row["hrv"] || row["HRV"] ? parseFloat(row["hrv"] || row["HRV"]) : null,
-          recovery_score: row["recovery"] || row["Recovery score"] ? parseFloat(row["recovery"] || row["Recovery score"]) : null,
+          metric_date: new Date(row["date"] || row["Date"] || row["Cycle start time"]).toISOString(),
+          sleep_duration_hours: row["sleep_hours"] || row["Sleep duration"] ? parseFloat(row["sleep_hours"] || row["Sleep duration"]) : null,
+          sleep_quality_score: row["sleep_quality"] || row["Sleep quality"] ? parseInt(row["sleep_quality"] || row["Sleep quality"]) : null,
+          resting_hr: row["resting_hr"] || row["Resting heart rate"] ? parseInt(row["resting_hr"] || row["Resting heart rate"]) : null,
+          hrv: row["hrv"] || row["HRV"] ? parseInt(row["hrv"] || row["HRV"]) : null,
+          recovery_score: row["recovery"] || row["Recovery score"] ? parseInt(row["recovery"] || row["Recovery score"]) : null,
           respiratory_rate: row["respiratory_rate"] || row["Respiratory rate"] ? parseFloat(row["respiratory_rate"] || row["Respiratory rate"]) : null,
-          skin_temp: row["skin_temp"] || row["Skin temp"] ? parseFloat(row["skin_temp"] || row["Skin temp"]) : null,
-          spo2: row["spo2"] || row["SpO2"] ? parseFloat(row["spo2"] || row["SpO2"]) : null,
+          skin_temperature: row["skin_temp"] || row["Skin temp"] ? parseFloat(row["skin_temp"] || row["Skin temp"]) : null,
+          blood_oxygen: row["spo2"] || row["SpO2"] ? parseFloat(row["spo2"] || row["SpO2"]) : null,
         };
 
         const { error } = await supabase
