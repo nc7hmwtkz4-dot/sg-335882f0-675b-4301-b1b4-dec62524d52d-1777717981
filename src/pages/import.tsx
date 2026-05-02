@@ -44,13 +44,12 @@ export default function ImportPage() {
 
     setIsImporting(true);
     try {
-      const content = await archeryFile.text();
-      const result = await importArcherySessions(content, user.id);
+      const result = await importArcherySessions(archeryFile);
       setArcheryResult(result);
     } catch (error) {
       setArcheryResult({
         success: false,
-        recordsProcessed: 0,
+        totalRows: 0,
         recordsInserted: 0,
         errors: [error instanceof Error ? error.message : "Erreur inconnue"],
       });
@@ -64,13 +63,12 @@ export default function ImportPage() {
 
     setIsImporting(true);
     try {
-      const content = await healthFile.text();
-      const result = await importHealthMetrics(content, user.id);
+      const result = await importHealthMetrics(healthFile);
       setHealthResult(result);
     } catch (error) {
       setHealthResult({
         success: false,
-        recordsProcessed: 0,
+        totalRows: 0,
         recordsInserted: 0,
         errors: [error instanceof Error ? error.message : "Erreur inconnue"],
       });
@@ -163,7 +161,7 @@ export default function ImportPage() {
                                 {archeryResult.success ? "Import réussi !" : "Import terminé avec des erreurs"}
                               </p>
                               <ul className="space-y-1 text-sm">
-                                <li>Lignes traitées : {archeryResult.recordsProcessed}</li>
+                                <li>Lignes traitées : {archeryResult.totalRows}</li>
                                 <li>Sessions créées : {archeryResult.recordsInserted}</li>
                                 {archeryResult.errors.length > 0 && (
                                   <li className="mt-2">
@@ -242,7 +240,7 @@ export default function ImportPage() {
                                 {healthResult.success ? "Import réussi !" : "Import terminé avec des erreurs"}
                               </p>
                               <ul className="space-y-1 text-sm">
-                                <li>Lignes traitées : {healthResult.recordsProcessed}</li>
+                                <li>Lignes traitées : {healthResult.totalRows}</li>
                                 <li>Métriques créées : {healthResult.recordsInserted}</li>
                                 {healthResult.errors.length > 0 && (
                                   <li className="mt-2">

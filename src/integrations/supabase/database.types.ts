@@ -145,11 +145,14 @@ export type Database = {
       }
       health_metrics: {
         Row: {
+          activity_strain: number | null
           blood_oxygen: number | null
           created_at: string | null
           csv_data: Json | null
+          energy_burned_cal: number | null
           hrv: number | null
           id: string
+          max_hr: number | null
           metric_date: string
           recovery_score: number | null
           respiratory_rate: number | null
@@ -163,11 +166,14 @@ export type Database = {
           user_id: string
         }
         Insert: {
+          activity_strain?: number | null
           blood_oxygen?: number | null
           created_at?: string | null
           csv_data?: Json | null
+          energy_burned_cal?: number | null
           hrv?: number | null
           id?: string
+          max_hr?: number | null
           metric_date: string
           recovery_score?: number | null
           respiratory_rate?: number | null
@@ -181,11 +187,14 @@ export type Database = {
           user_id: string
         }
         Update: {
+          activity_strain?: number | null
           blood_oxygen?: number | null
           created_at?: string | null
           csv_data?: Json | null
+          energy_burned_cal?: number | null
           hrv?: number | null
           id?: string
+          max_hr?: number | null
           metric_date?: string
           recovery_score?: number | null
           respiratory_rate?: number | null
@@ -216,6 +225,8 @@ export type Database = {
           match_number: number
           max_score: number | null
           notes: string | null
+          opponent_name: string | null
+          opponent_score: number | null
           score: number | null
           session_id: string
         }
@@ -226,6 +237,8 @@ export type Database = {
           match_number: number
           max_score?: number | null
           notes?: string | null
+          opponent_name?: string | null
+          opponent_score?: number | null
           score?: number | null
           session_id: string
         }
@@ -236,6 +249,8 @@ export type Database = {
           match_number?: number
           max_score?: number | null
           notes?: string | null
+          opponent_name?: string | null
+          opponent_score?: number | null
           score?: number | null
           session_id?: string
         }
