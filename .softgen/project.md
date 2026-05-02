@@ -1,7 +1,7 @@
 # Project Brief
 
 ## Vision
-Un site personnel de "personal branding" pour Thomas Aubert, ancien médaillé mondial de tir à l'arc devenu expert en événementiel sportif international (ex-Head of Events & Marketing World Archery, délégué technique JO Paris 2024). Le but est de se positionner auprès de futurs employeurs ou sponsors, avec un ton professionnel, rationnel, direct et élégant, inspiré de la plateforme de marque d'Anthony Bourbon.
+Un site hybride pour Thomas Aubert : d'un côté, une plateforme de "personal branding" pour se positionner auprès de futurs employeurs ou sponsors (ton professionnel, rationnel, direct et élégant). De l'autre, un espace privé (backend sécurisé) permettant de consolider, analyser et partager ses données de performance sportive et de santé avec son entraîneur.
 
 ## Design
 Le design doit refléter la précision, la droiture, la concentration et le haut niveau.
@@ -15,6 +15,7 @@ Le design doit refléter la précision, la droiture, la concentration et le haut
 - Fonts: 'Outfit' pour les titres (affirmé, géométrique), 'Inter' pour le corps de texte (lisibilité, rationalité).
 
 ## Features
-- Landing page : Hero accrocheur, Parcours croisé (sportif/pro), Domaines d'expertise, Réalisations majeures (JO 2024, Sponsoring x14).
-- Page Palmarès : Liste détaillée des médailles et participations internationales.
-- Design responsive, animations subtiles (précision).
+- Espace public : Hero accrocheur, Parcours pro/sportif, Palmarès, Matériel.
+- Espace privé (Dashboard) : Import CSV des historiques d'entraînement de tir à l'arc et des métriques de santé (WHOOP).
+- Analytique : Calendrier interactif des sessions, évolution des scores, croisement des données santé et performances.
+- Partage : Gestion des accès avec un espace en lecture seule dédié à l'entraîneur.
