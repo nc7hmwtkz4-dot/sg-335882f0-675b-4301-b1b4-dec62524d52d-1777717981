@@ -29,27 +29,38 @@ function AnalyticsContent() {
 
   useEffect(() => {
     async function loadData() {
-      if (!user) return;
+      if (!user) {
+        console.log("Analytics: No user found");
+        return;
+      }
+      
+      console.log("Analytics: Loading data for user", user.id);
       
       const now = new Date();
       const threeMonthsAgo = new Date(now);
       threeMonthsAgo.setMonth(threeMonthsAgo.getMonth() - 3);
       
+      console.log("Analytics: Fetching performance data from", threeMonthsAgo.toISOString(), "to", now.toISOString());
       const perf = await getPerformanceEvolution(
         user.id,
         threeMonthsAgo.toISOString().split("T")[0],
         now.toISOString().split("T")[0]
       );
+      console.log("Analytics: Performance data received", perf);
       setPerformanceData(perf);
 
+      console.log("Analytics: Fetching correlation data");
       const corr = await getRecoveryPerformanceCorrelation(
         user.id,
         threeMonthsAgo.toISOString().split("T")[0],
         now.toISOString().split("T")[0]
       );
+      console.log("Analytics: Correlation data received", corr);
       setCorrelationData(corr);
 
+      console.log("Analytics: Fetching upcoming competitions");
       const upcoming = await getUpcomingCompetitions(user.id);
+      console.log("Analytics: Upcoming competitions received", upcoming);
       setUpcomingCompetitions(upcoming);
     }
 
@@ -58,12 +69,23 @@ function AnalyticsContent() {
 
   const handleDateClick = async (date: string) => {
     if (!user) return;
+    console.log("Analytics: Date clicked", date);
     setSelectedDate(date);
     const details = await getSessionDetails(user.id, date);
+    console.log("Analytics: Session details received", details);
     setSessionDetails(details);
   };
 
-  if (!user) return null;
+  if (!user) {
+    console.log("Analytics: Rendering - no user");
+    return null;
+  }
+
+  console.log("Analytics: Rendering with data", {
+    performanceDataLength: performanceData.length,
+    correlationDataLength: correlationData.length,
+    upcomingCompetitionsLength: upcomingCompetitions.length
+  });
 
   return (
     <>
@@ -140,7 +162,7 @@ function AnalyticsContent() {
                       </div>
                     ) : (
                       <div className="flex items-center justify-center h-64 text-muted-foreground">
-                        Aucune compétition programmée
+                        Aucune compétition programmée pour le futur
                       </div>
                     )}
                   </CardContent>
@@ -217,8 +239,9 @@ function AnalyticsContent() {
                         </LineChart>
                       </ResponsiveContainer>
                     ) : (
-                      <div className="flex items-center justify-center h-64 text-muted-foreground">
-                        Pas encore de données de performance
+                      <div className="flex flex-col items-center justify-center h-64 text-muted-foreground">
+                        <p>Pas encore de données de performance sur les 3 derniers mois</p>
+                        <p className="text-xs mt-2">Assurez-vous d'avoir importé des sessions avec des scores (table matches)</p>
                       </div>
                     )}
                   </CardContent>
@@ -267,8 +290,9 @@ function AnalyticsContent() {
                         </BarChart>
                       </ResponsiveContainer>
                     ) : (
-                      <div className="flex items-center justify-center h-64 text-muted-foreground">
-                        Pas encore assez de données pour calculer la corrélation
+                      <div className="flex flex-col items-center justify-center h-64 text-muted-foreground">
+                        <p>Pas encore assez de données pour calculer la corrélation</p>
+                        <p className="text-xs mt-2">Importez des sessions avec scores + métriques WHOOP</p>
                       </div>
                     )}
                     
