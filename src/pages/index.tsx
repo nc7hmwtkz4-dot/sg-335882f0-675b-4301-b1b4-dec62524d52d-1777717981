@@ -3,6 +3,8 @@ import { Button } from "@/components/ui/button";
 import { ArrowRight, Target, Globe, Trophy, LineChart } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+import { Navigation } from "@/components/Navigation";
+import { Footer } from "@/components/Footer";
 
 export default function Home() {
   return (
@@ -11,6 +13,8 @@ export default function Home() {
         <title>Thomas Aubert | Expert en Événementiel Sportif & Médaillé Mondial</title>
         <meta name="description" content="Portfolio de Thomas Aubert, expert en événementiel sportif international et ancien sportif de haut niveau." />
       </Head>
+
+      <Navigation />
 
       {/* Modern Hero Section */}
       <section className="relative min-h-[90vh] flex items-center pt-24 overflow-hidden">
@@ -225,6 +229,8 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      <Footer />
     </div>
   );
 }
