@@ -3,9 +3,12 @@ import { useRouter } from "next/router";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
+import { useAuth } from "@/contexts/AuthContext";
+import { LogOut } from "lucide-react";
 
 export function Navigation() {
   const router = useRouter();
+  const { isAuthenticated, signOut } = useAuth();
   const [openSection, setOpenSection] = useState<string | null>(null);
 
   const isActiveLink = (href: string) => router.pathname === href;
@@ -16,6 +19,11 @@ export function Navigation() {
 
   const toggleSection = (section: string) => {
     setOpenSection(openSection === section ? null : section);
+  };
+
+  const handleSignOut = async () => {
+    await signOut();
+    router.push("/");
   };
 
   return (
@@ -69,11 +77,35 @@ export function Navigation() {
               >
                 Vision
               </Link>
+
+              {isAuthenticated && (
+                <Link
+                  href="/dashboard"
+                  className={cn(
+                    "text-xs font-semibold uppercase tracking-widest transition-colors hover:text-accent",
+                    isActiveLink("/dashboard") ? "text-accent" : "text-muted-foreground"
+                  )}
+                  onClick={() => setOpenSection(null)}
+                >
+                  Mon Dashboard
+                </Link>
+              )}
             </div>
 
-            <Button asChild className="rounded-none px-8 h-12 bg-foreground text-background hover:bg-accent hover:text-accent-foreground transition-all duration-300 font-bold tracking-wider text-xs uppercase">
-              <Link href="#contact">Contact</Link>
-            </Button>
+            {isAuthenticated ? (
+              <Button 
+                onClick={handleSignOut}
+                variant="outline"
+                className="rounded-none px-8 h-12 border-foreground text-foreground hover:bg-foreground hover:text-background transition-all duration-300 font-bold tracking-wider text-xs uppercase"
+              >
+                <LogOut className="w-4 h-4 mr-2" />
+                Déconnexion
+              </Button>
+            ) : (
+              <Button asChild className="rounded-none px-8 h-12 bg-foreground text-background hover:bg-accent hover:text-accent-foreground transition-all duration-300 font-bold tracking-wider text-xs uppercase">
+                <Link href="#contact">Contact</Link>
+              </Button>
+            )}
           </nav>
         </div>
 
