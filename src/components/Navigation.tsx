@@ -7,8 +7,9 @@ import { useAuth } from "@/contexts/AuthContext";
 import { LogOut } from "lucide-react";
 
 export function Navigation() {
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const router = useRouter();
-  const { isAuthenticated, signOut, loading } = useAuth();
+  const { user, userRole, signOut, loading } = useAuth();
   const [openSection, setOpenSection] = useState<string | null>(null);
 
   const isActiveLink = (href: string) => router.pathname === href;
@@ -16,6 +17,11 @@ export function Navigation() {
 
   const professionalPaths = ["/parcours", "/investissements"];
   const sportPaths = ["/palmares", "/performances", "/materiel"];
+
+  const dashboardMenuItems = [
+    { name: "Dashboard", href: "/dashboard" },
+    { name: "Import Données", href: "/import" },
+  ];
 
   const toggleSection = (section: string) => {
     setOpenSection(openSection === section ? null : section);
