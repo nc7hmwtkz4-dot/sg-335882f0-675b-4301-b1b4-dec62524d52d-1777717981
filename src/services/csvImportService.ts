@@ -63,20 +63,18 @@ function parseCSVLine(line: string): string[] {
 }
 
 /**
- * Parse les flèches au format "score:x:y"
+ * Parse les flèches au format "score:x:y" ou "score"
+ * Note: x et y sont ignorés car le schéma utilise horizontal_position/vertical_position
  */
-function parseArrows(arrowsString: string): Array<{ score: number; x?: number; y?: number }> {
+function parseArrows(arrowsString: string): Array<{ score: number }> {
   if (!arrowsString) return [];
   
   const arrows = arrowsString.split(",");
   return arrows.map((arrow) => {
     const parts = arrow.trim().split(":");
     const score = parseInt(parts[0]) || 0;
-    const x = parts[1] ? parseFloat(parts[1]) : undefined;
-    const y = parts[2] ? parseFloat(parts[2]) : undefined;
-    
-    return { score, x, y };
-  });
+    return { score };
+  }).filter((arrow) => arrow.score >= 0 && arrow.score <= 10);
 }
 
 /**
@@ -138,7 +136,6 @@ export async function importArcherySessions(file: File): Promise<ImportResult> {
 }
 
 async function importTrainingSession(row: Record<string, string>, userId: string) {
-  // Vérifier que la date est valide
   const dateStr = row["date"];
   if (!dateStr) {
     throw new Error("Date manquante");
@@ -151,7 +148,7 @@ async function importTrainingSession(row: Record<string, string>, userId: string
 
   const sessionData: ArcherySession = {
     user_id: userId,
-    session_date: sessionDate.toISOString(),
+    session_date: sessionDate.toISOString().split("T")[0],
     session_type: "training",
     bow_type: "recurve",
     distance: 70,
@@ -180,8 +177,6 @@ async function importTrainingSession(row: Record<string, string>, userId: string
       session_id: session.id,
       arrow_number: index + 1,
       score: arrow.score,
-      x_coordinate: arrow.x || null,
-      y_coordinate: arrow.y || null,
     }));
 
     console.log(`Insertion de ${arrowsData.length} flèches`);
@@ -202,7 +197,7 @@ async function importTrainingSession(row: Record<string, string>, userId: string
 async function importMatchSession(row: Record<string, string>, userId: string) {
   const sessionData: ArcherySession = {
     user_id: userId,
-    session_date: new Date(row["date"]).toISOString(),
+    session_date: new Date(row["date"]).toISOString().split("T")[0],
     session_type: row["phase"] ? "competition" : "training",
     bow_type: row["weapon"] === "1" ? "recurve" : row["weapon"] === "3" ? "compound" : "recurve",
     distance: parseInt(row["distance"]) || 70,
@@ -237,7 +232,7 @@ async function importMatchSession(row: Record<string, string>, userId: string) {
 async function importTrainingStatsSession(row: Record<string, string>, userId: string) {
   const sessionData: ArcherySession = {
     user_id: userId,
-    session_date: new Date(row["trainingDate"]).toISOString(),
+    session_date: new Date(row["trainingDate"]).toISOString().split("T")[0],
     session_type: row["isCompetition"] === "1" ? "competition" : "training",
     bow_type: row["weapon"] === "1" ? "recurve" : row["weapon"] === "3" ? "compound" : "recurve",
     distance: parseInt(row["distance"]) || 70,
@@ -270,7 +265,7 @@ async function importTrainingStatsSession(row: Record<string, string>, userId: s
 async function importSimpleTrainingSession(row: Record<string, string>, userId: string) {
   const sessionData: ArcherySession = {
     user_id: userId,
-    session_date: new Date(row["date"]).toISOString(),
+    session_date: new Date(row["date"]).toISOString().split("T")[0],
     session_type: "training",
     bow_type: row["bowUsed"] === "1" ? "recurve" : row["bowUsed"] === "3" ? "compound" : "recurve",
     distance: parseInt(row["distance"]) || 70,
@@ -326,7 +321,7 @@ export async function importHealthMetrics(file: File): Promise<ImportResult> {
       try {
         const metricData: HealthMetric = {
           user_id: user.id,
-          metric_date: new Date(row["Cycle start time"] || row["date"] || row["Date"]).toISOString(),
+          metric_date: new Date(row["Cycle start time"] || row["date"] || row["Date"]).toISOString().split("T")[0],
           sleep_duration_hours: row["Sleep duration (hr)"] || row["Sleep duration"] ? parseFloat(row["Sleep duration (hr)"] || row["Sleep duration"]) : null,
           sleep_quality_score: row["Sleep performance %"] || row["Sleep quality"] ? parseFloat(row["Sleep performance %"] || row["Sleep quality"]) : null,
           resting_hr: row["Resting heart rate (bpm)"] || row["Resting heart rate"] ? parseInt(row["Resting heart rate (bpm)"] || row["Resting heart rate"]) : null,
