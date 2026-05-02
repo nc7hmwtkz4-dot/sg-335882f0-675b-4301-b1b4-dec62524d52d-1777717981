@@ -71,11 +71,11 @@ function parseArrows(arrowsString: string): Array<{ score: number; x?: number; y
   const arrows = arrowsString.split(",");
   return arrows.map((arrow) => {
     const parts = arrow.trim().split(":");
-    return {
-      score: parseInt(parts[0]) || 0,
-      x: parts[1] ? parseFloat(parts[1]) : undefined,
-      y: parts[2] ? parseFloat(parts[2]) : undefined,
-    };
+    const score = parseInt(parts[0]) || 0;
+    const x = parts[1] ? parseFloat(parts[1]) : undefined;
+    const y = parts[2] ? parseFloat(parts[2]) : undefined;
+    
+    return { score, x, y };
   });
 }
 
@@ -121,6 +121,7 @@ export async function importArcherySessions(file: File): Promise<ImportResult> {
       } catch (error) {
         const errorMsg = error instanceof Error ? error.message : "Erreur inconnue";
         result.errors.push(`Ligne ${i + 2}: ${errorMsg}`);
+        console.error(`Erreur ligne ${i + 2}:`, error);
       }
     }
 
@@ -130,20 +131,34 @@ export async function importArcherySessions(file: File): Promise<ImportResult> {
   } catch (error) {
     result.success = false;
     result.errors.push(error instanceof Error ? error.message : "Erreur lors de la lecture du fichier");
+    console.error("Erreur globale:", error);
   }
 
   return result;
 }
 
 async function importTrainingSession(row: Record<string, string>, userId: string) {
+  // Vérifier que la date est valide
+  const dateStr = row["date"];
+  if (!dateStr) {
+    throw new Error("Date manquante");
+  }
+
+  const sessionDate = new Date(dateStr);
+  if (isNaN(sessionDate.getTime())) {
+    throw new Error(`Date invalide: ${dateStr}`);
+  }
+
   const sessionData: ArcherySession = {
     user_id: userId,
-    session_date: new Date(row["date"]).toISOString(),
+    session_date: sessionDate.toISOString(),
     session_type: "training",
     bow_type: "recurve",
     distance: 70,
     notes: row["title"] || null,
   };
+
+  console.log("Création session:", sessionData);
 
   const { data: session, error: sessionError } = await supabase
     .from("archery_sessions")
@@ -151,7 +166,12 @@ async function importTrainingSession(row: Record<string, string>, userId: string
     .select()
     .single();
 
-  if (sessionError) throw sessionError;
+  if (sessionError) {
+    console.error("Erreur création session:", sessionError);
+    throw sessionError;
+  }
+
+  console.log("Session créée:", session);
 
   // Parser et insérer les flèches
   const arrows = parseArrows(row["arrows"]);
@@ -164,11 +184,18 @@ async function importTrainingSession(row: Record<string, string>, userId: string
       y_coordinate: arrow.y || null,
     }));
 
+    console.log(`Insertion de ${arrowsData.length} flèches`);
+
     const { error: arrowsError } = await supabase
       .from("arrows")
       .insert(arrowsData);
 
-    if (arrowsError) throw arrowsError;
+    if (arrowsError) {
+      console.error("Erreur insertion flèches:", arrowsError);
+      throw arrowsError;
+    }
+
+    console.log(`${arrowsData.length} flèches insérées`);
   }
 }
 
