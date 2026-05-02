@@ -22,8 +22,7 @@ export function Footer() {
           <div>
             <h4 className="font-heading text-xs font-bold mb-6 text-muted-foreground uppercase tracking-widest">Contact</h4>
             <ul className="space-y-4 text-sm font-medium">
-              <li><a href="mailto:aubertthomas@me.com" className="hover:text-accent transition-colors">aubertthomas@me.com</a></li>
-              <li><a href="tel:+41796649927" className="hover:text-accent transition-colors">+41 79 664 99 27</a></li>
+              <li><a href="mailto:aubert.th@gmail.com" className="hover:text-accent transition-colors">aubert.th@gmail.com</a></li>
               <li className="pt-4">
                 <a 
                   href="https://www.linkedin.com/in/thomas-aubert-archery/" 
