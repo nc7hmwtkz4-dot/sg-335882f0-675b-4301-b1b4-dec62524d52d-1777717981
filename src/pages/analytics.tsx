@@ -8,22 +8,25 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { SessionCalendar } from "@/components/SessionCalendar";
 import { SessionDetail } from "@/components/SessionDetail";
-import { Activity, TrendingUp, Target, Trophy } from "lucide-react";
+import { Activity, TrendingUp, Target, Trophy, Zap } from "lucide-react";
 import { 
   getSessionDetails, 
   getPerformanceEvolution, 
   getRecoveryPerformanceCorrelation,
   getUpcomingCompetitions,
+  getVolumeCorrelation,
   type SessionWithDetails,
-  type PerformanceData
+  type PerformanceData,
+  type VolumeData
 } from "@/services/calendarService";
-import { LineChart, Line, BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from "recharts";
+import { LineChart, Line, BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, ComposedChart } from "recharts";
 
 function AnalyticsContent() {
   const { user } = useAuth();
   const [selectedDate, setSelectedDate] = useState<string | null>(null);
   const [sessionDetails, setSessionDetails] = useState<SessionWithDetails[]>([]);
   const [performanceData, setPerformanceData] = useState<PerformanceData[]>([]);
+  const [volumeData, setVolumeData] = useState<VolumeData[]>([]);
   const [correlationData, setCorrelationData] = useState<{ recovery: number; avgScore: number }[]>([]);
   const [upcomingCompetitions, setUpcomingCompetitions] = useState<SessionWithDetails[]>([]);
 
@@ -48,6 +51,15 @@ function AnalyticsContent() {
       );
       console.log("Analytics: Performance data received", perf);
       setPerformanceData(perf);
+
+      console.log("Analytics: Fetching volume data");
+      const vol = await getVolumeCorrelation(
+        user.id,
+        threeMonthsAgo.toISOString().split("T")[0],
+        now.toISOString().split("T")[0]
+      );
+      console.log("Analytics: Volume data received", vol);
+      setVolumeData(vol);
 
       console.log("Analytics: Fetching correlation data");
       const corr = await getRecoveryPerformanceCorrelation(
@@ -83,6 +95,7 @@ function AnalyticsContent() {
 
   console.log("Analytics: Rendering with data", {
     performanceDataLength: performanceData.length,
+    volumeDataLength: volumeData.length,
     correlationDataLength: correlationData.length,
     upcomingCompetitionsLength: upcomingCompetitions.length
   });
@@ -106,7 +119,7 @@ function AnalyticsContent() {
             </div>
 
             <Tabs defaultValue="upcoming" className="space-y-6">
-              <TabsList className="grid w-full grid-cols-4">
+              <TabsList className="grid w-full grid-cols-5">
                 <TabsTrigger value="upcoming" className="gap-2">
                   <Trophy className="h-4 w-4" />
                   Compétitions
@@ -115,9 +128,13 @@ function AnalyticsContent() {
                   <Target className="h-4 w-4" />
                   Calendrier
                 </TabsTrigger>
+                <TabsTrigger value="volume" className="gap-2">
+                  <Zap className="h-4 w-4" />
+                  Volume
+                </TabsTrigger>
                 <TabsTrigger value="evolution" className="gap-2">
                   <TrendingUp className="h-4 w-4" />
-                  Évolution
+                  Scores
                 </TabsTrigger>
                 <TabsTrigger value="correlation" className="gap-2">
                   <Activity className="h-4 w-4" />
@@ -193,18 +210,106 @@ function AnalyticsContent() {
                 </div>
               </TabsContent>
 
-              <TabsContent value="evolution">
+              <TabsContent value="volume">
                 <Card>
                   <CardHeader>
-                    <CardTitle>Évolution des performances</CardTitle>
+                    <CardTitle>Volume d'entraînement et récupération</CardTitle>
                     <CardDescription>
-                      Moyenne des scores sur les 3 derniers mois
+                      Nombre de flèches tirées par jour et corrélation avec la récupération WHOOP
                     </CardDescription>
                   </CardHeader>
                   <CardContent>
-                    {performanceData.length > 0 ? (
+                    {volumeData.length > 0 ? (
                       <ResponsiveContainer width="100%" height={400}>
-                        <LineChart data={performanceData}>
+                        <ComposedChart data={volumeData}>
+                          <CartesianGrid strokeDasharray="3 3" />
+                          <XAxis 
+                            dataKey="date" 
+                            tickFormatter={(value) => new Date(value).toLocaleDateString("fr-FR", { day: "2-digit", month: "short" })}
+                          />
+                          <YAxis yAxisId="left" orientation="left" label={{ value: "Flèches", angle: -90, position: "insideLeft" }} />
+                          <YAxis yAxisId="right" orientation="right" label={{ value: "Récupération %", angle: 90, position: "insideRight" }} />
+                          <Tooltip 
+                            labelFormatter={(value) => new Date(value as string).toLocaleDateString("fr-FR")}
+                            formatter={(value: number, name: string) => {
+                              if (name === "arrowCount") return [value, "Flèches"];
+                              if (name === "recovery") return [`${value}%`, "Récupération"];
+                              if (name === "sleepScore") return [`${value}%`, "Sommeil"];
+                              if (name === "hrv") return [`${value}ms`, "HRV"];
+                              return [value, name];
+                            }}
+                          />
+                          <Legend 
+                            formatter={(value) => {
+                              if (value === "arrowCount") return "Flèches tirées";
+                              if (value === "recovery") return "Récupération (%)";
+                              if (value === "sleepScore") return "Sommeil (%)";
+                              if (value === "hrv") return "HRV (ms)";
+                              return value;
+                            }}
+                          />
+                          <Bar 
+                            yAxisId="left"
+                            dataKey="arrowCount" 
+                            fill="hsl(var(--primary))" 
+                            radius={[8, 8, 0, 0]}
+                          />
+                          <Line 
+                            yAxisId="right"
+                            type="monotone" 
+                            dataKey="recovery" 
+                            stroke="hsl(var(--accent))" 
+                            strokeWidth={2}
+                            dot={{ fill: "hsl(var(--accent))" }}
+                          />
+                        </ComposedChart>
+                      </ResponsiveContainer>
+                    ) : (
+                      <div className="flex flex-col items-center justify-center h-64 text-muted-foreground">
+                        <p>Pas encore de données de volume d'entraînement</p>
+                        <p className="text-xs mt-2">Importez des sessions avec des flèches</p>
+                      </div>
+                    )}
+                    
+                    {volumeData.length > 0 && (
+                      <div className="mt-6 p-4 bg-muted rounded-lg">
+                        <h4 className="font-semibold mb-2">Analyse</h4>
+                        <p className="text-sm text-muted-foreground">
+                          Ce graphique montre le volume d'entraînement (nombre de flèches tirées) et la récupération WHOOP.
+                          Un bon équilibre entre volume et récupération est essentiel pour progresser sans se surentraîner.
+                        </p>
+                        <div className="mt-4 grid grid-cols-2 gap-4">
+                          <div>
+                            <p className="text-xs text-muted-foreground">Volume total</p>
+                            <p className="text-2xl font-bold">
+                              {volumeData.reduce((sum, d) => sum + d.arrowCount, 0)} flèches
+                            </p>
+                          </div>
+                          <div>
+                            <p className="text-xs text-muted-foreground">Moyenne par session</p>
+                            <p className="text-2xl font-bold">
+                              {Math.round(volumeData.reduce((sum, d) => sum + d.arrowCount, 0) / volumeData.length)} flèches
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                    )}
+                  </CardContent>
+                </Card>
+              </TabsContent>
+
+              <TabsContent value="evolution">
+                <Card>
+                  <CardHeader>
+                    <CardTitle>Évolution des scores</CardTitle>
+                    <CardDescription>
+                      Moyenne des scores sur les 3 derniers mois (uniquement les sessions avec scores)
+                    </CardDescription>
+                  </CardHeader>
+                  <CardContent>
+                    {performanceData.filter(d => d.score && d.score > 0).length > 0 ? (
+                      <ResponsiveContainer width="100%" height={400}>
+                        <LineChart data={performanceData.filter(d => d.score && d.score > 0)}>
                           <CartesianGrid strokeDasharray="3 3" />
                           <XAxis 
                             dataKey="date" 
@@ -240,8 +345,8 @@ function AnalyticsContent() {
                       </ResponsiveContainer>
                     ) : (
                       <div className="flex flex-col items-center justify-center h-64 text-muted-foreground">
-                        <p>Pas encore de données de performance sur les 3 derniers mois</p>
-                        <p className="text-xs mt-2">Assurez-vous d'avoir importé des sessions avec des scores (table matches)</p>
+                        <p>Pas encore de données de scores sur les 3 derniers mois</p>
+                        <p className="text-xs mt-2">Importez des sessions avec des scores (table matches)</p>
                       </div>
                     )}
                   </CardContent>

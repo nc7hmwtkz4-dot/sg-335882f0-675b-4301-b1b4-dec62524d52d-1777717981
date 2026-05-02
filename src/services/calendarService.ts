@@ -21,8 +21,17 @@ export interface CalendarDay {
 
 export interface PerformanceData {
   date: string;
-  score: number;
+  score?: number;
   recovery?: number;
+  arrowCount?: number;
+}
+
+export interface VolumeData {
+  date: string;
+  arrowCount: number;
+  recovery?: number;
+  sleepScore?: number;
+  hrv?: number;
 }
 
 /**
@@ -149,6 +158,7 @@ export async function getSessionDetails(
 
 /**
  * Récupère l'évolution des performances sur une période
+ * Inclut maintenant le volume de flèches même sans scores
  */
 export async function getPerformanceEvolution(
   userId: string,
@@ -159,7 +169,8 @@ export async function getPerformanceEvolution(
     .from("archery_sessions")
     .select(`
       session_date,
-      matches(score)
+      matches(score),
+      arrows(id)
     `)
     .eq("user_id", userId)
     .gte("session_date", startDate)
@@ -189,29 +200,106 @@ export async function getPerformanceEvolution(
     healthMap.set(metric.metric_date.split("T")[0], metric.recovery_score || 0);
   });
 
-  const performanceMap = new Map<string, number[]>();
+  const dataMap = new Map<string, { scores: number[]; arrowCount: number }>();
   
   sessions?.forEach((session) => {
     const dateStr = session.session_date.split("T")[0];
     const matches = Array.isArray(session.matches) ? session.matches : [];
+    const arrows = Array.isArray(session.arrows) ? session.arrows : [];
+    
+    if (!dataMap.has(dateStr)) {
+      dataMap.set(dateStr, { scores: [], arrowCount: 0 });
+    }
+    
+    const data = dataMap.get(dateStr)!;
+    data.arrowCount += arrows.length;
     
     matches.forEach((match: Match) => {
-      if (match.score) {
-        if (!performanceMap.has(dateStr)) {
-          performanceMap.set(dateStr, []);
-        }
-        performanceMap.get(dateStr)!.push(match.score);
+      if (match.score && match.score > 0) {
+        data.scores.push(match.score);
       }
     });
   });
 
   const result: PerformanceData[] = [];
-  performanceMap.forEach((scores, dateStr) => {
-    const avgScore = Math.round(scores.reduce((a, b) => a + b, 0) / scores.length);
+  dataMap.forEach((data, dateStr) => {
+    const entry: PerformanceData = {
+      date: dateStr,
+      arrowCount: data.arrowCount,
+      recovery: healthMap.get(dateStr),
+    };
+    
+    if (data.scores.length > 0) {
+      entry.score = Math.round(data.scores.reduce((a, b) => a + b, 0) / data.scores.length);
+    }
+    
+    result.push(entry);
+  });
+
+  return result.sort((a, b) => a.date.localeCompare(b.date));
+}
+
+/**
+ * Récupère les volumes d'entraînement avec corrélation WHOOP
+ */
+export async function getVolumeCorrelation(
+  userId: string,
+  startDate: string,
+  endDate: string
+): Promise<VolumeData[]> {
+  const { data: sessions, error: sessionsError } = await supabase
+    .from("archery_sessions")
+    .select(`
+      session_date,
+      arrows(id)
+    `)
+    .eq("user_id", userId)
+    .gte("session_date", startDate)
+    .lte("session_date", endDate)
+    .order("session_date", { ascending: true });
+
+  if (sessionsError) {
+    console.error("Error fetching volume data:", sessionsError);
+    return [];
+  }
+
+  const { data: healthMetrics, error: healthError } = await supabase
+    .from("health_metrics")
+    .select("metric_date, recovery_score, sleep_quality_score, hrv")
+    .eq("user_id", userId)
+    .gte("metric_date", startDate)
+    .lte("metric_date", endDate)
+    .order("metric_date", { ascending: true });
+
+  if (healthError) {
+    console.error("Error fetching health data:", healthError);
+  }
+
+  const healthMap = new Map<string, { recovery?: number; sleepScore?: number; hrv?: number }>();
+  healthMetrics?.forEach((metric) => {
+    healthMap.set(metric.metric_date.split("T")[0], {
+      recovery: metric.recovery_score || undefined,
+      sleepScore: metric.sleep_quality_score || undefined,
+      hrv: metric.hrv || undefined,
+    });
+  });
+
+  const volumeMap = new Map<string, number>();
+  sessions?.forEach((session) => {
+    const dateStr = session.session_date.split("T")[0];
+    const arrows = Array.isArray(session.arrows) ? session.arrows : [];
+    volumeMap.set(dateStr, (volumeMap.get(dateStr) || 0) + arrows.length);
+  });
+
+  const result: VolumeData[] = [];
+  volumeMap.forEach((arrowCount, dateStr) => {
+    const health = healthMap.get(dateStr);
     result.push({
       date: dateStr,
-      score: avgScore,
-      recovery: healthMap.get(dateStr),
+      arrowCount,
+      recovery: health?.recovery,
+      sleepScore: health?.sleepScore,
+      hrv: health?.hrv,
     });
   });
 
@@ -220,6 +308,7 @@ export async function getPerformanceEvolution(
 
 /**
  * Analyse la corrélation entre récupération et performance
+ * Ne considère que les sessions avec des scores valides
  */
 export async function getRecoveryPerformanceCorrelation(
   userId: string,
@@ -235,7 +324,7 @@ export async function getRecoveryPerformanceCorrelation(
   };
 
   performanceData.forEach((data) => {
-    if (data.recovery !== undefined) {
+    if (data.recovery !== undefined && data.score !== undefined && data.score > 0) {
       const group = data.recovery <= 33 ? 0 : data.recovery <= 66 ? 1 : 2;
       groups[group].push(data.score);
     }
