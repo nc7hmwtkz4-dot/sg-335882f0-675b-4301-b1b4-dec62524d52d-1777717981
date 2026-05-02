@@ -9,7 +9,8 @@ import { LogOut } from "lucide-react";
 export function Navigation() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const router = useRouter();
-  const { user, userRole, signOut, loading } = useAuth();
+  const { user, signOut, loading } = useAuth();
+  const isAuthenticated = !!user;
   const [openSection, setOpenSection] = useState<string | null>(null);
 
   const isActiveLink = (href: string) => router.pathname === href;
