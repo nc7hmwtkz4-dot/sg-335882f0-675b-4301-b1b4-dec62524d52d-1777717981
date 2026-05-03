@@ -24,7 +24,6 @@ export type Database = {
           program_details: string | null
           start_date: string
           title: string
-          user_id: string
         }
         Insert: {
           created_at?: string | null
@@ -34,7 +33,6 @@ export type Database = {
           program_details?: string | null
           start_date: string
           title: string
-          user_id: string
         }
         Update: {
           created_at?: string | null
@@ -44,17 +42,8 @@ export type Database = {
           program_details?: string | null
           start_date?: string
           title?: string
-          user_id?: string
         }
-        Relationships: [
-          {
-            foreignKeyName: "competitions_user_id_fkey"
-            columns: ["user_id"]
-            isOneToOne: false
-            referencedRelation: "profiles"
-            referencedColumns: ["id"]
-          },
-        ]
+        Relationships: []
       }
       profiles: {
         Row: {

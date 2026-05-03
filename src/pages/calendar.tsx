@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { supabase } from "@/integrations/supabase/client";
-import { Plus, Trash2, Edit, Download, Calendar as CalendarIcon } from "lucide-react";
+import { Plus, Trash2, Edit, Download, Calendar as CalendarIcon, ChevronLeft, ChevronRight, List } from "lucide-react";
 import {
   Dialog,
   DialogContent,
@@ -14,6 +14,12 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
+import {
+  Tabs,
+  TabsContent,
+  TabsList,
+  TabsTrigger,
+} from "@/components/ui/tabs";
 
 interface Competition {
   id: string;
@@ -41,6 +47,10 @@ export default function CalendarPage() {
   });
 
   const MAX_DATE = "2028-08-31";
+
+  // États pour la vue calendrier
+  const [currentMonth, setCurrentMonth] = useState(new Date());
+  const [selectedCompetition, setSelectedCompetition] = useState<Competition | null>(null);
 
   useEffect(() => {
     loadCompetitions();
@@ -168,6 +178,46 @@ END:VCALENDAR`;
     });
   };
 
+  // Fonctions pour le calendrier
+  const getDaysInMonth = (date: Date) => {
+    const year = date.getFullYear();
+    const month = date.getMonth();
+    const firstDay = new Date(year, month, 1);
+    const lastDay = new Date(year, month + 1, 0);
+    const daysInMonth = lastDay.getDate();
+    const startingDayOfWeek = firstDay.getDay();
+    
+    return { daysInMonth, startingDayOfWeek: startingDayOfWeek === 0 ? 6 : startingDayOfWeek - 1 };
+  };
+
+  const getCompetitionsForDay = (day: number) => {
+    const year = currentMonth.getFullYear();
+    const month = currentMonth.getMonth();
+    const dateStr = `${year}-${String(month + 1).padStart(2, "0")}-${String(day).padStart(2, "0")}`;
+    
+    return competitions.filter(comp => {
+      const start = comp.start_date;
+      const end = comp.end_date;
+      return dateStr >= start && dateStr <= end;
+    });
+  };
+
+  const goToPreviousMonth = () => {
+    setCurrentMonth(new Date(currentMonth.getFullYear(), currentMonth.getMonth() - 1, 1));
+  };
+
+  const goToNextMonth = () => {
+    const nextMonth = new Date(currentMonth.getFullYear(), currentMonth.getMonth() + 1, 1);
+    const maxDate = new Date("2028-08-31");
+    if (nextMonth <= maxDate) {
+      setCurrentMonth(nextMonth);
+    }
+  };
+
+  const getMonthName = (date: Date) => {
+    return date.toLocaleDateString("fr-FR", { month: "long", year: "numeric" });
+  };
+
   return (
     <div className="min-h-screen bg-background">
       <Head>
@@ -266,77 +316,241 @@ END:VCALENDAR`;
           </Dialog>
         </div>
 
-        {loading ? (
-          <div className="text-center py-20">
-            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-accent mx-auto mb-4"></div>
-            <p className="text-muted-foreground">Chargement...</p>
-          </div>
-        ) : competitions.length === 0 ? (
-          <div className="text-center py-20 border border-border bg-card">
-            <CalendarIcon className="w-16 h-16 text-muted-foreground mx-auto mb-4" />
-            <p className="text-muted-foreground">Aucune compétition planifiée</p>
-          </div>
-        ) : (
-          <div className="grid gap-4">
-            {competitions.map((competition) => (
-              <div
-                key={competition.id}
-                className="border border-border bg-card p-6 hover:border-accent/50 transition-colors"
-              >
-                <div className="flex justify-between items-start">
-                  <div className="flex-1">
-                    <h3 className="font-heading text-xl font-bold mb-2">
-                      {competition.title}
-                    </h3>
-                    <div className="text-sm text-muted-foreground space-y-1">
-                      <p>
-                        📅 {formatDate(competition.start_date)} → {formatDate(competition.end_date)}
-                      </p>
-                      {competition.location && <p>📍 {competition.location}</p>}
-                    </div>
-                    {competition.program_details && (
-                      <div className="mt-4 pt-4 border-t border-border">
-                        <p className="text-sm font-medium mb-2">Programme :</p>
-                        <p className="text-sm text-muted-foreground whitespace-pre-wrap">
-                          {competition.program_details}
-                        </p>
-                      </div>
-                    )}
-                  </div>
+        <Tabs defaultValue="list" className="w-full">
+          <TabsList className="grid w-full max-w-md mx-auto grid-cols-2 mb-8">
+            <TabsTrigger value="list" className="rounded-none">
+              <List className="w-4 h-4 mr-2" />
+              Vue Liste
+            </TabsTrigger>
+            <TabsTrigger value="calendar" className="rounded-none">
+              <CalendarIcon className="w-4 h-4 mr-2" />
+              Vue Calendrier
+            </TabsTrigger>
+          </TabsList>
 
-                  <div className="flex gap-2 ml-4">
-                    <Button
-                      size="sm"
-                      variant="outline"
-                      onClick={() => exportToICS(competition)}
-                      className="rounded-none"
-                    >
-                      <Download className="w-4 h-4" />
-                    </Button>
-                    <Button
-                      size="sm"
-                      variant="outline"
-                      onClick={() => openEditDialog(competition)}
-                      className="rounded-none"
-                    >
-                      <Edit className="w-4 h-4" />
-                    </Button>
-                    <Button
-                      size="sm"
-                      variant="outline"
-                      onClick={() => handleDelete(competition.id)}
-                      className="rounded-none text-destructive hover:text-destructive"
-                    >
-                      <Trash2 className="w-4 h-4" />
-                    </Button>
-                  </div>
-                </div>
+          {/* Vue Liste */}
+          <TabsContent value="list">
+            {loading ? (
+              <div className="text-center py-20">
+                <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-accent mx-auto mb-4"></div>
+                <p className="text-muted-foreground">Chargement...</p>
               </div>
-            ))}
-          </div>
-        )}
+            ) : competitions.length === 0 ? (
+              <div className="text-center py-20 border border-border bg-card">
+                <CalendarIcon className="w-16 h-16 text-muted-foreground mx-auto mb-4" />
+                <p className="text-muted-foreground">Aucune compétition planifiée</p>
+              </div>
+            ) : (
+              <div className="grid gap-4">
+                {competitions.map((competition) => (
+                  <div
+                    key={competition.id}
+                    className="border border-border bg-card p-6 hover:border-accent/50 transition-colors"
+                  >
+                    <div className="flex justify-between items-start">
+                      <div className="flex-1">
+                        <h3 className="font-heading text-xl font-bold mb-2">
+                          {competition.title}
+                        </h3>
+                        <div className="text-sm text-muted-foreground space-y-1">
+                          <p>
+                            📅 {formatDate(competition.start_date)} → {formatDate(competition.end_date)}
+                          </p>
+                          {competition.location && <p>📍 {competition.location}</p>}
+                        </div>
+                        {competition.program_details && (
+                          <div className="mt-4 pt-4 border-t border-border">
+                            <p className="text-sm font-medium mb-2">Programme :</p>
+                            <p className="text-sm text-muted-foreground whitespace-pre-wrap">
+                              {competition.program_details}
+                            </p>
+                          </div>
+                        )}
+                      </div>
+
+                      <div className="flex gap-2 ml-4">
+                        <Button
+                          size="sm"
+                          variant="outline"
+                          onClick={() => exportToICS(competition)}
+                          className="rounded-none"
+                        >
+                          <Download className="w-4 h-4" />
+                        </Button>
+                        <Button
+                          size="sm"
+                          variant="outline"
+                          onClick={() => openEditDialog(competition)}
+                          className="rounded-none"
+                        >
+                          <Edit className="w-4 h-4" />
+                        </Button>
+                        <Button
+                          size="sm"
+                          variant="outline"
+                          onClick={() => handleDelete(competition.id)}
+                          className="rounded-none text-destructive hover:text-destructive"
+                        >
+                          <Trash2 className="w-4 h-4" />
+                        </Button>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            )}
+          </TabsContent>
+
+          {/* Vue Calendrier */}
+          <TabsContent value="calendar">
+            <div className="bg-card border border-border p-6">
+              {/* Navigation du calendrier */}
+              <div className="flex justify-between items-center mb-6">
+                <Button
+                  variant="outline"
+                  size="sm"
+                  onClick={goToPreviousMonth}
+                  className="rounded-none"
+                >
+                  <ChevronLeft className="w-4 h-4" />
+                </Button>
+                <h2 className="font-heading text-2xl font-bold uppercase">
+                  {getMonthName(currentMonth)}
+                </h2>
+                <Button
+                  variant="outline"
+                  size="sm"
+                  onClick={goToNextMonth}
+                  className="rounded-none"
+                  disabled={currentMonth >= new Date("2028-08-01")}
+                >
+                  <ChevronRight className="w-4 h-4" />
+                </Button>
+              </div>
+
+              {/* Grille du calendrier */}
+              <div className="grid grid-cols-7 gap-2">
+                {/* Jours de la semaine */}
+                {["Lun", "Mar", "Mer", "Jeu", "Ven", "Sam", "Dim"].map((day) => (
+                  <div key={day} className="text-center font-semibold text-sm text-muted-foreground p-2">
+                    {day}
+                  </div>
+                ))}
+
+                {/* Cellules du calendrier */}
+                {(() => {
+                  const { daysInMonth, startingDayOfWeek } = getDaysInMonth(currentMonth);
+                  const cells = [];
+
+                  // Cellules vides avant le premier jour
+                  for (let i = 0; i < startingDayOfWeek; i++) {
+                    cells.push(
+                      <div key={`empty-${i}`} className="aspect-square border border-border/50 bg-muted/20 p-2"></div>
+                    );
+                  }
+
+                  // Cellules des jours du mois
+                  for (let day = 1; day <= daysInMonth; day++) {
+                    const dayCompetitions = getCompetitionsForDay(day);
+                    cells.push(
+                      <div
+                        key={day}
+                        className="aspect-square border border-border bg-background p-2 hover:border-accent/50 transition-colors overflow-hidden"
+                      >
+                        <div className="text-sm font-semibold mb-1">{day}</div>
+                        <div className="space-y-1">
+                          {dayCompetitions.slice(0, 2).map((comp) => (
+                            <div
+                              key={comp.id}
+                              onClick={() => setSelectedCompetition(comp)}
+                              className="text-xs bg-accent/20 text-accent-foreground px-1 py-0.5 truncate cursor-pointer hover:bg-accent/30 transition-colors"
+                              title={comp.title}
+                            >
+                              {comp.title}
+                            </div>
+                          ))}
+                          {dayCompetitions.length > 2 && (
+                            <div className="text-xs text-muted-foreground">
+                              +{dayCompetitions.length - 2} autres
+                            </div>
+                          )}
+                        </div>
+                      </div>
+                    );
+                  }
+
+                  return cells;
+                })()}
+              </div>
+            </div>
+          </TabsContent>
+        </Tabs>
       </div>
 
+      {/* Dialog pour voir les détails d'une compétition depuis le calendrier */}
+      <Dialog open={!!selectedCompetition} onOpenChange={() => setSelectedCompetition(null)}>
+        <DialogContent className="rounded-none max-w-2xl">
+          <DialogHeader>
+            <DialogTitle className="font-heading text-2xl uppercase">
+              {selectedCompetition?.title}
+            </DialogTitle>
+          </DialogHeader>
+          {selectedCompetition && (
+            <div className="space-y-4">
+              <div className="text-sm text-muted-foreground space-y-2">
+                <p>
+                  📅 {formatDate(selectedCompetition.start_date)} → {formatDate(selectedCompetition.end_date)}
+                </p>
+                {selectedCompetition.location && <p>📍 {selectedCompetition.location}</p>}
+              </div>
+              
+              {selectedCompetition.program_details && (
+                <div className="pt-4 border-t border-border">
+                  <p className="text-sm font-medium mb-2">Programme :</p>
+                  <p className="text-sm text-muted-foreground whitespace-pre-wrap">
+                    {selectedCompetition.program_details}
+                  </p>
+                </div>
+              )}
+
+              <div className="flex gap-2 pt-4">
+                <Button
+                  variant="outline"
+                  onClick={() => exportToICS(selectedCompetition)}
+                  className="rounded-none flex-1"
+                >
+                  <Download className="w-4 h-4 mr-2" />
+                  Exporter ICS
+                </Button>
+                <Button
+                  variant="outline"
+                  onClick={() => {
+                    setSelectedCompetition(null);
+                    openEditDialog(selectedCompetition);
+                  }}
+                  className="rounded-none flex-1"
+                >
+                  <Edit className="w-4 h-4 mr-2" />
+                  Modifier
+                </Button>
+                <Button
+                  variant="outline"
+                  onClick={() => {
+                    setSelectedCompetition(null);
+                    handleDelete(selectedCompetition.id);
+                  }}
+                  className="rounded-none flex-1 text-destructive hover:text-destructive"
+                >
+                  <Trash2 className="w-4 h-4 mr-2" />
+                  Supprimer
+                </Button>
+              </div>
+            </div>
+          )}
+        </DialogContent>
+      </Dialog>
+
+      {/* Dialog d'édition */}
       <Dialog open={showEditDialog} onOpenChange={setShowEditDialog}>
         <DialogContent className="rounded-none max-w-2xl">
           <DialogHeader>
