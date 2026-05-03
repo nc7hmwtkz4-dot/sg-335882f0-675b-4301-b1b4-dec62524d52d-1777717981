@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import Head from "next/head";
-import { ProtectedRoute } from "@/components/ProtectedRoute";
 import { Navigation } from "@/components/Navigation";
 import { Footer } from "@/components/Footer";
 import { Button } from "@/components/ui/button";
@@ -26,7 +25,7 @@ interface Competition {
   created_at: string;
 }
 
-function CalendarContent() {
+export default function CalendarPage() {
   const [competitions, setCompetitions] = useState<Competition[]>([]);
   const [loading, setLoading] = useState(true);
   const [editingCompetition, setEditingCompetition] = useState<Competition | null>(null);
@@ -75,13 +74,7 @@ function CalendarContent() {
   const handleAdd = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    const { data: { user } } = await supabase.auth.getUser();
-    if (!user) return;
-
-    const { error } = await supabase.from("competitions").insert({
-      user_id: user.id,
-      ...formData,
-    });
+    const { error } = await supabase.from("competitions").insert(formData);
 
     if (error) {
       console.error("Erreur ajout:", error);
@@ -415,13 +408,5 @@ END:VCALENDAR`;
 
       <Footer />
     </div>
-  );
-}
-
-export default function CalendarPage() {
-  return (
-    <ProtectedRoute>
-      <CalendarContent />
-    </ProtectedRoute>
   );
 }

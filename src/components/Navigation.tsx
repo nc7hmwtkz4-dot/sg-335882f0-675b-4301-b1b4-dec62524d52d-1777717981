@@ -3,26 +3,16 @@ import { useRouter } from "next/router";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
-import { LogOut } from "lucide-react";
-import { useAuth } from "@/contexts/AuthContext";
 
 export function Navigation() {
   const router = useRouter();
   const [openSection, setOpenSection] = useState<string | null>(null);
-  
-  const { user, signOut, loading } = useAuth();
-  const isAuthenticated = !!user;
 
   const isActiveLink = (href: string) => router.pathname === href;
   const isActiveSection = (paths: string[]) => paths.includes(router.pathname);
 
   const professionalPaths = ["/parcours", "/investissements"];
   const sportPaths = ["/palmares", "/performances", "/materiel"];
-
-  const handleSignOut = async () => {
-    await signOut();
-    router.push("/");
-  };
 
   const toggleSection = (section: string) => {
     setOpenSection(openSection === section ? null : section);
@@ -79,35 +69,11 @@ export function Navigation() {
               >
                 Vision
               </Link>
-
-              {!loading && isAuthenticated && (
-                <Link
-                  href="/calendar"
-                  className={cn(
-                    "text-xs font-semibold uppercase tracking-widest transition-colors hover:text-accent",
-                    isActiveLink("/calendar") ? "text-accent" : "text-foreground"
-                  )}
-                  onClick={() => setOpenSection(null)}
-                >
-                  Calendrier
-                </Link>
-              )}
             </div>
 
-            {!loading && isAuthenticated ? (
-              <Button 
-                onClick={handleSignOut}
-                variant="outline"
-                className="rounded-none px-8 h-12 border-foreground text-foreground hover:bg-foreground hover:text-background transition-all duration-300 font-bold tracking-wider text-xs uppercase"
-              >
-                <LogOut className="w-4 h-4 mr-2" />
-                Déconnexion
-              </Button>
-            ) : (
-              <Button asChild className="rounded-none px-8 h-12 bg-foreground text-background hover:bg-accent hover:text-accent-foreground transition-all duration-300 font-bold tracking-wider text-xs uppercase">
-                <Link href="#contact">Contact</Link>
-              </Button>
-            )}
+            <Button asChild className="rounded-none px-8 h-12 bg-foreground text-background hover:bg-accent hover:text-accent-foreground transition-all duration-300 font-bold tracking-wider text-xs uppercase">
+              <Link href="#contact">Contact</Link>
+            </Button>
           </nav>
         </div>
 
