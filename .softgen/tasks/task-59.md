@@ -1,6 +1,6 @@
 ---
 title: "Configuration Base de données et Accès Admin"
-status: todo
+status: done
 priority: urgent
 type: feature
 ---
@@ -9,9 +9,9 @@ type: feature
 Mise en place de l'accès sécurisé (login) et de la table pour stocker les compétitions. Supabase est déjà connecté, il faut recréer un accès minimal.
 
 ## Checklist
-- [ ] Création d'une page de connexion simple pour l'administrateur
-- [ ] Création de la table `competitions` avec les champs : titre, date de début, date de fin, lieu, et programme détaillé
-- [ ] Sécurisation des données via RLS (accès limité à l'utilisateur connecté)
+- [x] Création d'une page de connexion simple pour l'administrateur
+- [x] Création de la table `competitions` avec les champs : titre, date de début, date de fin, lieu, et programme détaillé
+- [x] Sécurisation des données via RLS (accès limité à l'utilisateur connecté)
 
 ## Acceptance
 - Accès impossible au calendrier sans être connecté

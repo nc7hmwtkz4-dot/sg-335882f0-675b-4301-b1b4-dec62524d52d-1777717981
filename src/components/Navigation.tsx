@@ -3,6 +3,7 @@ import { useRouter } from "next/router";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
+import { LogOut } from "lucide-react";
 
 export function Navigation() {
   const router = useRouter();
@@ -85,8 +86,19 @@ export function Navigation() {
             </div>
 
             {!loading && isAuthenticated ? (
-              <Button
-            </Button>
+              <Button 
+                onClick={handleSignOut}
+                variant="outline"
+                className="rounded-none px-8 h-12 border-foreground text-foreground hover:bg-foreground hover:text-background transition-all duration-300 font-bold tracking-wider text-xs uppercase"
+              >
+                <LogOut className="w-4 h-4 mr-2" />
+                Déconnexion
+              </Button>
+            ) : (
+              <Button asChild className="rounded-none px-8 h-12 bg-foreground text-background hover:bg-accent hover:text-accent-foreground transition-all duration-300 font-bold tracking-wider text-xs uppercase">
+                <Link href="#contact">Contact</Link>
+              </Button>
+            )}
           </nav>
         </div>
 
