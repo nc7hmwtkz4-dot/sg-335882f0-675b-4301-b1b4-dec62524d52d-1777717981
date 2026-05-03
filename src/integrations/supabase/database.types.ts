@@ -15,411 +15,67 @@ export type Database = {
   }
   public: {
     Tables: {
-      archery_sessions: {
+      competitions: {
         Row: {
-          bow_type: string
           created_at: string | null
-          csv_data: Json | null
-          distance: number | null
-          energy_level: number | null
-          feelings: string | null
-          focus_level: number | null
+          end_date: string
           id: string
-          notes: string | null
-          session_date: string
-          session_type: string
-          target_size: number | null
-          temperature: number | null
-          total_arrows: number | null
-          total_score: number | null
-          updated_at: string | null
-          user_id: string
-          weather_conditions: string | null
-          wind_speed: number | null
-        }
-        Insert: {
-          bow_type: string
-          created_at?: string | null
-          csv_data?: Json | null
-          distance?: number | null
-          energy_level?: number | null
-          feelings?: string | null
-          focus_level?: number | null
-          id?: string
-          notes?: string | null
-          session_date: string
-          session_type: string
-          target_size?: number | null
-          temperature?: number | null
-          total_arrows?: number | null
-          total_score?: number | null
-          updated_at?: string | null
-          user_id: string
-          weather_conditions?: string | null
-          wind_speed?: number | null
-        }
-        Update: {
-          bow_type?: string
-          created_at?: string | null
-          csv_data?: Json | null
-          distance?: number | null
-          energy_level?: number | null
-          feelings?: string | null
-          focus_level?: number | null
-          id?: string
-          notes?: string | null
-          session_date?: string
-          session_type?: string
-          target_size?: number | null
-          temperature?: number | null
-          total_arrows?: number | null
-          total_score?: number | null
-          updated_at?: string | null
-          user_id?: string
-          weather_conditions?: string | null
-          wind_speed?: number | null
-        }
-        Relationships: [
-          {
-            foreignKeyName: "archery_sessions_user_id_fkey"
-            columns: ["user_id"]
-            isOneToOne: false
-            referencedRelation: "profiles"
-            referencedColumns: ["id"]
-          },
-        ]
-      }
-      arrows: {
-        Row: {
-          arrow_number: number
-          horizontal_position: string | null
-          id: string
-          is_x: boolean | null
-          match_id: string | null
-          notes: string | null
-          score: number
-          session_id: string
-          timestamp: string | null
-          vertical_position: string | null
-        }
-        Insert: {
-          arrow_number: number
-          horizontal_position?: string | null
-          id?: string
-          is_x?: boolean | null
-          match_id?: string | null
-          notes?: string | null
-          score: number
-          session_id: string
-          timestamp?: string | null
-          vertical_position?: string | null
-        }
-        Update: {
-          arrow_number?: number
-          horizontal_position?: string | null
-          id?: string
-          is_x?: boolean | null
-          match_id?: string | null
-          notes?: string | null
-          score?: number
-          session_id?: string
-          timestamp?: string | null
-          vertical_position?: string | null
-        }
-        Relationships: [
-          {
-            foreignKeyName: "arrows_match_id_fkey"
-            columns: ["match_id"]
-            isOneToOne: false
-            referencedRelation: "matches"
-            referencedColumns: ["id"]
-          },
-          {
-            foreignKeyName: "arrows_session_id_fkey"
-            columns: ["session_id"]
-            isOneToOne: false
-            referencedRelation: "archery_sessions"
-            referencedColumns: ["id"]
-          },
-        ]
-      }
-      health_metrics: {
-        Row: {
-          activity_strain: number | null
-          blood_oxygen: number | null
-          created_at: string | null
-          csv_data: Json | null
-          energy_burned_cal: number | null
-          hrv: number | null
-          id: string
-          max_hr: number | null
-          metric_date: string
-          recovery_score: number | null
-          respiratory_rate: number | null
-          resting_hr: number | null
-          skin_temperature: number | null
-          sleep_duration_hours: number | null
-          sleep_performance: number | null
-          sleep_quality_score: number | null
-          strain_score: number | null
-          updated_at: string | null
+          location: string | null
+          program_details: string | null
+          start_date: string
+          title: string
           user_id: string
         }
         Insert: {
-          activity_strain?: number | null
-          blood_oxygen?: number | null
           created_at?: string | null
-          csv_data?: Json | null
-          energy_burned_cal?: number | null
-          hrv?: number | null
+          end_date: string
           id?: string
-          max_hr?: number | null
-          metric_date: string
-          recovery_score?: number | null
-          respiratory_rate?: number | null
-          resting_hr?: number | null
-          skin_temperature?: number | null
-          sleep_duration_hours?: number | null
-          sleep_performance?: number | null
-          sleep_quality_score?: number | null
-          strain_score?: number | null
-          updated_at?: string | null
+          location?: string | null
+          program_details?: string | null
+          start_date: string
+          title: string
           user_id: string
         }
         Update: {
-          activity_strain?: number | null
-          blood_oxygen?: number | null
           created_at?: string | null
-          csv_data?: Json | null
-          energy_burned_cal?: number | null
-          hrv?: number | null
+          end_date?: string
           id?: string
-          max_hr?: number | null
-          metric_date?: string
-          recovery_score?: number | null
-          respiratory_rate?: number | null
-          resting_hr?: number | null
-          skin_temperature?: number | null
-          sleep_duration_hours?: number | null
-          sleep_performance?: number | null
-          sleep_quality_score?: number | null
-          strain_score?: number | null
-          updated_at?: string | null
+          location?: string | null
+          program_details?: string | null
+          start_date?: string
+          title?: string
           user_id?: string
         }
         Relationships: [
           {
-            foreignKeyName: "health_metrics_user_id_fkey"
+            foreignKeyName: "competitions_user_id_fkey"
             columns: ["user_id"]
             isOneToOne: false
             referencedRelation: "profiles"
-            referencedColumns: ["id"]
-          },
-        ]
-      }
-      matches: {
-        Row: {
-          arrows_per_end: number | null
-          created_at: string | null
-          id: string
-          match_number: number
-          max_score: number | null
-          notes: string | null
-          opponent_name: string | null
-          opponent_score: number | null
-          score: number | null
-          session_id: string
-        }
-        Insert: {
-          arrows_per_end?: number | null
-          created_at?: string | null
-          id?: string
-          match_number: number
-          max_score?: number | null
-          notes?: string | null
-          opponent_name?: string | null
-          opponent_score?: number | null
-          score?: number | null
-          session_id: string
-        }
-        Update: {
-          arrows_per_end?: number | null
-          created_at?: string | null
-          id?: string
-          match_number?: number
-          max_score?: number | null
-          notes?: string | null
-          opponent_name?: string | null
-          opponent_score?: number | null
-          score?: number | null
-          session_id?: string
-        }
-        Relationships: [
-          {
-            foreignKeyName: "matches_session_id_fkey"
-            columns: ["session_id"]
-            isOneToOne: false
-            referencedRelation: "archery_sessions"
             referencedColumns: ["id"]
           },
         ]
       }
       profiles: {
         Row: {
-          avatar_url: string | null
           created_at: string | null
           email: string | null
           full_name: string | null
           id: string
-          role: string | null
-          updated_at: string | null
         }
         Insert: {
-          avatar_url?: string | null
           created_at?: string | null
           email?: string | null
           full_name?: string | null
           id: string
-          role?: string | null
-          updated_at?: string | null
         }
         Update: {
-          avatar_url?: string | null
           created_at?: string | null
           email?: string | null
           full_name?: string | null
           id?: string
-          role?: string | null
-          updated_at?: string | null
         }
         Relationships: []
-      }
-      shared_access: {
-        Row: {
-          access_type: string
-          created_at: string | null
-          id: string
-          owner_id: string
-          viewer_id: string
-        }
-        Insert: {
-          access_type?: string
-          created_at?: string | null
-          id?: string
-          owner_id: string
-          viewer_id: string
-        }
-        Update: {
-          access_type?: string
-          created_at?: string | null
-          id?: string
-          owner_id?: string
-          viewer_id?: string
-        }
-        Relationships: [
-          {
-            foreignKeyName: "shared_access_owner_id_fkey"
-            columns: ["owner_id"]
-            isOneToOne: false
-            referencedRelation: "profiles"
-            referencedColumns: ["id"]
-          },
-          {
-            foreignKeyName: "shared_access_viewer_id_fkey"
-            columns: ["viewer_id"]
-            isOneToOne: false
-            referencedRelation: "profiles"
-            referencedColumns: ["id"]
-          },
-        ]
-      }
-      situations: {
-        Row: {
-          arrows_count: number | null
-          created_at: string | null
-          description: string | null
-          id: string
-          notes: string | null
-          score: number | null
-          session_id: string
-          situation_type: string
-          success_rate: number | null
-        }
-        Insert: {
-          arrows_count?: number | null
-          created_at?: string | null
-          description?: string | null
-          id?: string
-          notes?: string | null
-          score?: number | null
-          session_id: string
-          situation_type: string
-          success_rate?: number | null
-        }
-        Update: {
-          arrows_count?: number | null
-          created_at?: string | null
-          description?: string | null
-          id?: string
-          notes?: string | null
-          score?: number | null
-          session_id?: string
-          situation_type?: string
-          success_rate?: number | null
-        }
-        Relationships: [
-          {
-            foreignKeyName: "situations_session_id_fkey"
-            columns: ["session_id"]
-            isOneToOne: false
-            referencedRelation: "archery_sessions"
-            referencedColumns: ["id"]
-          },
-        ]
-      }
-      training_sessions: {
-        Row: {
-          created_at: string | null
-          csv_data: Json | null
-          id: string
-          notes: string | null
-          score: number | null
-          session_date: string
-          session_type: string
-          updated_at: string | null
-          user_id: string
-        }
-        Insert: {
-          created_at?: string | null
-          csv_data?: Json | null
-          id?: string
-          notes?: string | null
-          score?: number | null
-          session_date: string
-          session_type: string
-          updated_at?: string | null
-          user_id: string
-        }
-        Update: {
-          created_at?: string | null
-          csv_data?: Json | null
-          id?: string
-          notes?: string | null
-          score?: number | null
-          session_date?: string
-          session_type?: string
-          updated_at?: string | null
-          user_id?: string
-        }
-        Relationships: [
-          {
-            foreignKeyName: "training_sessions_user_id_fkey"
-            columns: ["user_id"]
-            isOneToOne: false
-            referencedRelation: "profiles"
-            referencedColumns: ["id"]
-          },
-        ]
       }
     }
     Views: {

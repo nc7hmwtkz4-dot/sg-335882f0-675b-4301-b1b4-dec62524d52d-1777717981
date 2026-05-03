@@ -69,10 +69,23 @@ export function Navigation() {
               >
                 Vision
               </Link>
+
+              {!loading && isAuthenticated && (
+                <Link
+                  href="/calendar"
+                  className={cn(
+                    "text-xs font-semibold uppercase tracking-widest transition-colors hover:text-accent",
+                    isActiveLink("/calendar") ? "text-accent" : "text-foreground"
+                  )}
+                  onClick={() => setOpenSection(null)}
+                >
+                  Calendrier
+                </Link>
+              )}
             </div>
 
-            <Button asChild className="rounded-none px-8 h-12 bg-foreground text-background hover:bg-accent hover:text-accent-foreground transition-all duration-300 font-bold tracking-wider text-xs uppercase">
-              <Link href="#contact">Contact</Link>
+            {!loading && isAuthenticated ? (
+              <Button
             </Button>
           </nav>
         </div>
