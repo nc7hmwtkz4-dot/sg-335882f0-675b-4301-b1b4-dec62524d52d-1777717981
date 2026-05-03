@@ -4,16 +4,25 @@ import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
 import { LogOut } from "lucide-react";
+import { useAuth } from "@/contexts/AuthContext";
 
 export function Navigation() {
   const router = useRouter();
   const [openSection, setOpenSection] = useState<string | null>(null);
+  
+  const { user, signOut, loading } = useAuth();
+  const isAuthenticated = !!user;
 
   const isActiveLink = (href: string) => router.pathname === href;
   const isActiveSection = (paths: string[]) => paths.includes(router.pathname);
 
   const professionalPaths = ["/parcours", "/investissements"];
   const sportPaths = ["/palmares", "/performances", "/materiel"];
+
+  const handleSignOut = async () => {
+    await signOut();
+    router.push("/");
+  };
 
   const toggleSection = (section: string) => {
     setOpenSection(openSection === section ? null : section);
