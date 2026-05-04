@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { supabase } from "@/integrations/supabase/client";
-import { Plus, Trash2, Edit, Download, Calendar as CalendarIcon, ChevronLeft, ChevronRight, List, Clock } from "lucide-react";
+import { Plus, Trash2, Edit, Download, Calendar as CalendarIcon, ChevronLeft, ChevronRight, List, Clock, X } from "lucide-react";
 import {
   Dialog,
   DialogContent,
@@ -21,13 +21,24 @@ import {
   TabsTrigger,
 } from "@/components/ui/tabs";
 
+interface ProgramActivity {
+  start_time: string;
+  end_time: string;
+  description: string;
+}
+
+interface ProgramDay {
+  date: string;
+  activities: ProgramActivity[];
+}
+
 interface Competition {
   id: string;
   title: string;
   start_date: string;
   end_date: string;
   location: string | null;
-  program_details: string | null;
+  program_details: ProgramDay[] | null;
   flight_train_cost: number | null;
   accommodation_cost: number | null;
   food_cost: number | null;
@@ -48,7 +59,7 @@ export default function CalendarPage() {
     start_date: "",
     end_date: "",
     location: "",
-    program_details: "",
+    program_details: [] as ProgramDay[],
     flight_train_cost: 0,
     accommodation_cost: 0,
     food_cost: 0,
@@ -87,13 +98,51 @@ export default function CalendarPage() {
       start_date: "",
       end_date: "",
       location: "",
-      program_details: "",
+      program_details: [],
       flight_train_cost: 0,
       accommodation_cost: 0,
       food_cost: 0,
       local_transport_cost: 0,
       registration_cost: 0,
     });
+  };
+
+  // Fonctions pour gérer le programme
+  const addProgramDay = () => {
+    setFormData({
+      ...formData,
+      program_details: [...formData.program_details, { date: formData.start_date, activities: [] }],
+    });
+  };
+
+  const removeProgramDay = (dayIndex: number) => {
+    const newProgram = [...formData.program_details];
+    newProgram.splice(dayIndex, 1);
+    setFormData({ ...formData, program_details: newProgram });
+  };
+
+  const updateProgramDay = (dayIndex: number, date: string) => {
+    const newProgram = [...formData.program_details];
+    newProgram[dayIndex].date = date;
+    setFormData({ ...formData, program_details: newProgram });
+  };
+
+  const addActivity = (dayIndex: number) => {
+    const newProgram = [...formData.program_details];
+    newProgram[dayIndex].activities.push({ start_time: "09:00", end_time: "10:00", description: "" });
+    setFormData({ ...formData, program_details: newProgram });
+  };
+
+  const removeActivity = (dayIndex: number, activityIndex: number) => {
+    const newProgram = [...formData.program_details];
+    newProgram[dayIndex].activities.splice(activityIndex, 1);
+    setFormData({ ...formData, program_details: newProgram });
+  };
+
+  const updateActivity = (dayIndex: number, activityIndex: number, field: keyof ProgramActivity, value: string) => {
+    const newProgram = [...formData.program_details];
+    newProgram[dayIndex].activities[activityIndex][field] = value;
+    setFormData({ ...formData, program_details: newProgram });
   };
 
   const handleAdd = async (e: React.FormEvent) => {
@@ -151,7 +200,7 @@ export default function CalendarPage() {
       start_date: competition.start_date,
       end_date: competition.end_date,
       location: competition.location || "",
-      program_details: competition.program_details || "",
+      program_details: competition.program_details || [],
       flight_train_cost: competition.flight_train_cost || 0,
       accommodation_cost: competition.accommodation_cost || 0,
       food_cost: competition.food_cost || 0,
@@ -166,19 +215,44 @@ export default function CalendarPage() {
       return date.replace(/-/g, "");
     };
 
-    const icsContent = `BEGIN:VCALENDAR
-VERSION:2.0
-PRODID:-//Thomas Aubert//Calendrier Compétitions//FR
-BEGIN:VEVENT
+    const formatDateTime = (date: string, time: string) => {
+      return `${formatDate(date)}T${time.replace(":", "")}00`;
+    };
+
+    let events = "";
+
+    if (competition.program_details && competition.program_details.length > 0) {
+      // Exporter chaque activité comme un événement séparé
+      competition.program_details.forEach((day) => {
+        day.activities.forEach((activity, index) => {
+          events += `BEGIN:VEVENT
+UID:${competition.id}-${day.date}-${index}@thomasaubert.com
+DTSTAMP:${formatDate(new Date().toISOString().split("T")[0])}
+DTSTART:${formatDateTime(day.date, activity.start_time)}
+DTEND:${formatDateTime(day.date, activity.end_time)}
+SUMMARY:${competition.title} - ${activity.description}
+LOCATION:${competition.location || ""}
+END:VEVENT
+`;
+        });
+      });
+    } else {
+      // Événement global si pas de programme détaillé
+      events = `BEGIN:VEVENT
 UID:${competition.id}@thomasaubert.com
 DTSTAMP:${formatDate(new Date().toISOString().split("T")[0])}
 DTSTART:${formatDate(competition.start_date)}
 DTEND:${formatDate(competition.end_date)}
 SUMMARY:${competition.title}
 LOCATION:${competition.location || ""}
-DESCRIPTION:${(competition.program_details || "").replace(/\n/g, "\\n")}
 END:VEVENT
-END:VCALENDAR`;
+`;
+    }
+
+    const icsContent = `BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Thomas Aubert//Calendrier Compétitions//FR
+${events}END:VCALENDAR`;
 
     const blob = new Blob([icsContent], { type: "text/calendar" });
     const url = URL.createObjectURL(blob);
@@ -519,12 +593,30 @@ END:VCALENDAR`;
                           </p>
                           {competition.location && <p>📍 {competition.location}</p>}
                         </div>
-                        {competition.program_details && (
+                        {competition.program_details && competition.program_details.length > 0 && (
                           <div className="mt-4 pt-4 border-t border-border">
                             <p className="text-sm font-medium mb-2">Programme :</p>
-                            <p className="text-sm text-muted-foreground whitespace-pre-wrap">
-                              {competition.program_details}
-                            </p>
+                            <div className="text-sm text-muted-foreground space-y-3">
+                              {competition.program_details.map((day, dayIndex) => (
+                                <div key={dayIndex}>
+                                  <p className="font-semibold text-foreground">
+                                    {new Date(day.date).toLocaleDateString("fr-FR", { 
+                                      weekday: "long", 
+                                      day: "numeric", 
+                                      month: "long", 
+                                      year: "numeric" 
+                                    })}
+                                  </p>
+                                  <div className="pl-4 space-y-1">
+                                    {day.activities.map((activity, actIndex) => (
+                                      <p key={actIndex}>
+                                        {activity.start_time} - {activity.end_time}: {activity.description}
+                                      </p>
+                                    ))}
+                                  </div>
+                                </div>
+                              ))}
+                            </div>
                           </div>
                         )}
                       </div>
@@ -786,12 +878,30 @@ END:VCALENDAR`;
                 {selectedCompetition.location && <p>📍 {selectedCompetition.location}</p>}
               </div>
               
-              {selectedCompetition.program_details && (
+              {selectedCompetition.program_details && selectedCompetition.program_details.length > 0 && (
                 <div className="pt-4 border-t border-border">
                   <p className="text-sm font-medium mb-2">Programme :</p>
-                  <p className="text-sm text-muted-foreground whitespace-pre-wrap">
-                    {selectedCompetition.program_details}
-                  </p>
+                  <div className="text-sm text-muted-foreground space-y-3">
+                    {selectedCompetition.program_details.map((day, dayIndex) => (
+                      <div key={dayIndex}>
+                        <p className="font-semibold text-foreground">
+                          {new Date(day.date).toLocaleDateString("fr-FR", { 
+                            weekday: "long", 
+                            day: "numeric", 
+                            month: "long", 
+                            year: "numeric" 
+                          })}
+                        </p>
+                        <div className="pl-4 space-y-1">
+                          {day.activities.map((activity, actIndex) => (
+                            <p key={actIndex}>
+                              {activity.start_time} - {activity.end_time}: {activity.description}
+                            </p>
+                          ))}
+                        </div>
+                      </div>
+                    ))}
+                  </div>
                 </div>
               )}
 
@@ -887,12 +997,89 @@ END:VCALENDAR`;
 
             <div>
               <label className="text-sm font-medium mb-2 block">Programme détaillé</label>
-              <Textarea
-                value={formData.program_details}
-                onChange={(e) => setFormData({ ...formData, program_details: e.target.value })}
-                rows={6}
-                className="rounded-none"
-              />
+              <div className="space-y-4 border border-border p-4 bg-muted/20">
+                {formData.program_details.map((day, dayIndex) => (
+                  <div key={dayIndex} className="border border-border bg-background p-4 space-y-3">
+                    <div className="flex justify-between items-center">
+                      <div className="flex gap-2 items-center flex-1">
+                        <label className="text-sm font-medium">Date:</label>
+                        <Input
+                          type="date"
+                          value={day.date}
+                          onChange={(e) => updateProgramDay(dayIndex, e.target.value)}
+                          min={formData.start_date}
+                          max={formData.end_date}
+                          className="rounded-none max-w-xs"
+                        />
+                      </div>
+                      <Button
+                        type="button"
+                        size="sm"
+                        variant="ghost"
+                        onClick={() => removeProgramDay(dayIndex)}
+                        className="rounded-none text-destructive"
+                      >
+                        <X className="w-4 h-4" />
+                      </Button>
+                    </div>
+
+                    <div className="space-y-2 pl-4 border-l-2 border-accent/30">
+                      {day.activities.map((activity, activityIndex) => (
+                        <div key={activityIndex} className="grid grid-cols-12 gap-2 items-start">
+                          <Input
+                            type="time"
+                            value={activity.start_time}
+                            onChange={(e) => updateActivity(dayIndex, activityIndex, "start_time", e.target.value)}
+                            className="rounded-none col-span-2"
+                          />
+                          <span className="col-span-1 text-center pt-2">→</span>
+                          <Input
+                            type="time"
+                            value={activity.end_time}
+                            onChange={(e) => updateActivity(dayIndex, activityIndex, "end_time", e.target.value)}
+                            className="rounded-none col-span-2"
+                          />
+                          <Input
+                            value={activity.description}
+                            onChange={(e) => updateActivity(dayIndex, activityIndex, "description", e.target.value)}
+                            placeholder="Description de l'activité"
+                            className="rounded-none col-span-6"
+                          />
+                          <Button
+                            type="button"
+                            size="sm"
+                            variant="ghost"
+                            onClick={() => removeActivity(dayIndex, activityIndex)}
+                            className="rounded-none text-destructive col-span-1"
+                          >
+                            <X className="w-4 h-4" />
+                          </Button>
+                        </div>
+                      ))}
+                      <Button
+                        type="button"
+                        size="sm"
+                        variant="outline"
+                        onClick={() => addActivity(dayIndex)}
+                        className="rounded-none w-full"
+                      >
+                        <Plus className="w-4 h-4 mr-2" />
+                        Ajouter une activité
+                      </Button>
+                    </div>
+                  </div>
+                ))}
+                
+                <Button
+                  type="button"
+                  variant="outline"
+                  onClick={addProgramDay}
+                  className="rounded-none w-full"
+                >
+                  <Plus className="w-4 h-4 mr-2" />
+                  Ajouter un jour
+                </Button>
+              </div>
             </div>
 
             {/* Section Budget */}
