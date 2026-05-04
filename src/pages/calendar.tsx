@@ -508,7 +508,7 @@ END:VCALENDAR`;
                     key={competition.id}
                     className="border border-border bg-card p-6 hover:border-accent/50 transition-colors"
                   >
-                    <div className="flex justify-between items-start">
+                    <div className="flex justify-between items-start gap-6">
                       <div className="flex-1">
                         <h3 className="font-heading text-xl font-bold mb-2">
                           {competition.title}
@@ -529,7 +529,16 @@ END:VCALENDAR`;
                         )}
                       </div>
 
-                      <div className="flex gap-2 ml-4">
+                      {/* Budget total - Rectangle */}
+                      <div className="border-2 border-accent bg-accent/10 px-4 py-2 min-w-[120px] text-center">
+                        <div className="text-xs text-muted-foreground mb-1">Budget</div>
+                        <div className="font-bold text-lg text-accent">
+                          {formatCurrency(calculateTotalBudget(competition))}
+                        </div>
+                      </div>
+
+                      {/* Actions */}
+                      <div className="flex gap-2">
                         <Button
                           size="sm"
                           variant="outline"
@@ -554,14 +563,6 @@ END:VCALENDAR`;
                         >
                           <Trash2 className="w-4 h-4" />
                         </Button>
-                      </div>
-                    </div>
-
-                    {/* Budget total - Rectangle rouge */}
-                    <div className="border-2 border-accent bg-accent/10 px-4 py-2 min-w-[120px] text-center ml-4">
-                      <div className="text-xs text-muted-foreground mb-1">Budget</div>
-                      <div className="font-bold text-lg text-accent">
-                        {formatCurrency(calculateTotalBudget(competition))}
                       </div>
                     </div>
                   </div>
