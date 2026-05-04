@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { supabase } from "@/integrations/supabase/client";
-import { Plus, Trash2, Edit, Download, Calendar as CalendarIcon, ChevronLeft, ChevronRight, List } from "lucide-react";
+import { Plus, Trash2, Edit, Download, Calendar as CalendarIcon, ChevronLeft, ChevronRight, List, Clock } from "lucide-react";
 import {
   Dialog,
   DialogContent,
@@ -218,6 +218,44 @@ END:VCALENDAR`;
     return date.toLocaleDateString("fr-FR", { month: "long", year: "numeric" });
   };
 
+  // Fonctions pour la vue timeline
+  const getCompetitionsByYear = () => {
+    const byYear: Record<string, Competition[]> = {};
+    
+    competitions.forEach(comp => {
+      const year = comp.start_date.split("-")[0];
+      if (!byYear[year]) {
+        byYear[year] = [];
+      }
+      byYear[year].push(comp);
+    });
+
+    return byYear;
+  };
+
+  const getMonthsForYear = (year: string) => {
+    const months = [];
+    const startYear = parseInt(year);
+    const endYear = year === "2028" ? 8 : 12; // Jusqu'à août 2028
+    
+    for (let month = 1; month <= endYear; month++) {
+      months.push({
+        number: month,
+        name: new Date(startYear, month - 1, 1).toLocaleDateString("fr-FR", { month: "short" }),
+      });
+    }
+    
+    return months;
+  };
+
+  const getCompetitionsForMonth = (year: string, month: number) => {
+    return competitions.filter(comp => {
+      const compYear = comp.start_date.split("-")[0];
+      const compMonth = parseInt(comp.start_date.split("-")[1]);
+      return compYear === year && compMonth === month;
+    });
+  };
+
   return (
     <div className="min-h-screen bg-background">
       <Head>
@@ -317,7 +355,7 @@ END:VCALENDAR`;
         </div>
 
         <Tabs defaultValue="list" className="w-full">
-          <TabsList className="grid w-full max-w-md mx-auto grid-cols-2 mb-8">
+          <TabsList className="grid w-full max-w-2xl mx-auto grid-cols-3 mb-8">
             <TabsTrigger value="list" className="rounded-none">
               <List className="w-4 h-4 mr-2" />
               Vue Liste
@@ -325,6 +363,10 @@ END:VCALENDAR`;
             <TabsTrigger value="calendar" className="rounded-none">
               <CalendarIcon className="w-4 h-4 mr-2" />
               Vue Calendrier
+            </TabsTrigger>
+            <TabsTrigger value="timeline" className="rounded-none">
+              <Clock className="w-4 h-4 mr-2" />
+              Vue Timeline
             </TabsTrigger>
           </TabsList>
 
@@ -482,6 +524,118 @@ END:VCALENDAR`;
                   return cells;
                 })()}
               </div>
+            </div>
+          </TabsContent>
+
+          {/* Vue Timeline */}
+          <TabsContent value="timeline">
+            <div className="space-y-12">
+              {Object.entries(getCompetitionsByYear())
+                .sort(([yearA], [yearB]) => parseInt(yearA) - parseInt(yearB))
+                .map(([year, yearCompetitions]) => (
+                  <div key={year} className="border border-border bg-card p-6">
+                    <h2 className="font-heading text-3xl font-bold uppercase mb-6 text-accent">
+                      {year}
+                    </h2>
+
+                    {/* Grille des mois */}
+                    <div className="space-y-4">
+                      {getMonthsForYear(year).map(({ number, name }) => {
+                        const monthCompetitions = getCompetitionsForMonth(year, number);
+                        
+                        return (
+                          <div key={number} className="border-l-4 border-accent/30 pl-4">
+                            <div className="flex items-start gap-4">
+                              <div className="min-w-[80px]">
+                                <div className="font-semibold text-sm uppercase tracking-wider text-muted-foreground">
+                                  {name}
+                                </div>
+                              </div>
+                              
+                              <div className="flex-1">
+                                {monthCompetitions.length === 0 ? (
+                                  <div className="text-sm text-muted-foreground italic py-1">
+                                    Aucune compétition
+                                  </div>
+                                ) : (
+                                  <div className="space-y-2">
+                                    {monthCompetitions.map((comp) => (
+                                      <div
+                                        key={comp.id}
+                                        className="bg-background border border-border p-3 hover:border-accent/50 transition-colors cursor-pointer group"
+                                        onClick={() => setSelectedCompetition(comp)}
+                                      >
+                                        <div className="flex justify-between items-start gap-4">
+                                          <div className="flex-1">
+                                            <h3 className="font-semibold text-sm mb-1 group-hover:text-accent transition-colors">
+                                              {comp.title}
+                                            </h3>
+                                            <div className="text-xs text-muted-foreground space-y-0.5">
+                                              <p>
+                                                📅 {new Date(comp.start_date).toLocaleDateString("fr-FR", { day: "numeric", month: "short" })}
+                                                {comp.start_date !== comp.end_date && (
+                                                  <> → {new Date(comp.end_date).toLocaleDateString("fr-FR", { day: "numeric", month: "short" })}</>
+                                                )}
+                                              </p>
+                                              {comp.location && <p>📍 {comp.location}</p>}
+                                            </div>
+                                          </div>
+                                          
+                                          <div className="flex gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
+                                            <Button
+                                              size="sm"
+                                              variant="ghost"
+                                              onClick={(e) => {
+                                                e.stopPropagation();
+                                                exportToICS(comp);
+                                              }}
+                                              className="rounded-none h-7 w-7 p-0"
+                                            >
+                                              <Download className="w-3 h-3" />
+                                            </Button>
+                                            <Button
+                                              size="sm"
+                                              variant="ghost"
+                                              onClick={(e) => {
+                                                e.stopPropagation();
+                                                openEditDialog(comp);
+                                              }}
+                                              className="rounded-none h-7 w-7 p-0"
+                                            >
+                                              <Edit className="w-3 h-3" />
+                                            </Button>
+                                            <Button
+                                              size="sm"
+                                              variant="ghost"
+                                              onClick={(e) => {
+                                                e.stopPropagation();
+                                                handleDelete(comp.id);
+                                              }}
+                                              className="rounded-none h-7 w-7 p-0 text-destructive hover:text-destructive"
+                                            >
+                                              <Trash2 className="w-3 h-3" />
+                                            </Button>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    ))}
+                                  </div>
+                                )}
+                              </div>
+                            </div>
+                          </div>
+                        );
+                      })}
+                    </div>
+                  </div>
+                ))}
+
+              {competitions.length === 0 && (
+                <div className="text-center py-20 border border-border bg-card">
+                  <Clock className="w-16 h-16 text-muted-foreground mx-auto mb-4" />
+                  <p className="text-muted-foreground">Aucune compétition planifiée</p>
+                </div>
+              )}
             </div>
           </TabsContent>
         </Tabs>
