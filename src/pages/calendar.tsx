@@ -236,9 +236,14 @@ END:VCALENDAR`;
   const getMonthsForYear = (year: string) => {
     const months = [];
     const startYear = parseInt(year);
-    const endYear = year === "2028" ? 8 : 12; // Jusqu'à août 2028
+    const now = new Date();
+    const currentYear = now.getFullYear();
+    const currentMonth = now.getMonth() + 1; // getMonth() retourne 0-11
     
-    for (let month = 1; month <= endYear; month++) {
+    const startMonth = (startYear === currentYear) ? currentMonth : 1;
+    const endMonth = year === "2028" ? 8 : 12; // Jusqu'à août 2028
+    
+    for (let month = startMonth; month <= endMonth; month++) {
       months.push({
         number: month,
         name: new Date(startYear, month - 1, 1).toLocaleDateString("fr-FR", { month: "short" }),
