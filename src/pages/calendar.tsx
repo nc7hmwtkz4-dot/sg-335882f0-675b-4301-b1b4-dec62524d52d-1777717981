@@ -467,17 +467,6 @@ ${events}END:VCALENDAR`;
                   />
                 </div>
 
-                <div>
-                  <label className="text-sm font-medium mb-2 block">Programme détaillé (optionnel)</label>
-                  <Textarea
-                    value={formData.program_details}
-                    onChange={(e) => setFormData({ ...formData, program_details: e.target.value })}
-                    placeholder="Détails du programme..."
-                    rows={6}
-                    className="rounded-none"
-                  />
-                </div>
-
                 {/* Section Budget */}
                 <div className="border-t border-border pt-4">
                   <h3 className="font-semibold mb-4">Budget de participation (CHF)</h3>
