@@ -324,7 +324,7 @@ END:VCALENDAR`;
                 Ajouter une compétition
               </Button>
             </DialogTrigger>
-            <DialogContent className="rounded-none max-w-2xl">
+            <DialogContent className="rounded-none max-w-2xl max-h-[90vh] overflow-y-auto">
               <DialogHeader>
                 <DialogTitle className="font-heading text-2xl uppercase">
                   Nouvelle Compétition
@@ -834,7 +834,7 @@ END:VCALENDAR`;
 
       {/* Dialog d'édition */}
       <Dialog open={showEditDialog} onOpenChange={setShowEditDialog}>
-        <DialogContent className="rounded-none max-w-2xl">
+        <DialogContent className="rounded-none max-w-2xl max-h-[90vh] overflow-y-auto">
           <DialogHeader>
             <DialogTitle className="font-heading text-2xl uppercase">
               Modifier la Compétition
