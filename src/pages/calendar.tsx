@@ -28,6 +28,11 @@ interface Competition {
   end_date: string;
   location: string | null;
   program_details: string | null;
+  flight_train_cost: number | null;
+  accommodation_cost: number | null;
+  food_cost: number | null;
+  local_transport_cost: number | null;
+  registration_cost: number | null;
   created_at: string;
 }
 
@@ -44,6 +49,11 @@ export default function CalendarPage() {
     end_date: "",
     location: "",
     program_details: "",
+    flight_train_cost: 0,
+    accommodation_cost: 0,
+    food_cost: 0,
+    local_transport_cost: 0,
+    registration_cost: 0,
   });
 
   const MAX_DATE = "2028-08-31";
@@ -78,6 +88,11 @@ export default function CalendarPage() {
       end_date: "",
       location: "",
       program_details: "",
+      flight_train_cost: 0,
+      accommodation_cost: 0,
+      food_cost: 0,
+      local_transport_cost: 0,
+      registration_cost: 0,
     });
   };
 
@@ -137,6 +152,11 @@ export default function CalendarPage() {
       end_date: competition.end_date,
       location: competition.location || "",
       program_details: competition.program_details || "",
+      flight_train_cost: competition.flight_train_cost || 0,
+      accommodation_cost: competition.accommodation_cost || 0,
+      food_cost: competition.food_cost || 0,
+      local_transport_cost: competition.local_transport_cost || 0,
+      registration_cost: competition.registration_cost || 0,
     });
     setShowEditDialog(true);
   };
@@ -216,6 +236,23 @@ END:VCALENDAR`;
 
   const getMonthName = (date: Date) => {
     return date.toLocaleDateString("fr-FR", { month: "long", year: "numeric" });
+  };
+
+  // Fonction pour calculer le budget total
+  const calculateTotalBudget = (comp: Competition | typeof formData) => {
+    const flight = Number(comp.flight_train_cost) || 0;
+    const accommodation = Number(comp.accommodation_cost) || 0;
+    const food = Number(comp.food_cost) || 0;
+    const transport = Number(comp.local_transport_cost) || 0;
+    const registration = Number(comp.registration_cost) || 0;
+    return flight + accommodation + food + transport + registration;
+  };
+
+  const formatCurrency = (amount: number) => {
+    return new Intl.NumberFormat("fr-CH", {
+      style: "currency",
+      currency: "CHF",
+    }).format(amount);
   };
 
   // Fonctions pour la vue timeline
@@ -351,6 +388,83 @@ END:VCALENDAR`;
                   />
                 </div>
 
+                {/* Section Budget */}
+                <div className="border-t border-border pt-4">
+                  <h3 className="font-semibold mb-4">Budget de participation (CHF)</h3>
+                  <div className="grid grid-cols-2 gap-4">
+                    <div>
+                      <label className="text-sm font-medium mb-2 block">Avion / Train</label>
+                      <Input
+                        type="number"
+                        step="0.01"
+                        min="0"
+                        value={formData.flight_train_cost}
+                        onChange={(e) => setFormData({ ...formData, flight_train_cost: parseFloat(e.target.value) || 0 })}
+                        placeholder="0.00"
+                        className="rounded-none"
+                      />
+                    </div>
+                    <div>
+                      <label className="text-sm font-medium mb-2 block">Hébergement</label>
+                      <Input
+                        type="number"
+                        step="0.01"
+                        min="0"
+                        value={formData.accommodation_cost}
+                        onChange={(e) => setFormData({ ...formData, accommodation_cost: parseFloat(e.target.value) || 0 })}
+                        placeholder="0.00"
+                        className="rounded-none"
+                      />
+                    </div>
+                    <div>
+                      <label className="text-sm font-medium mb-2 block">Nourriture</label>
+                      <Input
+                        type="number"
+                        step="0.01"
+                        min="0"
+                        value={formData.food_cost}
+                        onChange={(e) => setFormData({ ...formData, food_cost: parseFloat(e.target.value) || 0 })}
+                        placeholder="0.00"
+                        className="rounded-none"
+                      />
+                    </div>
+                    <div>
+                      <label className="text-sm font-medium mb-2 block">Transport Local</label>
+                      <Input
+                        type="number"
+                        step="0.01"
+                        min="0"
+                        value={formData.local_transport_cost}
+                        onChange={(e) => setFormData({ ...formData, local_transport_cost: parseFloat(e.target.value) || 0 })}
+                        placeholder="0.00"
+                        className="rounded-none"
+                      />
+                    </div>
+                    <div>
+                      <label className="text-sm font-medium mb-2 block">Inscription</label>
+                      <Input
+                        type="number"
+                        step="0.01"
+                        min="0"
+                        value={formData.registration_cost}
+                        onChange={(e) => setFormData({ ...formData, registration_cost: parseFloat(e.target.value) || 0 })}
+                        placeholder="0.00"
+                        className="rounded-none"
+                      />
+                    </div>
+                  </div>
+                  
+                  {/* Ligne Total */}
+                  <div className="mt-4 pt-4 border-t border-accent/30 bg-accent/5 -mx-4 px-4 py-3">
+                    <div className="flex justify-between items-center">
+                      <span className="font-bold text-lg">TOTAL</span>
+                      <span className="font-bold text-2xl text-accent">
+                        {formatCurrency(calculateTotalBudget(formData))}
+                      </span>
+                    </div>
+                  </div>
+                </div>
+
                 <Button type="submit" className="w-full bg-foreground text-background hover:bg-accent rounded-none">
                   Ajouter
                 </Button>
@@ -440,6 +554,14 @@ END:VCALENDAR`;
                         >
                           <Trash2 className="w-4 h-4" />
                         </Button>
+                      </div>
+                    </div>
+
+                    {/* Budget total - Rectangle rouge */}
+                    <div className="border-2 border-accent bg-accent/10 px-4 py-2 min-w-[120px] text-center ml-4">
+                      <div className="text-xs text-muted-foreground mb-1">Budget</div>
+                      <div className="font-bold text-lg text-accent">
+                        {formatCurrency(calculateTotalBudget(competition))}
                       </div>
                     </div>
                   </div>
@@ -770,6 +892,83 @@ END:VCALENDAR`;
                 rows={6}
                 className="rounded-none"
               />
+            </div>
+
+            {/* Section Budget */}
+            <div className="border-t border-border pt-4">
+              <h3 className="font-semibold mb-4">Budget de participation (CHF)</h3>
+              <div className="grid grid-cols-2 gap-4">
+                <div>
+                  <label className="text-sm font-medium mb-2 block">Avion / Train</label>
+                  <Input
+                    type="number"
+                    step="0.01"
+                    min="0"
+                    value={formData.flight_train_cost}
+                    onChange={(e) => setFormData({ ...formData, flight_train_cost: parseFloat(e.target.value) || 0 })}
+                    placeholder="0.00"
+                    className="rounded-none"
+                  />
+                </div>
+                <div>
+                  <label className="text-sm font-medium mb-2 block">Hébergement</label>
+                  <Input
+                    type="number"
+                    step="0.01"
+                    min="0"
+                    value={formData.accommodation_cost}
+                    onChange={(e) => setFormData({ ...formData, accommodation_cost: parseFloat(e.target.value) || 0 })}
+                    placeholder="0.00"
+                    className="rounded-none"
+                  />
+                </div>
+                <div>
+                  <label className="text-sm font-medium mb-2 block">Nourriture</label>
+                  <Input
+                    type="number"
+                    step="0.01"
+                    min="0"
+                    value={formData.food_cost}
+                    onChange={(e) => setFormData({ ...formData, food_cost: parseFloat(e.target.value) || 0 })}
+                    placeholder="0.00"
+                    className="rounded-none"
+                  />
+                </div>
+                <div>
+                  <label className="text-sm font-medium mb-2 block">Transport Local</label>
+                  <Input
+                    type="number"
+                    step="0.01"
+                    min="0"
+                    value={formData.local_transport_cost}
+                    onChange={(e) => setFormData({ ...formData, local_transport_cost: parseFloat(e.target.value) || 0 })}
+                    placeholder="0.00"
+                    className="rounded-none"
+                  />
+                </div>
+                <div>
+                  <label className="text-sm font-medium mb-2 block">Inscription</label>
+                  <Input
+                    type="number"
+                    step="0.01"
+                    min="0"
+                    value={formData.registration_cost}
+                    onChange={(e) => setFormData({ ...formData, registration_cost: parseFloat(e.target.value) || 0 })}
+                    placeholder="0.00"
+                    className="rounded-none"
+                  />
+                </div>
+              </div>
+              
+              {/* Ligne Total */}
+              <div className="mt-4 pt-4 border-t border-accent/30 bg-accent/5 -mx-4 px-4 py-3">
+                <div className="flex justify-between items-center">
+                  <span className="font-bold text-lg">TOTAL</span>
+                  <span className="font-bold text-2xl text-accent">
+                    {formatCurrency(calculateTotalBudget(formData))}
+                  </span>
+                </div>
+              </div>
             </div>
 
             <Button type="submit" className="w-full bg-foreground text-background hover:bg-accent rounded-none">

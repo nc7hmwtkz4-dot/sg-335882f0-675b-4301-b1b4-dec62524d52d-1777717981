@@ -17,29 +17,44 @@ export type Database = {
     Tables: {
       competitions: {
         Row: {
+          accommodation_cost: number | null
           created_at: string | null
           end_date: string
+          flight_train_cost: number | null
+          food_cost: number | null
           id: string
+          local_transport_cost: number | null
           location: string | null
           program_details: string | null
+          registration_cost: number | null
           start_date: string
           title: string
         }
         Insert: {
+          accommodation_cost?: number | null
           created_at?: string | null
           end_date: string
+          flight_train_cost?: number | null
+          food_cost?: number | null
           id?: string
+          local_transport_cost?: number | null
           location?: string | null
           program_details?: string | null
+          registration_cost?: number | null
           start_date: string
           title: string
         }
         Update: {
+          accommodation_cost?: number | null
           created_at?: string | null
           end_date?: string
+          flight_train_cost?: number | null
+          food_cost?: number | null
           id?: string
+          local_transport_cost?: number | null
           location?: string | null
           program_details?: string | null
+          registration_cost?: number | null
           start_date?: string
           title?: string
         }
