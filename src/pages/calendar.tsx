@@ -151,6 +151,71 @@ export default function CalendarPage() {
     setFormData({ ...formData, program_details: newProgram });
   };
 
+  // Fonction de parsing pour l'import de texte
+  const parseTextToProgram = (text: string) => {
+    const lines = text.split("\n").filter(line => line.trim());
+    const programDays: ProgramDay[] = [];
+    let currentDate = formData.start_date;
+    
+    // Mapping des mois français
+    const monthMap: Record<string, string> = {
+      "janvier": "01", "février": "02", "mars": "03", "avril": "04",
+      "mai": "05", "juin": "06", "juillet": "07", "août": "08",
+      "septembre": "09", "octobre": "10", "novembre": "11", "décembre": "12"
+    };
+
+    for (const line of lines) {
+      // Détection de date : "29 Mai 2026" ou "30 Mai 2026, Samedi"
+      const dateMatch = line.match(/(\d{1,2})\s+(janvier|février|mars|avril|mai|juin|juillet|août|septembre|octobre|novembre|décembre)\s+(\d{4})/i);
+      if (dateMatch) {
+        const day = dateMatch[1].padStart(2, "0");
+        const month = monthMap[dateMatch[2].toLowerCase()];
+        const year = dateMatch[3];
+        currentDate = `${year}-${month}-${day}`;
+        
+        // Créer un nouveau jour s'il n'existe pas déjà
+        if (!programDays.find(d => d.date === currentDate)) {
+          programDays.push({ date: currentDate, activities: [] });
+        }
+        continue;
+      }
+
+      // Détection d'activité : "16:00-19:00 03:00 Description" ou "16:00-19:00 Description"
+      const activityMatch = line.match(/(\d{2}:\d{2})-(\d{2}:\d{2})\s+(?:\d{2}:\d{2}\s+)?(.+)/);
+      if (activityMatch) {
+        const startTime = activityMatch[1];
+        const endTime = activityMatch[2];
+        const description = activityMatch[3].trim();
+        
+        // Ajouter l'activité au jour courant
+        const currentDay = programDays.find(d => d.date === currentDate);
+        if (currentDay) {
+          currentDay.activities.push({ start_time: startTime, end_time: endTime, description });
+        }
+      }
+
+      // Détection d'horaire simple : "18:30 Description"
+      const simpleTimeMatch = line.match(/^(\d{2}:\d{2})\s+(.+)/);
+      if (simpleTimeMatch && !activityMatch) {
+        const time = simpleTimeMatch[1];
+        const description = simpleTimeMatch[2].trim();
+        
+        const currentDay = programDays.find(d => d.date === currentDate);
+        if (currentDay) {
+          // Durée par défaut de 30 minutes
+          const [hours, minutes] = time.split(":").map(Number);
+          const endHours = minutes >= 30 ? hours + 1 : hours;
+          const endMinutes = minutes >= 30 ? minutes - 30 : minutes + 30;
+          const endTime = `${String(endHours).padStart(2, "0")}:${String(endMinutes).padStart(2, "0")}`;
+          
+          currentDay.activities.push({ start_time: time, end_time: endTime, description });
+        }
+      }
+    }
+
+    setFormData({ ...formData, program_details: programDays });
+  };
+
   const handleAdd = async (e: React.FormEvent) => {
     e.preventDefault();
 
@@ -1002,6 +1067,53 @@ ${events}END:VCALENDAR`;
 
             <div>
               <label className="text-sm font-medium mb-2 block">Programme détaillé</label>
+              
+              {/* Bouton d'import */}
+              <Dialog>
+                <DialogTrigger asChild>
+                  <Button
+                    type="button"
+                    variant="outline"
+                    className="rounded-none w-full mb-4"
+                  >
+                    <Download className="w-4 h-4 mr-2" />
+                    Importer depuis texte (copier-coller PDF)
+                  </Button>
+                </DialogTrigger>
+                <DialogContent className="rounded-none max-w-3xl">
+                  <DialogHeader>
+                    <DialogTitle className="font-heading text-xl uppercase">
+                      Importer le programme depuis texte
+                    </DialogTitle>
+                  </DialogHeader>
+                  <div className="space-y-4">
+                    <p className="text-sm text-muted-foreground">
+                      Copiez le texte du programme depuis votre PDF et collez-le ci-dessous. 
+                      Le système détectera automatiquement les dates, horaires et descriptions.
+                    </p>
+                    <Textarea
+                      id="import-text-edit"
+                      placeholder={`Exemple:\n29 Mai 2026, Vendredi\n16:00-19:00 Ouverture du greffe\n16:30-19:00 Entraînement officiel\n18:30 Réunion des capitaines d'équipe`}
+                      rows={15}
+                      className="rounded-none font-mono text-xs"
+                    />
+                    <Button
+                      type="button"
+                      onClick={() => {
+                        const textarea = document.getElementById("import-text-edit") as HTMLTextAreaElement;
+                        if (textarea.value.trim()) {
+                          parseTextToProgram(textarea.value);
+                          textarea.value = "";
+                        }
+                      }}
+                      className="w-full bg-accent text-accent-foreground hover:bg-accent/90 rounded-none"
+                    >
+                      Importer et parser le programme
+                    </Button>
+                  </div>
+                </DialogContent>
+              </Dialog>
+
               <div className="space-y-4 border border-border p-4 bg-muted/20">
                 {formData.program_details.map((day, dayIndex) => (
                   <div key={dayIndex} className="border border-border bg-background p-4 space-y-3">
