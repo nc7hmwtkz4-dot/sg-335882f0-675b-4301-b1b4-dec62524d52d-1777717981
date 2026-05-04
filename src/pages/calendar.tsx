@@ -87,7 +87,13 @@ export default function CalendarPage() {
     if (error) {
       console.error("Erreur chargement:", error);
     } else {
-      setCompetitions(data || []);
+      const formattedData = (data || []).map(comp => ({
+        ...comp,
+        program_details: (typeof comp.program_details === 'string' 
+          ? JSON.parse(comp.program_details || '[]') 
+          : comp.program_details) as ProgramDay[] || [],
+      }));
+      setCompetitions(formattedData as Competition[]);
     }
     setLoading(false);
   };
@@ -148,7 +154,12 @@ export default function CalendarPage() {
   const handleAdd = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    const { error } = await supabase.from("competitions").insert(formData);
+    const dataToSubmit = {
+      ...formData,
+      program_details: formData.program_details as any,
+    };
+
+    const { error } = await supabase.from("competitions").insert(dataToSubmit);
 
     if (error) {
       console.error("Erreur ajout:", error);
@@ -164,9 +175,14 @@ export default function CalendarPage() {
     e.preventDefault();
     if (!editingCompetition) return;
 
+    const dataToSubmit = {
+      ...formData,
+      program_details: formData.program_details as any,
+    };
+
     const { error } = await supabase
       .from("competitions")
-      .update(formData)
+      .update(dataToSubmit)
       .eq("id", editingCompetition.id);
 
     if (error) {

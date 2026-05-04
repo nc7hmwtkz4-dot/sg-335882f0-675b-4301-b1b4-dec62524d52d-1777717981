@@ -25,7 +25,7 @@ export type Database = {
           id: string
           local_transport_cost: number | null
           location: string | null
-          program_details: string | null
+          program_details: Json | null
           registration_cost: number | null
           start_date: string
           title: string
@@ -39,7 +39,7 @@ export type Database = {
           id?: string
           local_transport_cost?: number | null
           location?: string | null
-          program_details?: string | null
+          program_details?: Json | null
           registration_cost?: number | null
           start_date: string
           title: string
@@ -53,7 +53,7 @@ export type Database = {
           id?: string
           local_transport_cost?: number | null
           location?: string | null
-          program_details?: string | null
+          program_details?: Json | null
           registration_cost?: number | null
           start_date?: string
           title?: string
