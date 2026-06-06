@@ -1,6 +1,6 @@
 import Head from "next/head";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Target, Globe, Trophy, LineChart } from "lucide-react";
+import { ArrowRight, Target, Globe, Trophy, LineChart, Medal } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { Navigation } from "@/components/Navigation";
@@ -201,6 +201,32 @@ export default function Home() {
                 <li className="border-b border-white/5 pb-3">Formation délégués techniques</li>
                 <li className="pb-3">Restructuration du calendrier</li>
               </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Highlight Medals */}
+      <section className="py-20 bg-secondary/20">
+        <div className="container">
+          <div className="grid md:grid-cols-2 gap-8">
+            <div className="bg-background border border-accent/20 p-10 relative overflow-hidden group">
+              <div className="absolute top-0 right-0 w-32 h-32 bg-accent/5 rounded-bl-full -z-10 transition-transform group-hover:scale-150 duration-700"></div>
+              <Medal className="w-12 h-12 text-accent mb-6" strokeWidth={1} />
+              <h3 className="text-3xl font-heading font-bold uppercase mb-2">Vice-Champion du Monde</h3>
+              <p className="text-muted-foreground text-sm uppercase tracking-widest mb-6">Par équipe &mdash; Ulsan (KOR) 2009</p>
+              <p className="text-sm text-muted-foreground font-light leading-relaxed">
+                Médaille d'argent par équipe avec la France lors des Championnats du Monde de tir à l'arc. L'aboutissement de milliers d'heures de préparation sans rien laisser au hasard.
+              </p>
+            </div>
+            
+            <div className="bg-background border border-white/5 p-10 relative overflow-hidden group hover:border-white/20 transition-colors">
+              <Medal className="w-12 h-12 text-muted-foreground mb-6" strokeWidth={1} />
+              <h3 className="text-3xl font-heading font-bold uppercase mb-2">Champion d'Europe des Clubs</h3>
+              <p className="text-muted-foreground text-sm uppercase tracking-widest mb-6">Arc Club de Nîmes &mdash; 2010</p>
+              <p className="text-sm text-muted-foreground font-light leading-relaxed">
+                Avec l'Arc Club de Nîmes nous devenons champions d'Europe pour la première fois en 2010, une consécration pour une équipe qui ne cessera de conquérir les podiums nationaux et continentaux après ce titre.
+              </p>
             </div>
           </div>
         </div>
