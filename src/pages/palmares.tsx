@@ -371,19 +371,122 @@ export default function Palmares() {
                 <TableBody>
                   <TableRow className="border-white/5 hover:bg-white/5 transition-colors">
                     <TableCell>
-                      <div className="flex items-center gap-3">
-                        <span className="text-xl opacity-90" title="Équipe de Suisse">🇨🇭</span>
-                        <span className="font-heading font-bold text-lg text-foreground">2025</span>
-                      </div>
+                      <span className="font-heading font-bold text-lg text-foreground">2025</span>
                     </TableCell>
                     <TableCell>
-                      <div className="flex items-center gap-3">
-                        <span className="font-bold text-sm tracking-wide">The Great Chicago Open</span>
-                      </div>
+                      <span className="font-bold text-sm tracking-wide">The Great Chicago Open</span>
                     </TableCell>
                     <TableCell className="text-[10px] text-muted-foreground uppercase tracking-widest">Chicago (USA)</TableCell>
                     <TableCell className="text-center">
-                      <span className="font-heading font-extrabold text-lg md:text-xl tracking-tighter text-foreground">5th</span>
+                      <span className="font-heading font-extrabold text-lg md:text-xl tracking-tighter text-foreground">9th</span>
+                    </TableCell>
+                  </TableRow>
+                  <TableRow className="border-white/5 hover:bg-white/5 transition-colors">
+                    <TableCell>
+                      <span className="font-heading font-bold text-lg text-foreground">2024</span>
+                    </TableCell>
+                    <TableCell>
+                      <span className="font-bold text-sm tracking-wide">Taipei Archery Open</span>
+                    </TableCell>
+                    <TableCell className="text-[10px] text-muted-foreground uppercase tracking-widest">Taipei (TPE)</TableCell>
+                    <TableCell className="text-center">
+                      <span className="font-heading font-extrabold text-lg md:text-xl tracking-tighter text-foreground">17th</span>
+                    </TableCell>
+                  </TableRow>
+                  <TableRow className="border-white/5 hover:bg-white/5 transition-colors">
+                    <TableCell>
+                      <span className="font-heading font-bold text-lg text-foreground">2024</span>
+                    </TableCell>
+                    <TableCell>
+                      <span className="font-bold text-sm tracking-wide">GT Open</span>
+                    </TableCell>
+                    <TableCell className="text-[10px] text-muted-foreground uppercase tracking-widest">Strassen (LUX)</TableCell>
+                    <TableCell className="text-center">
+                      <span className="font-heading font-extrabold text-lg md:text-xl tracking-tighter text-foreground">6th</span>
+                    </TableCell>
+                  </TableRow>
+                  <TableRow className="border-white/5 hover:bg-white/5 transition-colors">
+                    <TableCell>
+                      <span className="font-heading font-bold text-lg text-foreground">2019</span>
+                    </TableCell>
+                    <TableCell>
+                      <span className="font-bold text-sm tracking-wide">Vegas Shoot</span>
+                    </TableCell>
+                    <TableCell className="text-[10px] text-muted-foreground uppercase tracking-widest">Las Vegas (USA)</TableCell>
+                    <TableCell className="text-center">
+                      <span className="font-heading font-extrabold text-lg md:text-xl tracking-tighter text-foreground">54th</span>
+                    </TableCell>
+                  </TableRow>
+                  <TableRow className="border-white/5 hover:bg-white/5 transition-colors">
+                    <TableCell>
+                      <span className="font-heading font-bold text-lg text-foreground">2018</span>
+                    </TableCell>
+                    <TableCell>
+                      <span className="font-bold text-sm tracking-wide">Roma Trophy 250</span>
+                    </TableCell>
+                    <TableCell className="text-[10px] text-muted-foreground uppercase tracking-widest">Roma (ITA)</TableCell>
+                    <TableCell className="text-center">
+                      <span className="font-heading font-extrabold text-lg md:text-xl tracking-tighter text-foreground">35th</span>
+                    </TableCell>
+                  </TableRow>
+                  <TableRow className="border-white/5 hover:bg-white/5 transition-colors">
+                    <TableCell>
+                      <span className="font-heading font-bold text-lg text-foreground">2018</span>
+                    </TableCell>
+                    <TableCell>
+                      <span className="font-bold text-sm tracking-wide">Macau Open 250</span>
+                    </TableCell>
+                    <TableCell className="text-[10px] text-muted-foreground uppercase tracking-widest">Macau (CHN)</TableCell>
+                    <TableCell className="text-center">
+                      <span className="font-heading font-extrabold text-lg md:text-xl tracking-tighter text-foreground">17th</span>
+                    </TableCell>
+                  </TableRow>
+                  <TableRow className="border-white/5 hover:bg-white/5 transition-colors">
+                    <TableCell>
+                      <span className="font-heading font-bold text-lg text-foreground">2018</span>
+                    </TableCell>
+                    <TableCell>
+                      <span className="font-bold text-sm tracking-wide">GT Open</span>
+                    </TableCell>
+                    <TableCell className="text-[10px] text-muted-foreground uppercase tracking-widest">Strassen (LUX)</TableCell>
+                    <TableCell className="text-center">
+                      <span className="font-heading font-extrabold text-lg md:text-xl tracking-tighter text-foreground">38th</span>
+                    </TableCell>
+                  </TableRow>
+                  <TableRow className="border-white/5 hover:bg-white/5 transition-colors">
+                    <TableCell>
+                      <span className="font-heading font-bold text-lg text-foreground">2018</span>
+                    </TableCell>
+                    <TableCell>
+                      <span className="font-bold text-sm tracking-wide">Las Vegas</span>
+                    </TableCell>
+                    <TableCell className="text-[10px] text-muted-foreground uppercase tracking-widest">Las Vegas (USA)</TableCell>
+                    <TableCell className="text-center">
+                      <span className="font-heading font-extrabold text-lg md:text-xl tracking-tighter text-foreground">37th</span>
+                    </TableCell>
+                  </TableRow>
+                  <TableRow className="border-white/5 hover:bg-white/5 transition-colors">
+                    <TableCell>
+                      <span className="font-heading font-bold text-lg text-foreground">2018</span>
+                    </TableCell>
+                    <TableCell>
+                      <span className="font-bold text-sm tracking-wide">Nîmes Archery Tournament</span>
+                    </TableCell>
+                    <TableCell className="text-[10px] text-muted-foreground uppercase tracking-widest">Nîmes (FRA)</TableCell>
+                    <TableCell className="text-center">
+                      <span className="font-heading font-extrabold text-lg md:text-xl tracking-tighter text-foreground">37th</span>
+                    </TableCell>
+                  </TableRow>
+                  <TableRow className="border-white/5 hover:bg-white/5 transition-colors">
+                    <TableCell>
+                      <span className="font-heading font-bold text-lg text-foreground">2016</span>
+                    </TableCell>
+                    <TableCell>
+                      <span className="font-bold text-sm tracking-wide">Bangkok</span>
+                    </TableCell>
+                    <TableCell className="text-[10px] text-muted-foreground uppercase tracking-widest">Bangkok (THA)</TableCell>
+                    <TableCell className="text-center">
+                      <span className="font-heading font-extrabold text-lg md:text-xl tracking-tighter text-foreground">17th</span>
                     </TableCell>
                   </TableRow>
                 </TableBody>
