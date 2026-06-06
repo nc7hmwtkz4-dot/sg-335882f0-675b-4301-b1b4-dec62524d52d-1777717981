@@ -1,4 +1,3 @@
-import Head from "next/head";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Target, Globe, Trophy, LineChart, Medal } from "lucide-react";
 import Image from "next/image";
@@ -9,10 +8,7 @@ import { Footer } from "@/components/Footer";
 export default function Home() {
   return (
     <div className="bg-background min-h-screen">
-      <Head>
-        <title>Thomas Aubert | Expert en Événementiel Sportif & Médaillé Mondial</title>
-        <meta name="description" content="Portfolio de Thomas Aubert, expert en événementiel sportif international et ancien sportif de haut niveau." />
-      </Head>
+      
 
       <Navigation />
 
@@ -35,7 +31,6 @@ export default function Home() {
               </h1>
               
               <p className="text-lg md:text-xl text-muted-foreground max-w-xl leading-relaxed font-light">Médaillé mondial de tir à l'arc devenu stratège des événements de ma discipline, des événements de classement mondial aux Jeux Olympiques. Un travail de l'ombre pour faire avancer le sport avec précision et vision, loin de la politique et au plus près de l'efficacité.
-
 
               </p>
               

@@ -12,7 +12,7 @@ export function Navigation() {
   const isActiveSection = (paths: string[]) => paths.includes(router.pathname);
 
   const professionalPaths = ["/parcours", "/realisations"];
-  const sportPaths = ["/palmares", "/performances", "/materiel"];
+  const sportPaths = ["/palmares", "/performances"];
 
   const toggleSection = (section: string) => {
     setOpenSection(openSection === section ? null : section);
@@ -132,16 +132,6 @@ export function Navigation() {
                   onClick={() => setOpenSection(null)}
                 >
                   Performances diverses
-                </Link>
-                <Link
-                  href="/materiel"
-                  className={cn(
-                    "text-xs font-semibold uppercase tracking-widest transition-colors hover:text-accent",
-                    isActiveLink("/materiel") ? "text-accent" : "text-foreground"
-                  )}
-                  onClick={() => setOpenSection(null)}
-                >
-                  Mon Matériel
                 </Link>
               </div>
             )}
