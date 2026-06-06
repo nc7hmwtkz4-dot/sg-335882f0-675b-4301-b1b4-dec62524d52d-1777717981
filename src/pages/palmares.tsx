@@ -133,7 +133,7 @@ export default function Palmares() {
     if (medal === "silver") return <div className="flex justify-center" title="Médaille d'Argent"><Medal className="w-7 h-7 text-white fill-white/50 drop-shadow-[0_0_12px_rgba(255,255,255,1)]" strokeWidth={2} /></div>;
     if (medal === "bronze") return <div className="flex justify-center" title="Médaille de Bronze"><Medal className="w-7 h-7 text-orange-500 fill-orange-500/40 drop-shadow-[0_0_12px_rgba(249,115,22,1)]" strokeWidth={2} /></div>;
     
-    return <span className="font-heading font-extrabold text-lg md:text-xl tracking-tighter text-foreground/80">{rank}</span>;
+    return <span className="font-heading font-extrabold text-lg md:text-xl tracking-tighter text-foreground">{rank}</span>;
   };
 
   // Helper to find event photos by matching city and year
