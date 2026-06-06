@@ -114,11 +114,6 @@ export default function Parcours() {
                   
                   <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-2">
                     <h3 className="text-2xl font-heading font-bold uppercase tracking-wider">{exp.role}</h3>
-                    {exp.certificate && (
-                      <Button variant="outline" size="sm" asChild className="border-white/20 text-foreground hover:bg-white/5 rounded-none text-xs uppercase tracking-widest font-bold shrink-0">
-                        <a href={exp.certificate} target="_blank" rel="noopener noreferrer">Voir le certificat</a>
-                      </Button>
-                    )}
                   </div>
                   <p className="text-accent font-medium uppercase tracking-widest text-sm mb-6">{exp.company}</p>
                   
