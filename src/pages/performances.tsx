@@ -61,20 +61,20 @@ export default function Performances() {
                 <p>
                   <span className="text-accent font-bold">4 juin 2023</span> — 20e édition de l'une des cyclosportives les plus emblématiques de Suisse romande. 176 kilomètres autour du Lac Léman, un défi d'endurance et de gestion d'effort sur un parcours vallonné.
                 </p>
-                <p>
-                  Lausanne → Genève → Évian → Villeneuve → Lausanne. Un tour complet du lac en moins de 6 heures, dans le peloton, avec une stratégie de gestion de l'effort calibrée pour tenir la distance.
+                <p>Lausanne → Villeneuve → Évian → Genève → Lausanne. Un tour complet du lac en moins de 6 heures, dans le peloton, avec une stratégie de gestion de l'effort calibrée pour tenir la distance.
+
                 </p>
               </div>
               
               <div className="grid grid-cols-2 gap-8 pt-8 border-t border-white/10">
                 <div className="space-y-2">
                   <Timer className="w-6 h-6 text-accent/50 mb-3" strokeWidth={1} />
-                  <p className="text-5xl font-heading font-extrabold text-white">5h49'23"</p>
+                  <p className="text-5xl font-heading font-extrabold text-white" style={{ color: "#525252" }}>5h49'23"</p>
                   <p className="text-xs text-muted-foreground uppercase tracking-widest">Temps réalisé</p>
                 </div>
                 <div className="space-y-2">
                   <TrendingUp className="w-6 h-6 text-accent/50 mb-3" strokeWidth={1} />
-                  <p className="text-5xl font-heading font-extrabold text-white">176</p>
+                  <p className="text-5xl font-heading font-extrabold text-white" style={{ color: "#525252" }}>176</p>
                   <p className="text-xs text-muted-foreground uppercase tracking-widest">Kilomètres</p>
                 </div>
               </div>
@@ -87,12 +87,12 @@ export default function Performances() {
               </div>
               
               <div className="relative aspect-[3/4] w-full border border-white/10 overflow-hidden group bg-black/20">
-                <Image 
-                  src="/cyclotour-2023.jpg" 
-                  alt="Certificat Finisher Cyclotour du Léman 2023" 
-                  fill 
-                  className="object-contain p-2 group-hover:scale-105 transition-transform duration-700" 
-                />
+                <Image
+                  src="/cyclotour-2023.jpg"
+                  alt="Certificat Finisher Cyclotour du Léman 2023"
+                  fill
+                  className="object-contain p-2 group-hover:scale-105 transition-transform duration-700" />
+                
               </div>
 
               <div className="space-y-6 pt-4 border-t border-white/5">
@@ -203,6 +203,6 @@ export default function Performances() {
       </section>
       
       <Footer />
-    </div>
-  );
+    </div>);
+
 }
