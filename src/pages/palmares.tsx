@@ -529,6 +529,16 @@ export default function Palmares() {
                 </div>
                 <div className="space-y-4">
                   <div className="p-4 bg-yellow-400/5 border-l-2 border-yellow-400/50 hover:bg-yellow-400/10 transition-colors">
+                    <p className="font-heading font-extrabold text-lg text-foreground mb-1">2022</p>
+                    <p className="text-xs text-muted-foreground uppercase tracking-wide mb-1">Field</p>
+                    <p className="text-xs font-medium text-foreground/80">Par équipes</p>
+                  </div>
+                  <div className="p-4 bg-yellow-400/5 border-l-2 border-yellow-400/50 hover:bg-yellow-400/10 transition-colors">
+                    <p className="font-heading font-extrabold text-lg text-foreground mb-1">2022</p>
+                    <p className="text-xs text-muted-foreground uppercase tracking-wide mb-1">Field</p>
+                    <p className="text-xs font-medium text-foreground/80">Individuel</p>
+                  </div>
+                  <div className="p-4 bg-yellow-400/5 border-l-2 border-yellow-400/50 hover:bg-yellow-400/10 transition-colors">
                     <p className="font-heading font-extrabold text-lg text-foreground mb-1">2017</p>
                     <p className="text-xs text-muted-foreground uppercase tracking-wide mb-1">Tir Olympique</p>
                     <p className="text-xs font-medium text-foreground/80">Par équipes</p>
