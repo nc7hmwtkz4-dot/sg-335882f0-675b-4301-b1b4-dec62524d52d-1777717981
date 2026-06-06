@@ -218,8 +218,10 @@ export default function Home() {
             15 années d'expérience dans le sport de haut niveau et l'événementiel international à disposition de projets ambitieux.
           </p>
           <div className="flex flex-col sm:flex-row justify-center gap-6">
-            <Button size="lg" className="bg-accent text-accent-foreground hover:bg-white rounded-none h-16 px-10 text-sm font-bold uppercase tracking-widest transition-all duration-300">
-              Discutons de votre projet
+            <Button size="lg" className="bg-accent text-accent-foreground hover:bg-white rounded-none h-16 px-10 text-sm font-bold uppercase tracking-widest transition-all duration-300" asChild>
+              <a href="mailto:aubert.th@gmail.com">
+                Discutons de votre projet
+              </a>
             </Button>
             <Button size="lg" variant="outline" className="border-white/20 text-foreground hover:bg-white/5 rounded-none h-16 px-10 text-sm font-bold uppercase tracking-widest transition-all duration-300" asChild>
               <Link href="https://www.linkedin.com/in/thomas-aubert-archery/" target="_blank">
