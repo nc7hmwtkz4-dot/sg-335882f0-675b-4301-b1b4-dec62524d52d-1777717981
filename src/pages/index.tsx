@@ -30,13 +30,13 @@ export default function Home() {
               </div>
               
               <h1 className="text-6xl md:text-8xl lg:text-[7rem] font-heading font-extrabold leading-[0.9] tracking-tighter uppercase">
-                Ne rien laisser <br/>
+                Ne rien laisser <br />
                 <span className="text-transparent [-webkit-text-stroke:2px_theme(colors.foreground)] opacity-80">au hasard.</span>
               </h1>
               
-              <p className="text-lg md:text-xl text-muted-foreground max-w-xl leading-relaxed font-light">
-                Ancien médaillé mondial de tir à l'arc devenu stratège des événements olympiques. 
-                J'agis dans l'ombre pour faire avancer les organisations avec précision, loin de la politique et au plus près de l'efficacité.
+              <p className="text-lg md:text-xl text-muted-foreground max-w-xl leading-relaxed font-light">Médaillé mondial de tir à l'arc devenu stratège des événements de ma discipline, des événements de classement mondial aux Jeux Olympiques. Un travail de l'ombre pour faire avancer le sport avec précision et vision, loin de la politique et au plus près de l'efficacité.
+
+
               </p>
               
               <div className="flex flex-col sm:flex-row gap-6 pt-8">
@@ -49,13 +49,13 @@ export default function Home() {
             <div className="lg:col-span-5 relative mt-12 lg:mt-0">
               <div className="relative aspect-[3/4] w-full max-w-md ml-auto">
                 <div className="absolute inset-0 bg-gradient-to-tr from-background via-transparent to-transparent z-10"></div>
-                <Image 
-                  src="/IMG_0744.JPG" 
-                  alt="Thomas Aubert" 
-                  fill 
+                <Image
+                  src="/IMG_0744.JPG"
+                  alt="Thomas Aubert"
+                  fill
                   className="object-cover grayscale hover:grayscale-0 transition-all duration-700 ease-in-out"
-                  priority
-                />
+                  priority />
+                
                 {/* Decorative borders */}
                 <div className="absolute -inset-4 border border-white/10 z-0 hidden md:block"></div>
                 <div className="absolute -inset-8 border border-white/5 z-0 hidden md:block"></div>
@@ -70,12 +70,12 @@ export default function Home() {
         <div className="container">
           <div className="grid lg:grid-cols-2 gap-20 items-center">
             <div className="order-2 lg:order-1 relative aspect-square w-full">
-              <Image 
-                src="/DA6_1669.jpg" 
-                alt="Thomas Aubert et Chris Wells" 
-                fill 
-                className="object-cover grayscale contrast-125"
-              />
+              <Image
+                src="/DA6_1669.jpg"
+                alt="Thomas Aubert et Chris Wells"
+                fill
+                className="object-cover grayscale contrast-125" />
+              
               <div className="absolute bottom-0 left-0 bg-background/90 p-4 border-t border-r border-white/10 max-w-sm">
                 <p className="text-xs font-medium text-muted-foreground leading-relaxed">Avec Chris Wells, Directeur de la Communication World Archery, lors du Congrès de Gwangju 2025.</p>
               </div>
@@ -83,7 +83,7 @@ export default function Home() {
             
             <div className="order-1 lg:order-2">
               <h2 className="text-4xl md:text-6xl font-heading font-extrabold mb-10 uppercase tracking-tighter leading-none">
-                Le pragmatisme <br/>
+                Le pragmatisme <br />
                 <span className="text-accent">de l'action.</span>
               </h2>
               
@@ -134,12 +134,12 @@ export default function Home() {
                 </p>
              </div>
              <div className="relative aspect-[16/9] md:aspect-[21/9] w-full border border-white/10">
-                <Image 
-                  src="/R3X_0332.jpg" 
-                  alt="Remise de t-shirt" 
-                  fill 
-                  className="object-cover grayscale hover:grayscale-0 transition-all duration-700"
-                />
+                <Image
+                src="/R3X_0332.jpg"
+                alt="Remise de t-shirt"
+                fill
+                className="object-cover grayscale hover:grayscale-0 transition-all duration-700" />
+              
                 <div className="absolute bottom-0 right-0 bg-background/90 p-4 border-t border-l border-white/10 max-w-sm">
                   <p className="text-xs font-medium text-muted-foreground text-right leading-relaxed">Dernier événement en tant que Head of Events & Marketing (Gwangju 2025) : remise d'un t-shirt signé au juge international Graham Potts pour sa retraite.</p>
                 </div>
@@ -153,7 +153,7 @@ export default function Home() {
         <div className="container">
           <div className="flex flex-col md:flex-row justify-between items-end mb-20 gap-8">
             <h2 className="text-5xl md:text-7xl font-heading font-extrabold uppercase tracking-tighter leading-none max-w-2xl">
-              Domaines <br/> d'Expertise
+              Domaines <br /> d'Expertise
             </h2>
             <p className="text-muted-foreground max-w-sm text-right">
               De la conception stratégique à la livraison opérationnelle d'événements sportifs mondiaux.
@@ -211,7 +211,7 @@ export default function Home() {
         <div className="absolute inset-0 bg-accent/5"></div>
         <div className="container relative z-10 text-center">
           <h2 className="text-5xl md:text-8xl font-heading font-extrabold mb-10 uppercase tracking-tighter">
-            Prêt pour le <br/>
+            Prêt pour le <br />
             <span className="text-accent">prochain défi.</span>
           </h2>
           <p className="text-xl text-muted-foreground mb-16 max-w-2xl mx-auto font-light">
@@ -231,6 +231,6 @@ export default function Home() {
       </section>
 
       <Footer />
-    </div>
-  );
+    </div>);
+
 }
