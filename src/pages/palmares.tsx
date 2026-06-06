@@ -209,10 +209,10 @@ export default function Palmares() {
 
             <div className="bg-background border border-white/5 p-10 relative overflow-hidden group hover:border-white/20 transition-colors">
               <Medal className="w-12 h-12 text-muted-foreground mb-6" strokeWidth={1} />
-              <h3 className="text-3xl font-heading font-bold uppercase mb-2">Médaille de Bronze</h3>
-              <p className="text-muted-foreground text-sm uppercase tracking-widest mb-6">Ministère Jeunesse & Sports</p>
+              <h3 className="text-3xl font-heading font-bold uppercase mb-2">Champion d'Europe des Clubs</h3>
+              <p className="text-muted-foreground text-sm uppercase tracking-widest mb-6">Arc Club de Nîmes &mdash; 2010</p>
               <p className="text-sm text-muted-foreground font-light leading-relaxed">
-                Distinction honorifique décernée en 2007, marquant les premiers succès internationaux majeurs en catégorie jeune.
+                Avec l'Arc Club de Nîmes nous devenons champions d'Europe pour la première fois en 2010, une consécration pour une équipe qui ne cessera de conquérir les podiums nationaux et continentaux après ce titre.
               </p>
             </div>
           </div>
