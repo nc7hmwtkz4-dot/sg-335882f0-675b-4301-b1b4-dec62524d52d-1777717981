@@ -11,7 +11,7 @@ export function Navigation() {
   const isActiveLink = (href: string) => router.pathname === href;
   const isActiveSection = (paths: string[]) => paths.includes(router.pathname);
 
-  const professionalPaths = ["/parcours", "/investissements"];
+  const professionalPaths = ["/parcours", "/realisations"];
   const sportPaths = ["/palmares", "/performances", "/materiel"];
 
   const toggleSection = (section: string) => {
@@ -99,14 +99,14 @@ export function Navigation() {
                   Parcours
                 </Link>
                 <Link
-                  href="/investissements"
+                  href="/realisations"
                   className={cn(
                     "text-xs font-semibold uppercase tracking-widest transition-colors hover:text-accent",
-                    isActiveLink("/investissements") ? "text-accent" : "text-foreground"
+                    isActiveLink("/realisations") ? "text-accent" : "text-foreground"
                   )}
                   onClick={() => setOpenSection(null)}
                 >
-                  Investissements
+                  Mes Réalisations
                 </Link>
               </div>
             )}
