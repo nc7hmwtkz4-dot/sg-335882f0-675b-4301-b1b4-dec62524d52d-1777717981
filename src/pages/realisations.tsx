@@ -10,7 +10,7 @@ export default function Realisations() {
     {
       title: "Arc Club de Nîmes - Espace Partenaires",
       url: "https://www.arcclubnimes-partenaires.fr",
-      image: "/generated/arcclub-nimes.png",
+      image: "/Screenshot_2026-06-06_at_10.54.42.png",
       description: "L'Arc Club de Nîmes souhaitait moderniser la présentation de son offre partenaires. Cette vitrine expose les valeurs du club et ses atouts clés, permettant à tout chef d'entreprise de comprendre rapidement l'opportunité — tout en ayant la possibilité d'approfondir les sujets qui l'intéressent vraiment.",
       tags: ["Next.js", "Design System", "Responsive"]
     }
@@ -86,19 +86,7 @@ export default function Realisations() {
                     </div>
                   </div>
 
-                  <div className="md:col-span-4 flex flex-col justify-between">
-                    <div className="mb-6">
-                      <p className="text-xs text-white/40 uppercase tracking-widest mb-2 font-bold">URL du projet</p>
-                      <a 
-                        href={project.url} 
-                        target="_blank" 
-                        rel="noopener noreferrer"
-                        className="text-accent hover:text-foreground transition-colors break-all font-mono text-sm"
-                      >
-                        {project.url}
-                      </a>
-                    </div>
-                    
+                  <div className="md:col-span-4 flex flex-col justify-end">
                     <Button 
                       asChild 
                       className="bg-foreground text-background hover:bg-accent hover:text-accent-foreground rounded-none h-14 px-8 text-xs font-bold uppercase tracking-widest transition-all duration-300 w-full"
