@@ -236,12 +236,12 @@ export default function Palmares() {
             <div className="space-y-4 px-4">
               <Target className="w-8 h-8 text-accent/50" />
               <p className="text-5xl md:text-7xl font-heading font-extrabold tracking-tighter text-transparent [-webkit-text-stroke:1px_theme(colors.foreground)]">10</p>
-              <p className="text-sm font-bold uppercase tracking-widest text-muted-foreground">Top 5<br />Mondiaux (Ind.)</p>
+              <p className="text-sm font-bold uppercase tracking-widest text-muted-foreground">Meilleur Classement<br />Mondial (22 Mar 2013)</p>
             </div>
             <div className="space-y-4 px-4">
               <Trophy className="w-8 h-8 text-accent/50" />
               <p className="text-5xl md:text-7xl font-heading font-extrabold tracking-tighter text-transparent [-webkit-text-stroke:1px_theme(colors.foreground)]">14</p>
-              <p className="text-sm font-bold uppercase tracking-widest text-muted-foreground">Pays<br />Hôtes</p>
+              <p className="text-sm font-bold uppercase tracking-widest text-muted-foreground">Médailles<br />Internationales</p>
             </div>
           </div>
         </div>
