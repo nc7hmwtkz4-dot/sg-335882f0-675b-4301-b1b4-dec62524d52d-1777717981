@@ -172,7 +172,7 @@ export default function Palmares() {
         <div className="container">
           <div className="inline-flex items-center gap-3 mb-8">
             <span className="h-[1px] w-12 bg-accent"></span>
-            <span className="text-accent text-xs font-bold uppercase tracking-[0.2em]">2005 &mdash; 2014</span>
+            <span className="text-accent text-xs font-bold uppercase tracking-[0.2em]">2005 — 2025</span>
           </div>
           <h1 className="text-6xl md:text-8xl font-heading font-extrabold uppercase tracking-tighter mb-8">
             Palmarès <br />
