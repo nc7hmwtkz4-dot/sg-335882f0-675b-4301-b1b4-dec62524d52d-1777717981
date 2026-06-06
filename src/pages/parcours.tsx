@@ -18,8 +18,7 @@ export default function Parcours() {
         "Marketing & Sponsoring : revenus de sponsoring multipliés par 14 en 10 ans, gestion du merchandising (stocks, ventes), octroi de licences et protection de la propriété intellectuelle.",
         "Refonte structurelle : création d'un nouveau classement mondial, augmentation des primes et élaboration de stratégies approuvées par le Bureau Exécutif.",
         "Ressources Humaines & Formation : officier de liaison des comités (entraîneurs, tir en campagne, 3D), création d'une formation pour les délégués techniques.",
-      ],
-      certificate: "/Certificat_Travail_WA.pdf"
+      ]
     },
     {
       period: "Nov. 2021 — Présent",
