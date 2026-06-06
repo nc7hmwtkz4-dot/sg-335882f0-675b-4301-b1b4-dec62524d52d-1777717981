@@ -253,7 +253,7 @@ export default function Palmares() {
           <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 mb-12">
             <div className="flex items-center gap-4 pb-4 md:pb-0 md:border-none border-b border-white/10">
               <Target className="w-8 h-8 text-accent" />
-              <h3 className="text-2xl md:text-4xl font-heading font-extrabold uppercase tracking-tighter">Résultats <span className="text-transparent [-webkit-text-stroke:1px_theme(colors.foreground)] opacity-80">Majeurs.</span></h3>
+              <h3 className="text-2xl md:text-4xl font-heading font-extrabold uppercase tracking-tighter">Résultats <span className="text-transparent [-webkit-text-stroke:1px_theme(colors.foreground)] opacity-80">Internationaux.</span></h3>
             </div>
             <p className="text-sm text-muted-foreground font-light max-w-xs md:text-right">
               Synthèse chronologique des classements sur les compétitions internationales.
@@ -340,6 +340,102 @@ export default function Palmares() {
              <p className="text-xs text-muted-foreground font-light italic text-center max-w-2xl mx-auto">
                Données officielles World Archery (2006 &mdash; 2025). Le tableau synthétise les classements majeurs obtenus lors des Championnats du Monde, Coupes du Monde et Grands Prix.
              </p>
+          </div>
+        </div>
+      </section>
+
+      {/* Indoor World Series Section */}
+      <section className="py-32 bg-secondary/10">
+        <div className="container max-w-5xl">
+          <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 mb-12">
+            <div className="flex items-center gap-4 pb-4 md:pb-0 md:border-none border-b border-white/10">
+              <BarChart className="w-8 h-8 text-accent" />
+              <h3 className="text-2xl md:text-4xl font-heading font-extrabold uppercase tracking-tighter">Résultats <span className="text-transparent [-webkit-text-stroke:1px_theme(colors.foreground)] opacity-80">Indoor World Series.</span></h3>
+            </div>
+            <p className="text-sm text-muted-foreground font-light max-w-xs md:text-right">
+              Circuit Indoor World Archery depuis 2025.
+            </p>
+          </div>
+
+          <div className="rounded-xl border border-white/10 bg-secondary/10 overflow-hidden">
+            <div className="overflow-x-auto">
+              <Table>
+                <TableHeader className="bg-white/5">
+                  <TableRow className="hover:bg-transparent border-white/10">
+                    <TableHead className="w-32 font-bold text-accent uppercase tracking-widest text-xs">Année</TableHead>
+                    <TableHead className="font-bold text-white uppercase tracking-widest text-xs min-w-[200px]">Compétition</TableHead>
+                    <TableHead className="font-bold text-white uppercase tracking-widest text-xs">Lieu</TableHead>
+                    <TableHead className="text-center font-bold text-white uppercase tracking-widest text-xs">Individuel</TableHead>
+                  </TableRow>
+                </TableHeader>
+                <TableBody>
+                  <TableRow className="border-white/5 hover:bg-white/5 transition-colors">
+                    <TableCell>
+                      <div className="flex items-center gap-3">
+                        <span className="text-xl opacity-90" title="Équipe de Suisse">🇨🇭</span>
+                        <span className="font-heading font-bold text-lg text-foreground">2025</span>
+                      </div>
+                    </TableCell>
+                    <TableCell>
+                      <div className="flex items-center gap-3">
+                        <span className="font-bold text-sm tracking-wide">The Great Chicago Open</span>
+                      </div>
+                    </TableCell>
+                    <TableCell className="text-[10px] text-muted-foreground uppercase tracking-widest">Chicago (USA)</TableCell>
+                    <TableCell className="text-center">
+                      <span className="font-heading font-extrabold text-lg md:text-xl tracking-tighter text-foreground">5th</span>
+                    </TableCell>
+                  </TableRow>
+                </TableBody>
+              </Table>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Championnats Nationaux Section */}
+      <section className="py-32">
+        <div className="container max-w-5xl">
+          <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 mb-12">
+            <div className="flex items-center gap-4 pb-4 md:pb-0 md:border-none border-b border-white/10">
+              <Trophy className="w-8 h-8 text-accent" />
+              <h3 className="text-2xl md:text-4xl font-heading font-extrabold uppercase tracking-tighter">Championnats <span className="text-transparent [-webkit-text-stroke:1px_theme(colors.foreground)] opacity-80">Nationaux.</span></h3>
+            </div>
+            <p className="text-sm text-muted-foreground font-light max-w-xs md:text-right">
+              Titres et podiums nationaux France et Suisse.
+            </p>
+          </div>
+
+          <div className="rounded-xl border border-white/10 bg-secondary/10 overflow-hidden">
+            <div className="overflow-x-auto">
+              <Table>
+                <TableHeader className="bg-white/5">
+                  <TableRow className="hover:bg-transparent border-white/10">
+                    <TableHead className="w-32 font-bold text-accent uppercase tracking-widest text-xs">Année</TableHead>
+                    <TableHead className="font-bold text-white uppercase tracking-widest text-xs min-w-[200px]">Compétition</TableHead>
+                    <TableHead className="font-bold text-white uppercase tracking-widest text-xs">Catégorie</TableHead>
+                    <TableHead className="text-center font-bold text-white uppercase tracking-widest text-xs">Classement</TableHead>
+                  </TableRow>
+                </TableHeader>
+                <TableBody>
+                  <TableRow className="border-white/5 hover:bg-white/5 transition-colors">
+                    <TableCell>
+                      <div className="flex items-center gap-3">
+                        <span className="text-xl opacity-90" title="Équipe de Suisse">🇨🇭</span>
+                        <span className="font-heading font-bold text-lg text-foreground">2025</span>
+                      </div>
+                    </TableCell>
+                    <TableCell>
+                      <span className="font-bold text-sm tracking-wide">Championnat de Suisse Indoor</span>
+                    </TableCell>
+                    <TableCell className="text-[10px] text-muted-foreground uppercase tracking-widest">Senior Homme</TableCell>
+                    <TableCell className="text-center">
+                      <div className="flex justify-center" title="Médaille d'Or"><Medal className="w-7 h-7 text-yellow-400 fill-yellow-400/40 drop-shadow-[0_0_12px_rgba(250,204,21,1)]" strokeWidth={2} /></div>
+                    </TableCell>
+                  </TableRow>
+                </TableBody>
+              </Table>
+            </div>
           </div>
         </div>
       </section>
