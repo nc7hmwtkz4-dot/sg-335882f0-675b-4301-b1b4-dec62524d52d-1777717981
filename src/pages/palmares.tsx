@@ -441,13 +441,43 @@ export default function Palmares() {
                   </div>
                   <div className="p-4 bg-yellow-400/5 border-l-2 border-yellow-400/50 hover:bg-yellow-400/10 transition-colors">
                     <p className="font-heading font-extrabold text-lg text-foreground mb-1">2008</p>
+                    <p className="text-xs text-muted-foreground uppercase tracking-wide mb-1">Tir Beursault</p>
+                    <p className="text-xs font-medium text-foreground/80">Individuel</p>
+                  </div>
+                  <div className="p-4 bg-yellow-400/5 border-l-2 border-yellow-400/50 hover:bg-yellow-400/10 transition-colors">
+                    <p className="font-heading font-extrabold text-lg text-foreground mb-1">2008</p>
                     <p className="text-xs text-muted-foreground uppercase tracking-wide mb-1">Tir Olympique</p>
                     <p className="text-xs font-medium text-foreground/80">Individuel toutes catégories</p>
+                  </div>
+                  <div className="p-4 bg-yellow-400/5 border-l-2 border-yellow-400/50 hover:bg-yellow-400/10 transition-colors">
+                    <p className="font-heading font-extrabold text-lg text-foreground mb-1">2007</p>
+                    <p className="text-xs text-muted-foreground uppercase tracking-wide mb-1">Tir Beursault</p>
+                    <p className="text-xs font-medium text-foreground/80">Individuel</p>
+                  </div>
+                  <div className="p-4 bg-yellow-400/5 border-l-2 border-yellow-400/50 hover:bg-yellow-400/10 transition-colors">
+                    <p className="font-heading font-extrabold text-lg text-foreground mb-1">2007</p>
+                    <p className="text-xs text-muted-foreground uppercase tracking-wide mb-1">Tir Fédéral</p>
+                    <p className="text-xs font-medium text-foreground/80">Individuel</p>
+                  </div>
+                  <div className="p-4 bg-yellow-400/5 border-l-2 border-yellow-400/50 hover:bg-yellow-400/10 transition-colors">
+                    <p className="font-heading font-extrabold text-lg text-foreground mb-1">2006</p>
+                    <p className="text-xs text-muted-foreground uppercase tracking-wide mb-1">Tir Beursault</p>
+                    <p className="text-xs font-medium text-foreground/80">Junior</p>
+                  </div>
+                  <div className="p-4 bg-yellow-400/5 border-l-2 border-yellow-400/50 hover:bg-yellow-400/10 transition-colors">
+                    <p className="font-heading font-extrabold text-lg text-foreground mb-1">2006</p>
+                    <p className="text-xs text-muted-foreground uppercase tracking-wide mb-1">Tir Fédéral</p>
+                    <p className="text-xs font-medium text-foreground/80">Junior</p>
                   </div>
                   <div className="p-4 bg-yellow-400/5 border-l-2 border-yellow-400/50 hover:bg-yellow-400/10 transition-colors">
                     <p className="font-heading font-extrabold text-lg text-foreground mb-1">2005</p>
                     <p className="text-xs text-muted-foreground uppercase tracking-wide mb-1">Individuel</p>
                     <p className="text-xs font-medium text-foreground/80">Junior</p>
+                  </div>
+                  <div className="p-4 bg-yellow-400/5 border-l-2 border-yellow-400/50 hover:bg-yellow-400/10 transition-colors">
+                    <p className="font-heading font-extrabold text-lg text-foreground mb-1">2004</p>
+                    <p className="text-xs text-muted-foreground uppercase tracking-wide mb-1">Tir Beursault</p>
+                    <p className="text-xs font-medium text-foreground/80">U18</p>
                   </div>
                 </div>
               </div>
@@ -481,6 +511,11 @@ export default function Palmares() {
                     <p className="text-xs text-muted-foreground uppercase tracking-wide mb-1">Tir Olympique</p>
                     <p className="text-xs font-medium text-foreground/80">Individuel toutes catégories</p>
                   </div>
+                  <div className="p-4 bg-slate-400/5 border-l-2 border-slate-400/50 hover:bg-slate-400/10 transition-colors">
+                    <p className="font-heading font-extrabold text-lg text-foreground mb-1">2002</p>
+                    <p className="text-xs text-muted-foreground uppercase tracking-wide mb-1">Tir Beursault</p>
+                    <p className="text-xs font-medium text-foreground/80">U15</p>
+                  </div>
                 </div>
               </div>
 
@@ -507,6 +542,11 @@ export default function Palmares() {
                   <div className="p-4 bg-orange-500/5 border-l-2 border-orange-500/50 hover:bg-orange-500/10 transition-colors">
                     <p className="font-heading font-extrabold text-lg text-foreground mb-1">2009</p>
                     <p className="text-xs text-muted-foreground uppercase tracking-wide mb-1">Par équipe D1</p>
+                  </div>
+                  <div className="p-4 bg-orange-500/5 border-l-2 border-orange-500/50 hover:bg-orange-500/10 transition-colors">
+                    <p className="font-heading font-extrabold text-lg text-foreground mb-1">2004</p>
+                    <p className="text-xs text-muted-foreground uppercase tracking-wide mb-1">Tir Fédéral</p>
+                    <p className="text-xs font-medium text-foreground/80">Individuel</p>
                   </div>
                 </div>
               </div>
