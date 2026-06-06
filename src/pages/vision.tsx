@@ -98,8 +98,8 @@ export default function Vision() {
                 <Crosshair className="text-accent" /> Vision & Avenir
               </h2>
               <div className="space-y-8 text-muted-foreground font-light leading-relaxed">
-                <p>
-                  Je veux prouver que mes compétences acquises dans le sport de haut niveau et la direction internationale sont réelles, tangibles, et peuvent être mises à profit de manière explosive dans de nouveaux environnements.
+                <p>Je veux prouver que mes compétences acquises dans le sport de haut niveau et la direction internationale sont réelles, tangibles, et peuvent être mises à profit de manière pertinente dans de nouveaux environnements.
+
                 </p>
                 <p>
                   L'avenir tend vers <strong>l'indépendance et l'entrepreneuriat</strong>. Créer ma propre structure, ne plus dépendre de carcans hiérarchiques lourds, et appliquer mes principes de rationalité au service de projets qui font sens.
