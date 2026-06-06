@@ -454,25 +454,25 @@ export default function Palmares() {
 
               {/* Argent Column */}
               <div className="space-y-6">
-                <div className="flex items-center gap-3 pb-4 border-b-2 border-white/70">
-                  <Medal className="w-6 h-6 text-white fill-white/50" strokeWidth={2} />
-                  <h5 className="text-base font-bold uppercase tracking-widest text-white">Argent</h5>
+                <div className="flex items-center gap-3 pb-4 border-b-2 border-slate-400/70">
+                  <Medal className="w-6 h-6 text-slate-300 fill-slate-300/50" strokeWidth={2} />
+                  <h5 className="text-base font-bold uppercase tracking-widest text-slate-400">Argent</h5>
                 </div>
                 <div className="space-y-4">
-                  <div className="p-4 bg-white/5 border-l-2 border-white/50 hover:bg-white/10 transition-colors">
+                  <div className="p-4 bg-slate-400/5 border-l-2 border-slate-400/50 hover:bg-slate-400/10 transition-colors">
                     <p className="font-heading font-extrabold text-lg text-foreground mb-1">2015</p>
                     <p className="text-xs text-muted-foreground uppercase tracking-wide mb-1">Tir Olympique</p>
                     <p className="text-xs font-medium text-foreground/80">Double mixte</p>
                   </div>
-                  <div className="p-4 bg-white/5 border-l-2 border-white/50 hover:bg-white/10 transition-colors">
+                  <div className="p-4 bg-slate-400/5 border-l-2 border-slate-400/50 hover:bg-slate-400/10 transition-colors">
                     <p className="font-heading font-extrabold text-lg text-foreground mb-1">2013</p>
                     <p className="text-xs text-muted-foreground uppercase tracking-wide mb-1">Par équipe D1</p>
                   </div>
-                  <div className="p-4 bg-white/5 border-l-2 border-white/50 hover:bg-white/10 transition-colors">
+                  <div className="p-4 bg-slate-400/5 border-l-2 border-slate-400/50 hover:bg-slate-400/10 transition-colors">
                     <p className="font-heading font-extrabold text-lg text-foreground mb-1">2011</p>
                     <p className="text-xs text-muted-foreground uppercase tracking-wide mb-1">Par équipe D1</p>
                   </div>
-                  <div className="p-4 bg-white/5 border-l-2 border-white/50 hover:bg-white/10 transition-colors">
+                  <div className="p-4 bg-slate-400/5 border-l-2 border-slate-400/50 hover:bg-slate-400/10 transition-colors">
                     <p className="font-heading font-extrabold text-lg text-foreground mb-1">2004</p>
                     <p className="text-xs text-muted-foreground uppercase tracking-wide mb-1">Tir Olympique</p>
                     <p className="text-xs font-medium text-foreground/80">Individuel toutes catégories</p>
