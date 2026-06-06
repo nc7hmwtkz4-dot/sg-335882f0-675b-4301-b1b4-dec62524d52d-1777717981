@@ -395,7 +395,7 @@ export default function Palmares() {
 
       {/* Championnats Nationaux Section */}
       <section className="py-32">
-        <div className="container max-w-5xl">
+        <div className="container max-w-6xl">
           <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 mb-12">
             <div className="flex items-center gap-4 pb-4 md:pb-0 md:border-none border-b border-white/10">
               <Trophy className="w-8 h-8 text-accent" />
@@ -407,194 +407,198 @@ export default function Palmares() {
           </div>
 
           {/* France Section */}
-          <div className="space-y-12 mb-16">
-            <div className="flex items-center gap-4">
+          <div className="mb-20">
+            <div className="flex items-center gap-4 mb-8">
               <span className="text-3xl">🇫🇷</span>
-              <h4 className="text-xl font-heading font-bold uppercase tracking-wide">Championnats de France</h4>
+              <h4 className="text-2xl font-heading font-bold uppercase tracking-wide">Championnats de France</h4>
             </div>
 
-            {/* Or */}
-            <div className="space-y-4">
-              <div className="flex items-center gap-3 mb-6">
-                <Medal className="w-6 h-6 text-yellow-400 fill-yellow-400/40" strokeWidth={2} />
-                <h5 className="text-sm font-bold uppercase tracking-widest text-yellow-400">Médailles d'Or</h5>
+            <div className="grid md:grid-cols-3 gap-8">
+              {/* Or Column */}
+              <div className="space-y-6">
+                <div className="flex items-center gap-3 pb-4 border-b-2 border-yellow-400/50">
+                  <Medal className="w-6 h-6 text-yellow-400 fill-yellow-400/40" strokeWidth={2} />
+                  <h5 className="text-base font-bold uppercase tracking-widest text-yellow-400">Or</h5>
+                </div>
+                <div className="space-y-4">
+                  <div className="p-4 bg-yellow-400/5 border-l-2 border-yellow-400/50 hover:bg-yellow-400/10 transition-colors">
+                    <p className="font-heading font-extrabold text-lg text-foreground mb-1">2016</p>
+                    <p className="text-xs text-muted-foreground uppercase tracking-wide mb-1">Par équipe D1</p>
+                  </div>
+                  <div className="p-4 bg-yellow-400/5 border-l-2 border-yellow-400/50 hover:bg-yellow-400/10 transition-colors">
+                    <p className="font-heading font-extrabold text-lg text-foreground mb-1">2013</p>
+                    <p className="text-xs text-muted-foreground uppercase tracking-wide mb-1">Tir Olympique</p>
+                    <p className="text-xs font-medium text-foreground/80">Individuel toutes catégories</p>
+                  </div>
+                  <div className="p-4 bg-yellow-400/5 border-l-2 border-yellow-400/50 hover:bg-yellow-400/10 transition-colors">
+                    <p className="font-heading font-extrabold text-lg text-foreground mb-1">2011</p>
+                    <p className="text-xs text-muted-foreground uppercase tracking-wide mb-1">Tir Olympique</p>
+                    <p className="text-xs font-medium text-foreground/80">Double mixte</p>
+                  </div>
+                  <div className="p-4 bg-yellow-400/5 border-l-2 border-yellow-400/50 hover:bg-yellow-400/10 transition-colors">
+                    <p className="font-heading font-extrabold text-lg text-foreground mb-1">2010</p>
+                    <p className="text-xs text-muted-foreground uppercase tracking-wide mb-1">Par équipe D1</p>
+                  </div>
+                  <div className="p-4 bg-yellow-400/5 border-l-2 border-yellow-400/50 hover:bg-yellow-400/10 transition-colors">
+                    <p className="font-heading font-extrabold text-lg text-foreground mb-1">2008</p>
+                    <p className="text-xs text-muted-foreground uppercase tracking-wide mb-1">Tir Olympique</p>
+                    <p className="text-xs font-medium text-foreground/80">Individuel toutes catégories</p>
+                  </div>
+                  <div className="p-4 bg-yellow-400/5 border-l-2 border-yellow-400/50 hover:bg-yellow-400/10 transition-colors">
+                    <p className="font-heading font-extrabold text-lg text-foreground mb-1">2005</p>
+                    <p className="text-xs text-muted-foreground uppercase tracking-wide mb-1">Individuel</p>
+                    <p className="text-xs font-medium text-foreground/80">Junior</p>
+                  </div>
+                </div>
               </div>
-              <div className="grid gap-3 pl-9">
-                <div className="flex items-center gap-4 border-l-2 border-yellow-400/30 pl-4 py-2">
-                  <span className="font-heading font-bold text-foreground min-w-[60px]">2013</span>
-                  <span className="text-sm text-muted-foreground">Tir Olympique</span>
-                  <span className="text-sm font-medium">Individuel toutes catégories</span>
-                </div>
-                <div className="flex items-center gap-4 border-l-2 border-yellow-400/30 pl-4 py-2">
-                  <span className="font-heading font-bold text-foreground min-w-[60px]">2011</span>
-                  <span className="text-sm text-muted-foreground">Tir Olympique</span>
-                  <span className="text-sm font-medium">Double mixte</span>
-                </div>
-                <div className="flex items-center gap-4 border-l-2 border-yellow-400/30 pl-4 py-2">
-                  <span className="font-heading font-bold text-foreground min-w-[60px]">2008</span>
-                  <span className="text-sm text-muted-foreground">Tir Olympique</span>
-                  <span className="text-sm font-medium">Individuel toutes catégories</span>
-                </div>
-                <div className="flex items-center gap-4 border-l-2 border-yellow-400/30 pl-4 py-2">
-                  <span className="font-heading font-bold text-foreground min-w-[60px]">2005</span>
-                  <span className="text-sm text-muted-foreground">Individuel</span>
-                  <span className="text-sm font-medium">Junior</span>
-                </div>
-                <div className="flex items-center gap-4 border-l-2 border-yellow-400/30 pl-4 py-2">
-                  <span className="font-heading font-bold text-foreground min-w-[60px]">2016</span>
-                  <span className="text-sm text-muted-foreground">Championnat de France par équipe D1</span>
-                </div>
-                <div className="flex items-center gap-4 border-l-2 border-yellow-400/30 pl-4 py-2">
-                  <span className="font-heading font-bold text-foreground min-w-[60px]">2010</span>
-                  <span className="text-sm text-muted-foreground">Championnat de France par équipe D1</span>
-                </div>
-              </div>
-            </div>
 
-            {/* Argent */}
-            <div className="space-y-4">
-              <div className="flex items-center gap-3 mb-6">
-                <Medal className="w-6 h-6 text-white fill-white/50" strokeWidth={2} />
-                <h5 className="text-sm font-bold uppercase tracking-widest text-white/80">Médailles d'Argent</h5>
+              {/* Argent Column */}
+              <div className="space-y-6">
+                <div className="flex items-center gap-3 pb-4 border-b-2 border-white/70">
+                  <Medal className="w-6 h-6 text-white fill-white/50" strokeWidth={2} />
+                  <h5 className="text-base font-bold uppercase tracking-widest text-white">Argent</h5>
+                </div>
+                <div className="space-y-4">
+                  <div className="p-4 bg-white/5 border-l-2 border-white/50 hover:bg-white/10 transition-colors">
+                    <p className="font-heading font-extrabold text-lg text-foreground mb-1">2015</p>
+                    <p className="text-xs text-muted-foreground uppercase tracking-wide mb-1">Tir Olympique</p>
+                    <p className="text-xs font-medium text-foreground/80">Double mixte</p>
+                  </div>
+                  <div className="p-4 bg-white/5 border-l-2 border-white/50 hover:bg-white/10 transition-colors">
+                    <p className="font-heading font-extrabold text-lg text-foreground mb-1">2013</p>
+                    <p className="text-xs text-muted-foreground uppercase tracking-wide mb-1">Par équipe D1</p>
+                  </div>
+                  <div className="p-4 bg-white/5 border-l-2 border-white/50 hover:bg-white/10 transition-colors">
+                    <p className="font-heading font-extrabold text-lg text-foreground mb-1">2011</p>
+                    <p className="text-xs text-muted-foreground uppercase tracking-wide mb-1">Par équipe D1</p>
+                  </div>
+                  <div className="p-4 bg-white/5 border-l-2 border-white/50 hover:bg-white/10 transition-colors">
+                    <p className="font-heading font-extrabold text-lg text-foreground mb-1">2004</p>
+                    <p className="text-xs text-muted-foreground uppercase tracking-wide mb-1">Tir Olympique</p>
+                    <p className="text-xs font-medium text-foreground/80">Individuel toutes catégories</p>
+                  </div>
+                </div>
               </div>
-              <div className="grid gap-3 pl-9">
-                <div className="flex items-center gap-4 border-l-2 border-white/30 pl-4 py-2">
-                  <span className="font-heading font-bold text-foreground min-w-[60px]">2015</span>
-                  <span className="text-sm text-muted-foreground">Tir Olympique</span>
-                  <span className="text-sm font-medium">Double mixte</span>
-                </div>
-                <div className="flex items-center gap-4 border-l-2 border-white/30 pl-4 py-2">
-                  <span className="font-heading font-bold text-foreground min-w-[60px]">2013</span>
-                  <span className="text-sm text-muted-foreground">Championnat de France par équipe D1</span>
-                </div>
-                <div className="flex items-center gap-4 border-l-2 border-white/30 pl-4 py-2">
-                  <span className="font-heading font-bold text-foreground min-w-[60px]">2011</span>
-                  <span className="text-sm text-muted-foreground">Championnat de France par équipe D1</span>
-                </div>
-                <div className="flex items-center gap-4 border-l-2 border-white/30 pl-4 py-2">
-                  <span className="font-heading font-bold text-foreground min-w-[60px]">2004</span>
-                  <span className="text-sm text-muted-foreground">Tir Olympique</span>
-                  <span className="text-sm font-medium">Individuel toutes catégories</span>
-                </div>
-              </div>
-            </div>
 
-            {/* Bronze */}
-            <div className="space-y-4">
-              <div className="flex items-center gap-3 mb-6">
-                <Medal className="w-6 h-6 text-orange-500 fill-orange-500/40" strokeWidth={2} />
-                <h5 className="text-sm font-bold uppercase tracking-widest text-orange-500/80">Médailles de Bronze</h5>
-              </div>
-              <div className="grid gap-3 pl-9">
-                <div className="flex items-center gap-4 border-l-2 border-orange-500/30 pl-4 py-2">
-                  <span className="font-heading font-bold text-foreground min-w-[60px]">2015</span>
-                  <span className="text-sm text-muted-foreground">Championnat de France par équipe D1</span>
+              {/* Bronze Column */}
+              <div className="space-y-6">
+                <div className="flex items-center gap-3 pb-4 border-b-2 border-orange-500/70">
+                  <Medal className="w-6 h-6 text-orange-500 fill-orange-500/40" strokeWidth={2} />
+                  <h5 className="text-base font-bold uppercase tracking-widest text-orange-400">Bronze</h5>
                 </div>
-                <div className="flex items-center gap-4 border-l-2 border-orange-500/30 pl-4 py-2">
-                  <span className="font-heading font-bold text-foreground min-w-[60px]">2014</span>
-                  <span className="text-sm text-muted-foreground">Championnat de France par équipe D1</span>
-                </div>
-                <div className="flex items-center gap-4 border-l-2 border-orange-500/30 pl-4 py-2">
-                  <span className="font-heading font-bold text-foreground min-w-[60px]">2011</span>
-                  <span className="text-sm text-muted-foreground">Tir Olympique</span>
-                  <span className="text-sm font-medium">Individuel toutes catégories</span>
-                </div>
-                <div className="flex items-center gap-4 border-l-2 border-orange-500/30 pl-4 py-2">
-                  <span className="font-heading font-bold text-foreground min-w-[60px]">2009</span>
-                  <span className="text-sm text-muted-foreground">Championnat de France par équipe D1</span>
+                <div className="space-y-4">
+                  <div className="p-4 bg-orange-500/5 border-l-2 border-orange-500/50 hover:bg-orange-500/10 transition-colors">
+                    <p className="font-heading font-extrabold text-lg text-foreground mb-1">2015</p>
+                    <p className="text-xs text-muted-foreground uppercase tracking-wide mb-1">Par équipe D1</p>
+                  </div>
+                  <div className="p-4 bg-orange-500/5 border-l-2 border-orange-500/50 hover:bg-orange-500/10 transition-colors">
+                    <p className="font-heading font-extrabold text-lg text-foreground mb-1">2014</p>
+                    <p className="text-xs text-muted-foreground uppercase tracking-wide mb-1">Par équipe D1</p>
+                  </div>
+                  <div className="p-4 bg-orange-500/5 border-l-2 border-orange-500/50 hover:bg-orange-500/10 transition-colors">
+                    <p className="font-heading font-extrabold text-lg text-foreground mb-1">2011</p>
+                    <p className="text-xs text-muted-foreground uppercase tracking-wide mb-1">Tir Olympique</p>
+                    <p className="text-xs font-medium text-foreground/80">Individuel toutes catégories</p>
+                  </div>
+                  <div className="p-4 bg-orange-500/5 border-l-2 border-orange-500/50 hover:bg-orange-500/10 transition-colors">
+                    <p className="font-heading font-extrabold text-lg text-foreground mb-1">2009</p>
+                    <p className="text-xs text-muted-foreground uppercase tracking-wide mb-1">Par équipe D1</p>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
 
           {/* Suisse Section */}
-          <div className="space-y-12">
-            <div className="flex items-center gap-4">
+          <div>
+            <div className="flex items-center gap-4 mb-8">
               <span className="text-3xl">🇨🇭</span>
-              <h4 className="text-xl font-heading font-bold uppercase tracking-wide">Championnats de Suisse</h4>
+              <h4 className="text-2xl font-heading font-bold uppercase tracking-wide">Championnats de Suisse</h4>
             </div>
 
-            {/* Or */}
-            <div className="space-y-4">
-              <div className="flex items-center gap-3 mb-6">
-                <Medal className="w-6 h-6 text-yellow-400 fill-yellow-400/40" strokeWidth={2} />
-                <h5 className="text-sm font-bold uppercase tracking-widest text-yellow-400">Médailles d'Or</h5>
+            <div className="grid md:grid-cols-3 gap-8">
+              {/* Or Column */}
+              <div className="space-y-6">
+                <div className="flex items-center gap-3 pb-4 border-b-2 border-yellow-400/50">
+                  <Medal className="w-6 h-6 text-yellow-400 fill-yellow-400/40" strokeWidth={2} />
+                  <h5 className="text-base font-bold uppercase tracking-widest text-yellow-400">Or</h5>
+                </div>
+                <div className="space-y-4">
+                  <div className="p-4 bg-yellow-400/5 border-l-2 border-yellow-400/50 hover:bg-yellow-400/10 transition-colors">
+                    <p className="font-heading font-extrabold text-lg text-foreground mb-1">2017</p>
+                    <p className="text-xs text-muted-foreground uppercase tracking-wide mb-1">Tir Olympique</p>
+                    <p className="text-xs font-medium text-foreground/80">Par équipes</p>
+                  </div>
+                  <div className="p-4 bg-yellow-400/5 border-l-2 border-yellow-400/50 hover:bg-yellow-400/10 transition-colors">
+                    <p className="font-heading font-extrabold text-lg text-foreground mb-1">2017</p>
+                    <p className="text-xs text-muted-foreground uppercase tracking-wide mb-1">Tir Olympique</p>
+                    <p className="text-xs font-medium text-foreground/80">Individuel</p>
+                  </div>
+                  <div className="p-4 bg-yellow-400/5 border-l-2 border-yellow-400/50 hover:bg-yellow-400/10 transition-colors">
+                    <p className="font-heading font-extrabold text-lg text-foreground mb-1">2016</p>
+                    <p className="text-xs text-muted-foreground uppercase tracking-wide mb-1">Tir Olympique</p>
+                    <p className="text-xs font-medium text-foreground/80">Par équipes</p>
+                  </div>
+                  <div className="p-4 bg-yellow-400/5 border-l-2 border-yellow-400/50 hover:bg-yellow-400/10 transition-colors">
+                    <p className="font-heading font-extrabold text-lg text-foreground mb-1">2016</p>
+                    <p className="text-xs text-muted-foreground uppercase tracking-wide mb-1">Indoor</p>
+                    <p className="text-xs font-medium text-foreground/80">Par équipes</p>
+                  </div>
+                </div>
               </div>
-              <div className="grid gap-3 pl-9">
-                <div className="flex items-center gap-4 border-l-2 border-yellow-400/30 pl-4 py-2">
-                  <span className="font-heading font-bold text-foreground min-w-[60px]">2017</span>
-                  <span className="text-sm text-muted-foreground">Tir Olympique</span>
-                  <span className="text-sm font-medium">Par équipes</span>
-                </div>
-                <div className="flex items-center gap-4 border-l-2 border-yellow-400/30 pl-4 py-2">
-                  <span className="font-heading font-bold text-foreground min-w-[60px]">2017</span>
-                  <span className="text-sm text-muted-foreground">Tir Olympique</span>
-                  <span className="text-sm font-medium">Individuel</span>
-                </div>
-                <div className="flex items-center gap-4 border-l-2 border-yellow-400/30 pl-4 py-2">
-                  <span className="font-heading font-bold text-foreground min-w-[60px]">2016</span>
-                  <span className="text-sm text-muted-foreground">Tir Olympique</span>
-                  <span className="text-sm font-medium">Par équipes</span>
-                </div>
-                <div className="flex items-center gap-4 border-l-2 border-yellow-400/30 pl-4 py-2">
-                  <span className="font-heading font-bold text-foreground min-w-[60px]">2016</span>
-                  <span className="text-sm text-muted-foreground">Indoor</span>
-                  <span className="text-sm font-medium">Par équipes</span>
-                </div>
-              </div>
-            </div>
 
-            {/* Argent */}
-            <div className="space-y-4">
-              <div className="flex items-center gap-3 mb-6">
-                <Medal className="w-6 h-6 text-white fill-white/50" strokeWidth={2} />
-                <h5 className="text-sm font-bold uppercase tracking-widest text-white/80">Médailles d'Argent</h5>
+              {/* Argent Column */}
+              <div className="space-y-6">
+                <div className="flex items-center gap-3 pb-4 border-b-2 border-white/70">
+                  <Medal className="w-6 h-6 text-white fill-white/50" strokeWidth={2} />
+                  <h5 className="text-base font-bold uppercase tracking-widest text-white">Argent</h5>
+                </div>
+                <div className="space-y-4">
+                  <div className="p-4 bg-white/5 border-l-2 border-white/50 hover:bg-white/10 transition-colors">
+                    <p className="font-heading font-extrabold text-lg text-foreground mb-1">2025</p>
+                    <p className="text-xs text-muted-foreground uppercase tracking-wide mb-1">Indoor</p>
+                    <p className="text-xs font-medium text-foreground/80">Par équipes</p>
+                  </div>
+                  <div className="p-4 bg-white/5 border-l-2 border-white/50 hover:bg-white/10 transition-colors">
+                    <p className="font-heading font-extrabold text-lg text-foreground mb-1">2020</p>
+                    <p className="text-xs text-muted-foreground uppercase tracking-wide mb-1">Tir Olympique</p>
+                    <p className="text-xs font-medium text-foreground/80">Par équipes</p>
+                  </div>
+                  <div className="p-4 bg-white/5 border-l-2 border-white/50 hover:bg-white/10 transition-colors">
+                    <p className="font-heading font-extrabold text-lg text-foreground mb-1">2017</p>
+                    <p className="text-xs text-muted-foreground uppercase tracking-wide mb-1">Indoor</p>
+                    <p className="text-xs font-medium text-foreground/80">Par équipes</p>
+                  </div>
+                  <div className="p-4 bg-white/5 border-l-2 border-white/50 hover:bg-white/10 transition-colors">
+                    <p className="font-heading font-extrabold text-lg text-foreground mb-1">2017</p>
+                    <p className="text-xs text-muted-foreground uppercase tracking-wide mb-1">Indoor</p>
+                    <p className="text-xs font-medium text-foreground/80">Individuel</p>
+                  </div>
+                </div>
               </div>
-              <div className="grid gap-3 pl-9">
-                <div className="flex items-center gap-4 border-l-2 border-white/30 pl-4 py-2">
-                  <span className="font-heading font-bold text-foreground min-w-[60px]">2025</span>
-                  <span className="text-sm text-muted-foreground">Indoor</span>
-                  <span className="text-sm font-medium">Par équipes</span>
-                </div>
-                <div className="flex items-center gap-4 border-l-2 border-white/30 pl-4 py-2">
-                  <span className="font-heading font-bold text-foreground min-w-[60px]">2020</span>
-                  <span className="text-sm text-muted-foreground">Tir Olympique</span>
-                  <span className="text-sm font-medium">Par équipes</span>
-                </div>
-                <div className="flex items-center gap-4 border-l-2 border-white/30 pl-4 py-2">
-                  <span className="font-heading font-bold text-foreground min-w-[60px]">2017</span>
-                  <span className="text-sm text-muted-foreground">Indoor</span>
-                  <span className="text-sm font-medium">Par équipes</span>
-                </div>
-                <div className="flex items-center gap-4 border-l-2 border-white/30 pl-4 py-2">
-                  <span className="font-heading font-bold text-foreground min-w-[60px]">2017</span>
-                  <span className="text-sm text-muted-foreground">Indoor</span>
-                  <span className="text-sm font-medium">Individuel</span>
-                </div>
-              </div>
-            </div>
 
-            {/* Bronze */}
-            <div className="space-y-4">
-              <div className="flex items-center gap-3 mb-6">
-                <Medal className="w-6 h-6 text-orange-500 fill-orange-500/40" strokeWidth={2} />
-                <h5 className="text-sm font-bold uppercase tracking-widest text-orange-500/80">Médailles de Bronze</h5>
-              </div>
-              <div className="grid gap-3 pl-9">
-                <div className="flex items-center gap-4 border-l-2 border-orange-500/30 pl-4 py-2">
-                  <span className="font-heading font-bold text-foreground min-w-[60px]">2026</span>
-                  <span className="text-sm text-muted-foreground">Indoor</span>
-                  <span className="text-sm font-medium">Double mixte</span>
+              {/* Bronze Column */}
+              <div className="space-y-6">
+                <div className="flex items-center gap-3 pb-4 border-b-2 border-orange-500/70">
+                  <Medal className="w-6 h-6 text-orange-500 fill-orange-500/40" strokeWidth={2} />
+                  <h5 className="text-base font-bold uppercase tracking-widest text-orange-400">Bronze</h5>
                 </div>
-                <div className="flex items-center gap-4 border-l-2 border-orange-500/30 pl-4 py-2">
-                  <span className="font-heading font-bold text-foreground min-w-[60px]">2018</span>
-                  <span className="text-sm text-muted-foreground">Indoor</span>
-                  <span className="text-sm font-medium">Par équipes</span>
-                </div>
-                <div className="flex items-center gap-4 border-l-2 border-orange-500/30 pl-4 py-2">
-                  <span className="font-heading font-bold text-foreground min-w-[60px]">2016</span>
-                  <span className="text-sm text-muted-foreground">Indoor</span>
-                  <span className="text-sm font-medium">Individuel</span>
+                <div className="space-y-4">
+                  <div className="p-4 bg-orange-500/5 border-l-2 border-orange-500/50 hover:bg-orange-500/10 transition-colors">
+                    <p className="font-heading font-extrabold text-lg text-foreground mb-1">2026</p>
+                    <p className="text-xs text-muted-foreground uppercase tracking-wide mb-1">Indoor</p>
+                    <p className="text-xs font-medium text-foreground/80">Double mixte</p>
+                  </div>
+                  <div className="p-4 bg-orange-500/5 border-l-2 border-orange-500/50 hover:bg-orange-500/10 transition-colors">
+                    <p className="font-heading font-extrabold text-lg text-foreground mb-1">2018</p>
+                    <p className="text-xs text-muted-foreground uppercase tracking-wide mb-1">Indoor</p>
+                    <p className="text-xs font-medium text-foreground/80">Par équipes</p>
+                  </div>
+                  <div className="p-4 bg-orange-500/5 border-l-2 border-orange-500/50 hover:bg-orange-500/10 transition-colors">
+                    <p className="font-heading font-extrabold text-lg text-foreground mb-1">2016</p>
+                    <p className="text-xs text-muted-foreground uppercase tracking-wide mb-1">Indoor</p>
+                    <p className="text-xs font-medium text-foreground/80">Individuel</p>
+                  </div>
                 </div>
               </div>
             </div>
