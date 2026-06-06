@@ -219,7 +219,7 @@ export default function Home() {
           </p>
           <div className="flex flex-col sm:flex-row justify-center gap-6">
             <Button size="lg" className="bg-accent text-accent-foreground hover:bg-white rounded-none h-16 px-10 text-sm font-bold uppercase tracking-widest transition-all duration-300" asChild>
-              <a href="mailto:aubert.th@gmail.com">
+              <a href="mailto:contact@taubert.pro">
                 Discutons de votre projet
               </a>
             </Button>
