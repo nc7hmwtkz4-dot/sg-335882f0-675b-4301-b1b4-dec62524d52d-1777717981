@@ -11,128 +11,128 @@ import {
   TableCell,
   TableHead,
   TableHeader,
-  TableRow,
-} from "@/components/ui/table";
+  TableRow } from
+"@/components/ui/table";
 import {
   Dialog,
   DialogContent,
   DialogDescription,
   DialogHeader,
   DialogTitle,
-  DialogTrigger,
-} from "@/components/ui/dialog";
+  DialogTrigger } from
+"@/components/ui/dialog";
 import { useState } from "react";
 
 export default function Palmares() {
   const [selectedEvent, setSelectedEvent] = useState<string | null>(null);
 
   // Photo gallery organized by event
-  const eventPhotos: Record<string, Array<{ src: string; alt: string; caption: string }>> = {
+  const eventPhotos: Record<string, Array<{src: string;alt: string;caption: string;}>> = {
     "Varese 2007": [
-      { src: "/IMG_1731.jpg", alt: "Podium Varese 2007", caption: "Podium Varese 2007 / Médaille de Bronze" },
-      { src: "/IMG_9605.jpg", alt: "High-five avec Lee Tae-Hoon", caption: "High-five avec l'entraîneur coréen Lee Tae-Hoon à Varese en 2007" },
-      { src: "/IMG_1532.jpg", alt: "Présentation avant match", caption: "Présentation d'avant match, match pour la médaille de bronze Varese 2007" },
-      { src: "/IMG_9609.jpg", alt: "Coupe du Monde Varese 2007", caption: "Coupe du Monde Varese 2007 avec Mauro Nespoli (ITA)" },
-      { src: "/IMG_9604.jpg", alt: "Match pour la médaille de bronze Varese 2007", caption: "Match pour la médaille de bronze Varese 2007" },
-      { src: "/IMG_9611.jpg", alt: "Avec Lee Tae-Hoon Varese 2007", caption: "Avec Lee Tae-Hoon après avoir gagné le match pour le bronze à Varese 2007" },
-      { src: "/IMG_1538.jpg", alt: "Match pour la médaille de bronze Varese 2007", caption: "Match pour la médaille de bronze Varese 2007" },
-    ],
+    { src: "/IMG_1731.jpg", alt: "Podium Varese 2007", caption: "Podium Varese 2007 / Médaille de Bronze" },
+    { src: "/IMG_9605.jpg", alt: "High-five avec Lee Tae-Hoon", caption: "High-five avec l'entraîneur coréen Lee Tae-Hoon à Varese en 2007" },
+    { src: "/IMG_1532.jpg", alt: "Présentation avant match", caption: "Présentation d'avant match, match pour la médaille de bronze Varese 2007" },
+    { src: "/IMG_9609.jpg", alt: "Coupe du Monde Varese 2007", caption: "Coupe du Monde Varese 2007 avec Mauro Nespoli (ITA)" },
+    { src: "/IMG_9604.jpg", alt: "Match pour la médaille de bronze Varese 2007", caption: "Match pour la médaille de bronze Varese 2007" },
+    { src: "/IMG_9611.jpg", alt: "Avec Lee Tae-Hoon Varese 2007", caption: "Avec Lee Tae-Hoon après avoir gagné le match pour le bronze à Varese 2007" },
+    { src: "/IMG_1538.jpg", alt: "Match pour la médaille de bronze Varese 2007", caption: "Match pour la médaille de bronze Varese 2007" }],
+
     "Ulsan 2007": [
-      { src: "/IMG_1597.jpg", alt: "Célébration par équipe Ulsan 2007", caption: "Célébration par équipe Ulsan 2007, médaille de bronze par équipe" },
-      { src: "/IMG_1595.jpg", alt: "Match pour la médaille de bronze par équipes Ulsan 2007", caption: "Match pour la médaille de bronze par équipes Ulsan 2007" },
-    ],
+    { src: "/IMG_1597.jpg", alt: "Célébration par équipe Ulsan 2007", caption: "Célébration par équipe Ulsan 2007, médaille de bronze par équipe" },
+    { src: "/IMG_1595.jpg", alt: "Match pour la médaille de bronze par équipes Ulsan 2007", caption: "Match pour la médaille de bronze par équipes Ulsan 2007" }],
+
     "Shanghai 2009": [
-      { src: "/IMG_1804.jpg", alt: "Shanghai 2009 avec le staff", caption: "Avec le staff de l'équipe de France (Anne Reculet et Marc Saunier) ainsi que mon coéquipier Jean-Charles Valladont, à la coupe du Monde de Shanghai 2009" },
-      { src: "/IMG_2430.jpg", alt: "Podium par équipes Shanghai 2009", caption: "Podium par équipes Shanghai 2009 aux côtés de la Corée du Sud et du Mexique." },
-      { src: "/IMG_1121.jpg", alt: "Finale par équipe Shanghai 2009", caption: "Finale par équipe de la coupe du monde de Shanghai 2009 contre la Corée du Sud." },
-      { src: "/IMG_1105.jpg", alt: "Match pour la médaille d'or par équipe Shanghai 2009", caption: "Match pour la médaille d'or par équipe Shanghai 2009" },
-      { src: "/IMG_1699.jpg", alt: "Match à Shanghai 2009", caption: "Match à Shanghai 2009 contre Rafal Dobrowolski (POL)" },
-    ],
+    { src: "/IMG_1804.jpg", alt: "Shanghai 2009 avec le staff", caption: "Avec le staff de l'équipe de France (Anne Reculet et Marc Saunier) ainsi que mon coéquipier Jean-Charles Valladont, à la coupe du Monde de Shanghai 2009" },
+    { src: "/IMG_2430.jpg", alt: "Podium par équipes Shanghai 2009", caption: "Podium par équipes Shanghai 2009 aux côtés de la Corée du Sud et du Mexique." },
+    { src: "/IMG_1121.jpg", alt: "Finale par équipe Shanghai 2009", caption: "Finale par équipe de la coupe du monde de Shanghai 2009 contre la Corée du Sud." },
+    { src: "/IMG_1105.jpg", alt: "Match pour la médaille d'or par équipe Shanghai 2009", caption: "Match pour la médaille d'or par équipe Shanghai 2009" },
+    { src: "/IMG_1699.jpg", alt: "Match à Shanghai 2009", caption: "Match à Shanghai 2009 contre Rafal Dobrowolski (POL)" }],
+
     "Antalya 2009": [
-      { src: "/IMG_6775.jpg", alt: "Podium individuel Antalya 2009", caption: "Podium individuel (argent) de la coupe du monde Antalya 2009 aux côtés de Simon Terry (GBR) et Jayanta Talukdar (IND)" },
-      { src: "/IMG_6079.jpg", alt: "Volée à 60 par équipes Antalya 2009", caption: "Volée à 60 par équipes à Antalya 2009, avec Jean Charles Valladont et Romain Girouille." },
-      { src: "/IMG_6654.jpg", alt: "Finale individuelle Antalya 2009", caption: "Finale individuelle coupe du monde Antalya 2009 contre Simon Terry (GBR)" },
-      { src: "/IMG_3659.jpg", alt: "Finale individuelle Antalya 2009", caption: "Finale individuelle coupe du monde Antalya 2009 contre Simon Terry (GBR)" },
-      { src: "/IMG_3709.jpg", alt: "Finale individuelle Antalya 2009", caption: "Finale individuelle coupe du monde Antalya 2009 contre Simon Terry (GBR)" },
-      { src: "/IMG_3642.jpg", alt: "Finale individuelle Antalya 2009", caption: "Finale individuelle coupe du monde Antalya 2009 contre Simon Terry (GBR)" },
-      { src: "/IMG_5881.jpg", alt: "Éliminatoires individuelles Antalya 2009", caption: "Eliminatoires individuelles coupe du monde Antalya 2009" },
-      { src: "/IMG_1567.jpg", alt: "Qualifications Antalya 2009", caption: "Qualifications coupe du monde Antalya 2009" },
-    ],
+    { src: "/IMG_6775.jpg", alt: "Podium individuel Antalya 2009", caption: "Podium individuel (argent) de la coupe du monde Antalya 2009 aux côtés de Simon Terry (GBR) et Jayanta Talukdar (IND)" },
+    { src: "/IMG_6079.jpg", alt: "Volée à 60 par équipes Antalya 2009", caption: "Volée à 60 par équipes à Antalya 2009, avec Jean Charles Valladont et Romain Girouille." },
+    { src: "/IMG_6654.jpg", alt: "Finale individuelle Antalya 2009", caption: "Finale individuelle coupe du monde Antalya 2009 contre Simon Terry (GBR)" },
+    { src: "/IMG_3659.jpg", alt: "Finale individuelle Antalya 2009", caption: "Finale individuelle coupe du monde Antalya 2009 contre Simon Terry (GBR)" },
+    { src: "/IMG_3709.jpg", alt: "Finale individuelle Antalya 2009", caption: "Finale individuelle coupe du monde Antalya 2009 contre Simon Terry (GBR)" },
+    { src: "/IMG_3642.jpg", alt: "Finale individuelle Antalya 2009", caption: "Finale individuelle coupe du monde Antalya 2009 contre Simon Terry (GBR)" },
+    { src: "/IMG_5881.jpg", alt: "Éliminatoires individuelles Antalya 2009", caption: "Eliminatoires individuelles coupe du monde Antalya 2009" },
+    { src: "/IMG_1567.jpg", alt: "Qualifications Antalya 2009", caption: "Qualifications coupe du monde Antalya 2009" }],
+
     "Ogden 2010": [
-      { src: "/IMG_2442.jpg", alt: "Ogden 2010 avec l'équipe", caption: "Ogden 2010 avec Jean-Charles Valladont, Romain Girouille, Jean-Denis Gitton, Cyrielle Cotry et Franck Fisseux" },
-    ],
+    { src: "/IMG_2442.jpg", alt: "Ogden 2010 avec l'équipe", caption: "Ogden 2010 avec Jean-Charles Valladont, Romain Girouille, Jean-Denis Gitton, Cyrielle Cotry et Franck Fisseux" }],
+
     "Antalya 2010": [
-      { src: "/IMG_7800.jpg", alt: "Coupe du Monde Antalya 2010", caption: "Coupe du Monde Antalya 2010" },
-    ],
+    { src: "/IMG_7800.jpg", alt: "Coupe du Monde Antalya 2010", caption: "Coupe du Monde Antalya 2010" }],
+
     "Ogden 2011": [
-      { src: "/IMG_1550.jpg", alt: "Coupe du monde Ogden 2011", caption: "Coupe du monde Ogden 2011" },
-    ],
+    { src: "/IMG_1550.jpg", alt: "Coupe du monde Ogden 2011", caption: "Coupe du monde Ogden 2011" }],
+
     "Shanghai 2012": [
-      { src: "/file011716_5184x3456.jpg", alt: "Match pour la médaille de bronze Shanghai 2012", caption: "Match pour la médaille de bronze Shanghai 2012" },
-      { src: "/file008775_4640x3093.jpg", alt: "Shanghai 2012", caption: "Shanghai 2012" },
-      { src: "/file009712_4896x3264.jpg", alt: "Match contre Axel Müller Shanghai 2012", caption: "Shanghai 2012 - Match contre Axel Müller (SUI)" },
-      { src: "/file011690_5184x3456.jpg", alt: "Match pour la médaille de bronze Shanghai 2012", caption: "Shanghai 2012 - Match pour la médaille de Bronze individuel" },
-      { src: "/file010264_4326x2884.jpg", alt: "Shanghai 2012", caption: "Shanghai 2012" },
-      { src: "/file010480_3264x4896.jpg", alt: "Photo d'accréditation Shanghai 2012", caption: "Shanghai 2012 - photo d'accréditation" },
-    ],
+    { src: "/file011716_5184x3456.jpg", alt: "Match pour la médaille de bronze Shanghai 2012", caption: "Match pour la médaille de bronze Shanghai 2012" },
+    { src: "/file008775_4640x3093.jpg", alt: "Shanghai 2012", caption: "Shanghai 2012" },
+    { src: "/file009712_4896x3264.jpg", alt: "Match contre Axel Müller Shanghai 2012", caption: "Shanghai 2012 - Match contre Axel Müller (SUI)" },
+    { src: "/file011690_5184x3456.jpg", alt: "Match pour la médaille de bronze Shanghai 2012", caption: "Shanghai 2012 - Match pour la médaille de Bronze individuel" },
+    { src: "/file010264_4326x2884.jpg", alt: "Shanghai 2012", caption: "Shanghai 2012" },
+    { src: "/file010480_3264x4896.jpg", alt: "Photo d'accréditation Shanghai 2012", caption: "Shanghai 2012 - photo d'accréditation" }],
+
     "Antalya 2012": [
-      { src: "/file014023_5184x3456.jpg", alt: "Coupe du Monde Antalya 2012", caption: "Coupe du Monde 2012 à Antalya avec René Kouassi (CIV)" },
-    ],
+    { src: "/file014023_5184x3456.jpg", alt: "Coupe du Monde Antalya 2012", caption: "Coupe du Monde 2012 à Antalya avec René Kouassi (CIV)" }],
+
     "Shanghai 2013": [
-      { src: "/DT7_2845.jpg", alt: "Match pour la médaille de bronze Shanghai 2013", caption: "Shanghai 2013 - Match pour la médaille de bronze contre les Pays-Bas" },
-      { src: "/DA1_7883.jpg", alt: "Avant-match Shanghai 2013", caption: "Shanghai 2013 - Avant-Match pour la médaille de bronze Shanghai 2013 - Avec Gael Prevost et Jean Charles Valladont" },
-      { src: "/DT7_2871.jpg", alt: "Match pour la médaille de bronze Shanghai 2013", caption: "Match pour la médaille de bronze Shanghai 2013 - Avec Gael Prevost, Jean Charles Valladont et Marc Dellenbach" },
-      { src: "/DT7_2816.jpg", alt: "Match pour la médaille de bronze Shanghai 2013", caption: "Match pour la médaille de bronze Shanghai 2013 - Avec Gael Prevost, Jean Charles Valladont" },
-    ],
+    { src: "/DT7_2845.jpg", alt: "Match pour la médaille de bronze Shanghai 2013", caption: "Shanghai 2013 - Match pour la médaille de bronze contre les Pays-Bas" },
+    { src: "/DA1_7883.jpg", alt: "Avant-match Shanghai 2013", caption: "Shanghai 2013 - Avant-Match pour la médaille de bronze Shanghai 2013 - Avec Gael Prevost et Jean Charles Valladont" },
+    { src: "/DT7_2871.jpg", alt: "Match pour la médaille de bronze Shanghai 2013", caption: "Match pour la médaille de bronze Shanghai 2013 - Avec Gael Prevost, Jean Charles Valladont et Marc Dellenbach" },
+    { src: "/DT7_2816.jpg", alt: "Match pour la médaille de bronze Shanghai 2013", caption: "Match pour la médaille de bronze Shanghai 2013 - Avec Gael Prevost, Jean Charles Valladont" }],
+
     "Medellin 2013": [
-      { src: "/DT7_1565.jpg", alt: "Match par équipe Medellin 2013", caption: "Medellin 2013 - Match par équipe contre l'Inde" },
-      { src: "/DT7_1074.jpg", alt: "Medellin 2013", caption: "Medellin 2013" },
-    ],
+    { src: "/DT7_1565.jpg", alt: "Match par équipe Medellin 2013", caption: "Medellin 2013 - Match par équipe contre l'Inde" },
+    { src: "/DT7_1074.jpg", alt: "Medellin 2013", caption: "Medellin 2013" }],
+
     "Chicago 2025": [
-      { src: "/R3X_4192.jpg", alt: "The Great Chicago Open 2025", caption: "The Great Chicago Open 2025, qualifications" },
-      { src: "/R3X_4180.jpg", alt: "Qualifications Indoor World Series Chicago 2025", caption: "Qualifications Indoor World Series Chicago 2025" },
-    ],
+    { src: "/R3X_4192.jpg", alt: "The Great Chicago Open 2025", caption: "The Great Chicago Open 2025, qualifications" },
+    { src: "/R3X_4180.jpg", alt: "Qualifications Indoor World Series Chicago 2025", caption: "Qualifications Indoor World Series Chicago 2025" }]
+
   };
 
   const unifiedEvents = [
-    { year: "2025", event: "Championnats d'Europe Indoor", location: "Samsun (TUR)", ind: "9th", team: "-", mixed: "-", country: "SUI" },
-    { year: "2016", event: "Championnats d'Europe", location: "Nottingham (GBR)", ind: "57th", team: "5th", mixed: "-", country: "SUI" },
-    { year: "2016", event: "Grand Prix Européen", location: "Sofia (BUL)", ind: "17th", team: "9th", mixed: "5th", country: "SUI" },
-    { year: "2015", event: "Grand Prix Européen", location: "Marathon (GRE)", ind: "17th", team: "28th", mixed: "8th", country: "SUI" },
-    { year: "2013", event: "Coupe du Monde (Étape 4)", location: "Wroclaw (POL)", ind: "9th", team: "9th", mixed: "-", country: "FRA" },
-    { year: "2013", event: "Coupe du Monde (Étape 1)", location: "Shanghai (CHN)", ind: "17th", team: "3rd", teamMedal: "bronze", mixed: "-", country: "FRA" },
-    { year: "2013", event: "Grand Prix Européen", location: "Riom (FRA)", ind: "2nd", indMedal: "silver", team: "1st", teamMedal: "gold", mixed: "5th", country: "FRA" },
-    { year: "2012", event: "Championnat du Monde Universitaire", location: "Cordoue (ESP)", ind: "5th", team: "6th", mixed: "6th", country: "FRA" },
-    { year: "2012", event: "Coupe du Monde (Étape 1)", location: "Shanghai (CHN)", ind: "4th", team: "-", mixed: "-", country: "FRA" },
-    { year: "2012", event: "Coupe du Monde Indoor (Finale)", location: "Las Vegas (USA)", ind: "4th", team: "-", mixed: "-", country: "FRA" },
-    { year: "2011", event: "Universiade d'Été", location: "Shenzhen (CHN)", ind: "9th", team: "3rd", teamMedal: "bronze", mixed: "-", country: "FRA" },
-    { year: "2011", event: "Coupe du Monde (Étape 3)", location: "Ogden (USA)", ind: "17th", team: "5th", mixed: "-", country: "FRA" },
-    { year: "2011", event: "Grand Prix Européen", location: "Antalya (TUR)", ind: "2nd", indMedal: "silver", team: "-", mixed: "-", country: "FRA" },
-    { year: "2011", event: "Grand Prix Européen", location: "Boé (FRA)", ind: "9th", team: "4th", mixed: "-", country: "FRA" },
-    { year: "2010", event: "Championnat du Monde Universitaire", location: "Shenzhen (CHN)", ind: "9th", team: "5th", mixed: "9th", country: "FRA" },
-    { year: "2009", event: "Championnats du Monde", location: "Ulsan (KOR)", ind: "52nd", team: "2nd", teamMedal: "silver", mixed: "-", country: "FRA" },
-    { year: "2009", event: "Coupe du Monde (Étape 4)", location: "Shanghai (CHN)", ind: "25th", team: "2nd", teamMedal: "silver", mixed: "-", country: "FRA" },
-    { year: "2009", event: "Coupe du Monde (Étape 3)", location: "Antalya (TUR)", ind: "2nd", indMedal: "silver", team: "5th", mixed: "-", country: "FRA" },
-    { year: "2008", event: "Championnats d'Europe", location: "Vittel (FRA)", ind: "23rd", team: "2nd", teamMedal: "silver", mixed: "-", country: "FRA" },
-    { year: "2008", event: "Coupe du Monde (Étape 4)", location: "Boé (FRA)", ind: "33rd", team: "5th", mixed: "-", country: "FRA" },
-    { year: "2008", event: "Coupe du Monde (Étape 2)", location: "Porec (CRO)", ind: "24th", team: "4th", mixed: "-", country: "FRA" },
-    { year: "2008", event: "Coupe du Monde (Étape 1)", location: "St-Domingue (DOM)", ind: "27th", team: "5th", mixed: "-", country: "FRA" },
-    { year: "2007", event: "Championnats du Monde", location: "Leipzig (GER)", ind: "101st", team: "-", mixed: "-", country: "FRA" },
-    { year: "2007", event: "Coupe du Monde (Étape 2)", location: "Varese (ITA)", ind: "3rd", indMedal: "bronze", team: "-", mixed: "-", country: "FRA" },
-    { year: "2007", event: "Coupe du Monde (Étape 1)", location: "Ulsan (KOR)", ind: "13th", team: "3rd", teamMedal: "bronze", mixed: "-", country: "FRA" },
-    { year: "2006", event: "Championnats du Monde Jeunes", location: "Mérida (MEX)", ind: "4th", team: "8th", mixed: "-", country: "FRA" },
-    { year: "2006", event: "Grand Prix Européen", location: "Sassari (ITA)", ind: "4th", team: "-", mixed: "-", country: "FRA" },
-    { year: "2006", event: "Championnat d'Europe Indoor Jeunes", location: "Jaen (ESP)", ind: "2nd", indMedal: "silver", team: "-", mixed: "-", country: "FRA" },
-    { year: "2005", event: "Coupe d'Europe Junior", location: "Cles (ITA)", ind: "2nd", indMedal: "silver", team: "-", mixed: "-", country: "FRA" },
-    { year: "2005", event: "Championnats d'Europe Jeunes", location: "Silkeborg (DEN)", ind: "-", team: "2nd", teamMedal: "silver", mixed: "-", country: "FRA" },
-  ];
+  { year: "2025", event: "Championnats d'Europe Indoor", location: "Samsun (TUR)", ind: "9th", team: "-", mixed: "-", country: "SUI" },
+  { year: "2016", event: "Championnats d'Europe", location: "Nottingham (GBR)", ind: "57th", team: "5th", mixed: "-", country: "SUI" },
+  { year: "2016", event: "Grand Prix Européen", location: "Sofia (BUL)", ind: "17th", team: "9th", mixed: "5th", country: "SUI" },
+  { year: "2015", event: "Grand Prix Européen", location: "Marathon (GRE)", ind: "17th", team: "28th", mixed: "8th", country: "SUI" },
+  { year: "2013", event: "Coupe du Monde (Étape 4)", location: "Wroclaw (POL)", ind: "9th", team: "9th", mixed: "-", country: "FRA" },
+  { year: "2013", event: "Coupe du Monde (Étape 1)", location: "Shanghai (CHN)", ind: "17th", team: "3rd", teamMedal: "bronze", mixed: "-", country: "FRA" },
+  { year: "2013", event: "Grand Prix Européen", location: "Riom (FRA)", ind: "2nd", indMedal: "silver", team: "1st", teamMedal: "gold", mixed: "5th", country: "FRA" },
+  { year: "2012", event: "Championnat du Monde Universitaire", location: "Cordoue (ESP)", ind: "5th", team: "6th", mixed: "6th", country: "FRA" },
+  { year: "2012", event: "Coupe du Monde (Étape 1)", location: "Shanghai (CHN)", ind: "4th", team: "-", mixed: "-", country: "FRA" },
+  { year: "2012", event: "Coupe du Monde Indoor (Finale)", location: "Las Vegas (USA)", ind: "4th", team: "-", mixed: "-", country: "FRA" },
+  { year: "2011", event: "Universiade d'Été", location: "Shenzhen (CHN)", ind: "9th", team: "3rd", teamMedal: "bronze", mixed: "-", country: "FRA" },
+  { year: "2011", event: "Coupe du Monde (Étape 3)", location: "Ogden (USA)", ind: "17th", team: "5th", mixed: "-", country: "FRA" },
+  { year: "2011", event: "Grand Prix Européen", location: "Antalya (TUR)", ind: "2nd", indMedal: "silver", team: "-", mixed: "-", country: "FRA" },
+  { year: "2011", event: "Grand Prix Européen", location: "Boé (FRA)", ind: "9th", team: "4th", mixed: "-", country: "FRA" },
+  { year: "2010", event: "Championnat du Monde Universitaire", location: "Shenzhen (CHN)", ind: "9th", team: "5th", mixed: "9th", country: "FRA" },
+  { year: "2009", event: "Championnats du Monde", location: "Ulsan (KOR)", ind: "52nd", team: "2nd", teamMedal: "silver", mixed: "-", country: "FRA" },
+  { year: "2009", event: "Coupe du Monde (Étape 4)", location: "Shanghai (CHN)", ind: "25th", team: "2nd", teamMedal: "silver", mixed: "-", country: "FRA" },
+  { year: "2009", event: "Coupe du Monde (Étape 3)", location: "Antalya (TUR)", ind: "2nd", indMedal: "silver", team: "5th", mixed: "-", country: "FRA" },
+  { year: "2008", event: "Championnats d'Europe", location: "Vittel (FRA)", ind: "23rd", team: "2nd", teamMedal: "silver", mixed: "-", country: "FRA" },
+  { year: "2008", event: "Coupe du Monde (Étape 4)", location: "Boé (FRA)", ind: "33rd", team: "5th", mixed: "-", country: "FRA" },
+  { year: "2008", event: "Coupe du Monde (Étape 2)", location: "Porec (CRO)", ind: "24th", team: "4th", mixed: "-", country: "FRA" },
+  { year: "2008", event: "Coupe du Monde (Étape 1)", location: "St-Domingue (DOM)", ind: "27th", team: "5th", mixed: "-", country: "FRA" },
+  { year: "2007", event: "Championnats du Monde", location: "Leipzig (GER)", ind: "101st", team: "-", mixed: "-", country: "FRA" },
+  { year: "2007", event: "Coupe du Monde (Étape 2)", location: "Varese (ITA)", ind: "3rd", indMedal: "bronze", team: "-", mixed: "-", country: "FRA" },
+  { year: "2007", event: "Coupe du Monde (Étape 1)", location: "Ulsan (KOR)", ind: "13th", team: "3rd", teamMedal: "bronze", mixed: "-", country: "FRA" },
+  { year: "2006", event: "Championnats du Monde Jeunes", location: "Mérida (MEX)", ind: "4th", team: "8th", mixed: "-", country: "FRA" },
+  { year: "2006", event: "Grand Prix Européen", location: "Sassari (ITA)", ind: "4th", team: "-", mixed: "-", country: "FRA" },
+  { year: "2006", event: "Championnat d'Europe Indoor Jeunes", location: "Jaen (ESP)", ind: "2nd", indMedal: "silver", team: "-", mixed: "-", country: "FRA" },
+  { year: "2005", event: "Coupe d'Europe Junior", location: "Cles (ITA)", ind: "2nd", indMedal: "silver", team: "-", mixed: "-", country: "FRA" },
+  { year: "2005", event: "Championnats d'Europe Jeunes", location: "Silkeborg (DEN)", ind: "-", team: "2nd", teamMedal: "silver", mixed: "-", country: "FRA" }];
+
 
   const renderRank = (rank: string, medal?: "gold" | "silver" | "bronze" | string) => {
     if (!rank || rank === "-") return <span className="text-white/10">-</span>;
     if (medal === "gold") return <div className="flex justify-center" title="Médaille d'Or"><Medal className="w-7 h-7 text-yellow-400 fill-yellow-400/40 drop-shadow-[0_0_12px_rgba(250,204,21,1)]" strokeWidth={2} /></div>;
     if (medal === "silver") return <div className="flex justify-center" title="Médaille d'Argent"><Medal className="w-7 h-7 text-white fill-white/50 drop-shadow-[0_0_12px_rgba(255,255,255,1)]" strokeWidth={2} /></div>;
     if (medal === "bronze") return <div className="flex justify-center" title="Médaille de Bronze"><Medal className="w-7 h-7 text-orange-500 fill-orange-500/40 drop-shadow-[0_0_12px_rgba(249,115,22,1)]" strokeWidth={2} /></div>;
-    
+
     return <span className="font-heading font-extrabold text-lg md:text-xl tracking-tighter text-foreground">{rank}</span>;
   };
 
@@ -140,7 +140,7 @@ export default function Palmares() {
   const getEventKey = (location: string, year: string): string | null => {
     // Extract city from location (format: "City (COUNTRY)")
     const city = location.split("(")[0].trim();
-    
+
     // Map city + year to event keys
     if (city === "Varese" && year === "2007") return "Varese 2007";
     if (city === "Ulsan" && year === "2007") return "Ulsan 2007";
@@ -154,7 +154,7 @@ export default function Palmares() {
     if (city === "Shanghai" && year === "2013") return "Shanghai 2013";
     if (city === "Medellin" && year === "2013") return "Medellin 2013";
     if (city === "Chicago" && year === "2025") return "Chicago 2025";
-    
+
     return null;
   };
 
@@ -225,23 +225,23 @@ export default function Palmares() {
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12 divide-x divide-white/5">
             <div className="space-y-4 px-4">
               <Globe2 className="w-8 h-8 text-accent/50" />
-              <p className="text-5xl md:text-7xl font-heading font-extrabold tracking-tighter text-transparent [-webkit-text-stroke:1px_theme(colors.foreground)]">+60</p>
-              <p className="text-sm font-bold uppercase tracking-widest text-muted-foreground">Compétitions<br/>Internationales</p>
+              <p className="text-5xl md:text-7xl font-heading font-extrabold tracking-tighter text-transparent [-webkit-text-stroke:1px_theme(colors.foreground)]">+30</p>
+              <p className="text-sm font-bold uppercase tracking-widest text-muted-foreground">Compétitions<br />Internationales</p>
             </div>
             <div className="space-y-4 px-4">
               <Calendar className="w-8 h-8 text-accent/50" />
-              <p className="text-5xl md:text-7xl font-heading font-extrabold tracking-tighter text-transparent [-webkit-text-stroke:1px_theme(colors.foreground)]">19</p>
-              <p className="text-sm font-bold uppercase tracking-widest text-muted-foreground">Années de<br/>Haut Niveau</p>
+              <p className="text-5xl md:text-7xl font-heading font-extrabold tracking-tighter text-transparent [-webkit-text-stroke:1px_theme(colors.foreground)]">12</p>
+              <p className="text-sm font-bold uppercase tracking-widest text-muted-foreground">Années de<br />Haut Niveau</p>
             </div>
             <div className="space-y-4 px-4">
               <Target className="w-8 h-8 text-accent/50" />
-              <p className="text-5xl md:text-7xl font-heading font-extrabold tracking-tighter text-white">4</p>
-              <p className="text-sm font-bold uppercase tracking-widest text-accent">Top 5<br/>Mondiaux (Ind.)</p>
+              <p className="text-5xl md:text-7xl font-heading font-extrabold tracking-tighter text-white">10</p>
+              <p className="text-sm font-bold uppercase tracking-widest text-accent">Top 5<br />Mondiaux (Ind.)</p>
             </div>
             <div className="space-y-4 px-4">
               <Trophy className="w-8 h-8 text-accent/50" />
               <p className="text-5xl md:text-7xl font-heading font-extrabold tracking-tighter text-transparent [-webkit-text-stroke:1px_theme(colors.foreground)]">16</p>
-              <p className="text-sm font-bold uppercase tracking-widest text-muted-foreground">Pays<br/>Hôtes</p>
+              <p className="text-sm font-bold uppercase tracking-widest text-muted-foreground">Pays<br />Hôtes</p>
             </div>
           </div>
         </div>
@@ -277,9 +277,9 @@ export default function Palmares() {
                   {unifiedEvents.map((evt, idx) => {
                     const eventKey = getEventKey(evt.location, evt.year);
                     const hasPhotos = eventKey && eventPhotos[eventKey];
-                    
+
                     return (
-                    <TableRow key={idx} className="border-white/5 hover:bg-white/5 transition-colors">
+                      <TableRow key={idx} className="border-white/5 hover:bg-white/5 transition-colors">
                       <TableCell>
                         <div className="flex items-center gap-3">
                           <span className="text-xl opacity-90" title={evt.country === "SUI" ? "Équipe de Suisse" : "Équipe de France"}>{evt.country === "SUI" ? "🇨🇭" : "🇫🇷"}</span>
@@ -289,7 +289,7 @@ export default function Palmares() {
                       <TableCell>
                         <div className="flex items-center gap-3">
                           <span className="font-bold text-sm tracking-wide">{evt.event}</span>
-                          {hasPhotos && (
+                          {hasPhotos &&
                             <Dialog>
                               <DialogTrigger asChild>
                                 <button className="text-accent/60 hover:text-accent transition-colors" title="Voir les photos">
@@ -306,31 +306,31 @@ export default function Palmares() {
                                   </DialogDescription>
                                 </DialogHeader>
                                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
-                                  {eventPhotos[eventKey!].map((photo, photoIdx) => (
-                                    <div key={photoIdx} className="space-y-3">
+                                  {eventPhotos[eventKey!].map((photo, photoIdx) =>
+                                  <div key={photoIdx} className="space-y-3">
                                       <div className="relative aspect-[4/3] w-full border border-white/10 overflow-hidden group bg-black/20">
-                                        <Image 
-                                          src={photo.src} 
-                                          alt={photo.alt} 
-                                          fill 
-                                          className="object-cover grayscale group-hover:grayscale-0 transition-all duration-700" 
-                                        />
+                                        <Image
+                                        src={photo.src}
+                                        alt={photo.alt}
+                                        fill
+                                        className="object-cover grayscale group-hover:grayscale-0 transition-all duration-700" />
+                                      
                                       </div>
                                       <p className="text-xs text-muted-foreground font-medium leading-relaxed">{photo.caption}</p>
                                     </div>
-                                  ))}
+                                  )}
                                 </div>
                               </DialogContent>
                             </Dialog>
-                          )}
+                            }
                         </div>
                       </TableCell>
                       <TableCell className="text-[10px] text-muted-foreground uppercase tracking-widest">{evt.location}</TableCell>
                       <TableCell className="text-center">{renderRank(evt.ind, (evt as any).indMedal)}</TableCell>
                       <TableCell className="text-center">{renderRank(evt.team, (evt as any).teamMedal)}</TableCell>
                       <TableCell className="text-center">{renderRank(evt.mixed, (evt as any).mixedMedal)}</TableCell>
-                    </TableRow>
-                  )})}
+                    </TableRow>);
+                  })}
                 </TableBody>
               </Table>
             </div>
@@ -357,6 +357,6 @@ export default function Palmares() {
       </section>
       
       <Footer />
-    </div>
-  );
+    </div>);
+
 }
