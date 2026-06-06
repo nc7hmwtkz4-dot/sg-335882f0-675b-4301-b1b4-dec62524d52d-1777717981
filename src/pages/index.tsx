@@ -91,8 +91,8 @@ export default function Home() {
                 <p>
                   Rien n'est simple. Faire le centimètre de plus, ou la flèche de plus même quand l'envie n'y est plus est ce qui fait la différence sur le long terme. La patience, la détermination et la concentration sont mes atouts.
                 </p>
-                <p>
-                  Mon combat est de faire bouger les choses dans l'ombre, sans tirer la couverture à moi, pour contourner les lenteurs administratives et transformer la complexité en efficacité au bénéfice du collectif.
+                <p>Mon combat est de faire bouger les choses, contourner les lenteurs administratives et transformer la complexité en efficacité au bénéfice du collectif.
+
                 </p>
               </div>
 
@@ -129,9 +129,9 @@ export default function Home() {
                 <h2 className="text-3xl md:text-5xl font-heading font-extrabold mb-6 uppercase tracking-tighter">
                   Une expertise <span className="text-transparent [-webkit-text-stroke:1px_theme(colors.foreground)] opacity-80">transférable.</span>
                 </h2>
-                <p className="text-muted-foreground leading-relaxed mb-8">
-                  De la gestion des Jeux Olympiques à la refonte du calendrier international, je prouve au quotidien que mes compétences de sportif de haut niveau sont un moteur de transformation puissant pour les organisations.
-                </p>
+                <p className="text-muted-foreground leading-relaxed mb-8">De la gestion des Jeux Olympiques à la refonte du calendrier international, j'ai prouvé au quotidien que mes compétences de sportif de haut niveau sont un moteur de transformation puissant pour les organisations.
+
+              </p>
              </div>
              <div className="relative aspect-[16/9] md:aspect-[21/9] w-full border border-white/10">
                 <Image
