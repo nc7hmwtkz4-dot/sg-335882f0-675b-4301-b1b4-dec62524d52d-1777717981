@@ -240,7 +240,7 @@ export default function Palmares() {
             </div>
             <div className="space-y-4 px-4">
               <Trophy className="w-8 h-8 text-accent/50" />
-              <p className="text-5xl md:text-7xl font-heading font-extrabold tracking-tighter text-transparent [-webkit-text-stroke:1px_theme(colors.foreground)]">16</p>
+              <p className="text-5xl md:text-7xl font-heading font-extrabold tracking-tighter text-transparent [-webkit-text-stroke:1px_theme(colors.foreground)]">14</p>
               <p className="text-sm font-bold uppercase tracking-widest text-muted-foreground">Pays<br />Hôtes</p>
             </div>
           </div>
