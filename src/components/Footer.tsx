@@ -8,15 +8,15 @@ export function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-24">
           <div className="lg:col-span-2">
             <h3 className="font-heading text-3xl font-extrabold mb-6 uppercase tracking-widest">THOMAS AUBERT<span className="text-accent">.</span></h3>
-            <p className="text-muted-foreground text-sm max-w-md leading-relaxed">
-              Architecte de performances internationales. Ancien médaillé mondial de tir à l'arc, expert en stratégie événementielle et marketing sportif.
+            <p className="text-muted-foreground text-sm max-w-md leading-relaxed">Architecte de performances internationales. Médaillé mondial de tir à l'arc, expert en stratégie événementielle et marketing sportif.
+
             </p>
           </div>
           <div>
             <h4 className="font-heading text-xs font-bold mb-6 text-muted-foreground uppercase tracking-widest">Menu</h4>
             <ul className="space-y-4 text-sm font-medium">
-              <li><Link href="/" className="hover:text-accent transition-colors flex items-center gap-2"><ArrowRight className="w-3 h-3"/> Index</Link></li>
-              <li><Link href="/palmares" className="hover:text-accent transition-colors flex items-center gap-2"><ArrowRight className="w-3 h-3"/> Palmarès Sportif</Link></li>
+              <li><Link href="/" className="hover:text-accent transition-colors flex items-center gap-2"><ArrowRight className="w-3 h-3" /> Index</Link></li>
+              <li><Link href="/palmares" className="hover:text-accent transition-colors flex items-center gap-2"><ArrowRight className="w-3 h-3" /> Palmarès Sportif</Link></li>
             </ul>
           </div>
           <div>
@@ -24,12 +24,12 @@ export function Footer() {
             <ul className="space-y-4 text-sm font-medium">
               <li><a href="mailto:aubert.th@gmail.com" className="hover:text-accent transition-colors">aubert.th@gmail.com</a></li>
               <li className="pt-4">
-                <a 
-                  href="https://www.linkedin.com/in/thomas-aubert-archery/" 
-                  target="_blank" 
+                <a
+                  href="https://www.linkedin.com/in/thomas-aubert-archery/"
+                  target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center border border-white/20 px-6 py-3 text-xs uppercase tracking-widest hover:border-accent hover:text-accent transition-all"
-                >
+                  className="inline-flex items-center justify-center border border-white/20 px-6 py-3 text-xs uppercase tracking-widest hover:border-accent hover:text-accent transition-all">
+                  
                   LinkedIn
                 </a>
               </li>
@@ -41,6 +41,6 @@ export function Footer() {
           <p className="mt-4 md:mt-0">Tous droits réservés.</p>
         </div>
       </div>
-    </footer>
-  );
+    </footer>);
+
 }
