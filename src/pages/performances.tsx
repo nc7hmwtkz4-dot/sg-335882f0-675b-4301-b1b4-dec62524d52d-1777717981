@@ -143,11 +143,11 @@ export default function Performances() {
                   <p className="text-xs text-muted-foreground uppercase tracking-widest">Temps réalisé</p>
                 </div>
                 <div>
-                  <p className="text-6xl font-heading font-extrabold text-white mb-4">487</p>
+                  <p className="text-6xl font-heading font-extrabold text-white mb-4" style={{ color: "#eab308" }}>487</p>
                   <p className="text-xs text-muted-foreground uppercase tracking-widest">Classement H30</p>
                 </div>
                 <div>
-                  <p className="text-6xl font-heading font-extrabold text-white/50 mb-4">1836</p>
+                  <p className="text-6xl font-heading font-extrabold text-white/50 mb-4" style={{ color: "#eab308" }}>1836</p>
                   <p className="text-xs text-muted-foreground uppercase tracking-widest">Participants</p>
                 </div>
               </div>
