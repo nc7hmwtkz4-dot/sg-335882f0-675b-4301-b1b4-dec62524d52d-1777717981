@@ -178,8 +178,8 @@ export default function Palmares() {
             Palmarès <br />
             <span className="text-transparent [-webkit-text-stroke:2px_theme(colors.foreground)] opacity-80">Sportif.</span>
           </h1>
-          <p className="text-xl text-muted-foreground max-w-2xl font-light">
-            Membre de l'équipe de France de 2005 à 2014, puis membre de l'équipe de Suisse en 2015-2016 et 2025. Une décennie d'exigence au plus haut niveau mondial.
+          <p className="text-xl text-muted-foreground max-w-2xl font-light">Membre de l'équipe de France de 2005 à 2014, puis membre de l'équipe de Suisse en 2015-2016 et 2025. Des années d'exigence au plus haut niveau mondial.
+
           </p>
         </div>
       </section>
