@@ -33,7 +33,11 @@ export default function Palmares() {
       { src: "/SYG6233.jpg", alt: "Conquest Cup Istanbul 2026", caption: "Conquest Cup Istanbul 2026" },
       { src: "/SYG7979.jpg", alt: "Conquest Cup Istanbul 2026", caption: "Conquest Cup Istanbul 2026" },
       { src: "/SYG7975.jpg", alt: "Conquest Cup Istanbul 2026", caption: "Conquest Cup Istanbul 2026" },
-      { src: "/SYG7927.jpg", alt: "Conquest Cup Istanbul 2026", caption: "Conquest Cup Istanbul 2026" }
+      { src: "/SYG7927.jpg", alt: "Conquest Cup Istanbul 2026", caption: "Conquest Cup Istanbul 2026" },
+      { src: "/WhatsApp_Image_2026-06-04_at_17.02.45_2_.jpeg", alt: "Conquest Cup Istanbul 2026", caption: "Conquest Cup Istanbul 2026" },
+      { src: "/WhatsApp_Image_2026-06-04_at_17.02.45_3_.jpeg", alt: "Conquest Cup Istanbul 2026", caption: "Conquest Cup Istanbul 2026" },
+      { src: "/WhatsApp_Image_2026-06-04_at_17.02.45.jpeg", alt: "Conquest Cup Istanbul 2026", caption: "Conquest Cup Istanbul 2026" },
+      { src: "/WhatsApp_Image_2026-06-04_at_17.02.54_1_.jpeg", alt: "Conquest Cup Istanbul 2026", caption: "Conquest Cup Istanbul 2026" }
     ],
     "Varese 2007": [
     { src: "/IMG_1731.jpg", alt: "Podium Varese 2007", caption: "Podium Varese 2007 / Médaille de Bronze" },
