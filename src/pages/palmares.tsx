@@ -28,6 +28,13 @@ export default function Palmares() {
 
   // Photo gallery organized by event
   const eventPhotos: Record<string, Array<{src: string;alt: string;caption: string;}>> = {
+    "Istanbul 2026": [
+      { src: "/SYG6569.jpg", alt: "Conquest Cup Istanbul 2026", caption: "Conquest Cup Istanbul 2026" },
+      { src: "/SYG6233.jpg", alt: "Conquest Cup Istanbul 2026", caption: "Conquest Cup Istanbul 2026" },
+      { src: "/SYG7979.jpg", alt: "Conquest Cup Istanbul 2026", caption: "Conquest Cup Istanbul 2026" },
+      { src: "/SYG7975.jpg", alt: "Conquest Cup Istanbul 2026", caption: "Conquest Cup Istanbul 2026" },
+      { src: "/SYG7927.jpg", alt: "Conquest Cup Istanbul 2026", caption: "Conquest Cup Istanbul 2026" }
+    ],
     "Varese 2007": [
     { src: "/IMG_1731.jpg", alt: "Podium Varese 2007", caption: "Podium Varese 2007 / Médaille de Bronze" },
     { src: "/IMG_9605.jpg", alt: "High-five avec Lee Tae-Hoon", caption: "High-five avec l'entraîneur coréen Lee Tae-Hoon à Varese en 2007" },
@@ -95,6 +102,7 @@ export default function Palmares() {
   };
 
   const unifiedEvents = [
+  { year: "2026", event: "Conquest Cup", location: "Istanbul (TUR)", ind: "15th", team: "-", mixed: "-", country: "SUI" },
   { year: "2025", event: "Championnats d'Europe Indoor", location: "Samsun (TUR)", ind: "9th", team: "-", mixed: "-", country: "SUI" },
   { year: "2016", event: "Championnats d'Europe", location: "Nottingham (GBR)", ind: "57th", team: "5th", mixed: "-", country: "SUI" },
   { year: "2016", event: "Grand Prix Européen", location: "Sofia (BUL)", ind: "17th", team: "9th", mixed: "5th", country: "SUI" },
@@ -142,6 +150,7 @@ export default function Palmares() {
     const city = location.split("(")[0].trim();
 
     // Map city + year to event keys
+    if (city === "Istanbul" && year === "2026") return "Istanbul 2026";
     if (city === "Varese" && year === "2007") return "Varese 2007";
     if (city === "Ulsan" && year === "2007") return "Ulsan 2007";
     if (city === "Shanghai" && year === "2009") return "Shanghai 2009";
