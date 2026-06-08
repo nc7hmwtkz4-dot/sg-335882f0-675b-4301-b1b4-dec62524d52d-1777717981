@@ -45,7 +45,7 @@ export default function Vision() {
           <div className="grid lg:grid-cols-2 gap-20">
             <div className="lg:pr-10">
               <Quote className="w-12 h-12 text-white/10 mb-8" fill="currentColor" />
-              <h2 className="text-3xl font-heading font-extrabold uppercase tracking-tighter mb-6">Mon Combat</h2>
+              <h2 className="text-3xl font-heading font-extrabold uppercase tracking-tighter mb-6">Mon Défi</h2>
               <p className="text-lg text-muted-foreground font-light leading-relaxed mb-8">Faire bouger les choses, contourner les lenteurs administratives et transformer la complexité en efficacité au bénéfice du collectif.
 
               </p>

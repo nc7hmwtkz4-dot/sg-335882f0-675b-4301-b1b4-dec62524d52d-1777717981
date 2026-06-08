@@ -30,7 +30,7 @@ export default function Home() {
                 <span className="text-transparent [-webkit-text-stroke:2px_theme(colors.foreground)] opacity-80">au hasard.</span>
               </h1>
               
-              <p className="text-lg md:text-xl text-muted-foreground max-w-xl leading-relaxed font-light">Médaillé mondial de tir à l'arc devenu stratège des événements de ma discipline, des événements de classement mondial aux Jeux Olympiques. Un travail de l'ombre pour faire avancer le sport avec précision et vision, loin de la politique et au plus près de l'efficacité.
+              <p className="text-lg md:text-xl text-muted-foreground max-w-xl leading-relaxed font-light">Médaillé mondial de tir à l'arc devenu stratège des événements de ma discipline, des compétitions de classement mondial aux Jeux Olympiques. Un travail de l'ombre pour faire avancer le sport avec précision et vision, loin de la politique et au plus près de l'efficacité.
 
               </p>
               
@@ -86,7 +86,7 @@ export default function Home() {
                 <p>
                   Rien n'est simple. Faire le centimètre de plus, ou la flèche de plus même quand l'envie n'y est plus est ce qui fait la différence sur le long terme. La patience, la détermination et la concentration sont mes atouts.
                 </p>
-                <p>Mon combat est de faire bouger les choses, contourner les lenteurs administratives et transformer la complexité en efficacité au bénéfice du collectif.
+                <p>Mon défi est de faire bouger les choses, contourner les lenteurs administratives et transformer la complexité en efficacité au bénéfice du collectif.
 
                 </p>
               </div>
@@ -124,7 +124,7 @@ export default function Home() {
                 <h2 className="text-3xl md:text-5xl font-heading font-extrabold mb-6 uppercase tracking-tighter">
                   Une expertise <span className="text-transparent [-webkit-text-stroke:1px_theme(colors.foreground)] opacity-80">transférable.</span>
                 </h2>
-                <p className="text-muted-foreground leading-relaxed mb-8">De la gestion des Jeux Olympiques à la refonte du calendrier international, j'ai prouvé au quotidien que mes compétences de sportif de haut niveau sont un moteur de transformation puissant pour les organisations.
+                <p className="text-muted-foreground leading-relaxed mb-8">De la gestion des Jeux Olympiques à la refonte du calendrier international, j'ai prouvé au quotidien que la combinaison d'une solide formation en école de commerce (Master en Management), de mes compétences de sportif de haut niveau et de mon expérience professionnelle est un moteur de transformation puissant pour les organisations.
 
               </p>
              </div>
@@ -175,7 +175,7 @@ export default function Home() {
               <LineChart className="h-12 w-12 text-accent mb-12 opacity-80 group-hover:opacity-100 transition-opacity" strokeWidth={1} />
               <h3 className="text-2xl font-heading font-bold mb-6 uppercase tracking-wider">Marketing & Sponsoring</h3>
               <p className="text-muted-foreground text-sm mb-12 font-light leading-relaxed min-h-[100px]">
-                Développement de programmes de parrainage, stratégie de merchandising et protection des droits de propriété intellectuelle.
+                Développement de programmes de parrainage, animation de la relation avec les clients et partenaires, stratégie de merchandising et protection des droits de propriété intellectuelle.
               </p>
               <ul className="space-y-3 text-sm font-medium">
                 <li className="border-b border-white/5 pb-3">Revenus multipliés par 14 (10 ans)</li>
