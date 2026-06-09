@@ -1,5 +1,6 @@
 import Head from "next/head";
 import Link from "next/link";
+import Image from "next/image";
 import { TrendingUp, Building2, Sparkles, ExternalLink } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Navigation } from "@/components/Navigation";
@@ -188,11 +189,12 @@ export default function Investissements() {
             {publishedCompanies.includes("FINOVOX") && (
               <div className="group relative rounded-2xl border border-white/10 bg-gradient-to-br from-white/[0.03] to-white/[0.01] p-8 hover:border-accent/30 transition-all duration-300">
                 <div className="flex items-start justify-between mb-6">
-                  <div className="w-32 h-12 bg-white/5 rounded-lg flex items-center justify-center overflow-hidden">
-                    <img 
+                  <div className="w-32 h-12 bg-white/5 rounded-lg flex items-center justify-center overflow-hidden relative">
+                    <Image 
                       src="/finovox-logo.svg" 
-                      alt="Finovox Logo" 
-                      className="w-full h-full object-contain p-2"
+                      alt="Finovox Logo"
+                      fill
+                      className="object-contain p-2"
                     />
                   </div>
                   <div className="flex items-center gap-2 text-accent/70 text-sm">

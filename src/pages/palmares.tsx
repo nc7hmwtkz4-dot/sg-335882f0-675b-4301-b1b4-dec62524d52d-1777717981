@@ -1,7 +1,7 @@
 import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight, Medal, Target, Calendar, Globe2, Trophy, BarChart, Camera } from "lucide-react";
+import { Medal, Target, Calendar, Globe2, Trophy, BarChart, Camera } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Navigation } from "@/components/Navigation";
 import { Footer } from "@/components/Footer";
@@ -24,8 +24,6 @@ import {
 import { useState } from "react";
 
 export default function Palmares() {
-  const [selectedEvent, setSelectedEvent] = useState<string | null>(null);
-
   // Photo gallery organized by event
   const eventPhotos: Record<string, Array<{src: string;alt: string;caption: string;}>> = {
     "Istanbul 2026": [

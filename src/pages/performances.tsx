@@ -1,7 +1,7 @@
 import Head from "next/head";
 import Link from "next/link";
 import Image from "next/image";
-import { Award, Bike, Timer, TrendingUp, Trophy, Target } from "lucide-react";
+import { Award, Bike, Timer, TrendingUp, Trophy } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Navigation } from "@/components/Navigation";
 import { Footer } from "@/components/Footer";

@@ -1,6 +1,5 @@
 import Head from "next/head";
 import Image from "next/image";
-import Link from "next/link";
 import { Briefcase, GraduationCap, Languages, ShieldCheck } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Navigation } from "@/components/Navigation";
