@@ -44,7 +44,7 @@ Tranquille d'esprit après cette compétition menée comme je le souhaitais, je 
 
 Je parcours ainsi Hagia Sophia, le Palais de Topkapi avec ses vues magistrales sur le détroit du Bosphore, la Mosquée Bleue, et la Citerne de Théodose.
 
-![Vue du Bosphore depuis le palais de Topkapi](/IMG_1679.HEIC)
+![Vue du Bosphore depuis le palais de Topkapi](/IMG_1679.jpg)
 
 ![Salle du trône du palais de Topkapi](/IMG_1659.jpeg)
 
