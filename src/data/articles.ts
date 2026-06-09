@@ -57,15 +57,5 @@ Enfin, il y a un contexte qui donne tout son sens à ce retour. 10 ans : cela fa
 Je suivais la Conquest Cup déjà à l'époque où je travaillais à World Archery depuis leur volonté d'être un évènement de classement mondial. Peu d'évènements se lancent avec cette ambition, hors des circuits continentaux ou internationaux, mais la Conquest Cup (tout comme la Veronica's Cup en Slovénie, par exemple) a réussi à s'installer dans la durée avec une identité forte, une stratégie cohérente, et une volonté d'efficacité.
 
 **Teşekkür ederim Okçular Vakfı, Teşekkür ederim Türkiye.**`
-  },
-  {
-    id: '1',
-    slug: 'premier-article',
-    title: 'Premier article',
-    date: '2026-06-09',
-    category: 'passion',
-    excerpt: 'Ceci est un article d\'exemple pour tester la structure de données.',
-    content: 'Contenu complet de l\'article d\'exemple pour tester la structure de données.',
-    ogImage: '/IMG_1550.jpg'
   }
 ];
