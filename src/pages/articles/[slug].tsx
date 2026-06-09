@@ -183,7 +183,7 @@ export default function ArticlePage({ article, enabled }: ArticlePageProps) {
                               <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
                                 ${galleryImages.map(img => `
                                   <figure class="group">
-                                    <div class="relative aspect-square overflow-hidden rounded-lg">
+                                    <div class="relative w-full h-80 overflow-hidden rounded-lg">
                                       <img src="${img.src}" alt="${img.alt}" class="object-cover w-full h-full transition-transform duration-300 group-hover:scale-105" loading="lazy" />
                                     </div>
                                     ${img.alt ? `<figcaption class="mt-2 text-xs text-muted-foreground text-center italic">${img.alt}</figcaption>` : ''}
