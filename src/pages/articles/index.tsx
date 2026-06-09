@@ -5,9 +5,9 @@ import { useRouter } from 'next/router';
 import { useEffect } from 'react';
 import { getAllArticles, isArticlesEnabled, formatArticleDate } from '@/lib/articles';
 import { Article } from '@/data/articles';
-import SEO from '@/components/SEO';
-import Navigation from '@/components/Navigation';
-import Footer from '@/components/Footer';
+import { SEO } from '@/components/SEO';
+import { Navigation } from '@/components/Navigation';
+import { Footer } from '@/components/Footer';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 
