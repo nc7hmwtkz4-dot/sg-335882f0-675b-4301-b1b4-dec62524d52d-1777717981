@@ -1,3 +1,14 @@
+---
+title: Site Personnel Thomas
+status: in_progress
+priority: high
+type: feature
+tags: [portfolio, athlete, blog]
+created_by: agent
+created_at: 2026-06-09T17:34:31Z
+position: 1
+---
+
 # Project Brief
 
 ## Vision
@@ -16,6 +27,7 @@ Le design doit refléter la précision, la droiture, la concentration et le haut
 
 ## Features
 - Espace public : Vitrine, Parcours pro/sportif, Palmarès, Matériel, Vision.
+- Section Articles : Un flux unique d'articles (compétitions, matériel, passions) géré statiquement. Contrôlé par une variable d'environnement pour rester caché tant que non autorisé. Optimisé pour le partage social (OpenGraph).
 - Espace privé (Backend) : Accès sécurisé à un calendrier de compétitions restreint jusqu'au 31 Août 2028.
 - Gestion des événements : Ajout, suppression et édition du programme détaillé pour chaque événement.
 - Export : Génération et téléchargement de fichiers .ics pour intégration dans les agendas personnels.
