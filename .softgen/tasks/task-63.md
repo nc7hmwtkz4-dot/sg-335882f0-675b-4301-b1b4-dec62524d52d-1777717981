@@ -1,6 +1,6 @@
 ---
 title: Suppression de la page calendrier
-status: in_progress
+status: done
 priority: high
 type: chore
 tags: [cleanup, pages]
@@ -15,3 +15,8 @@ La page `/calendar` pose des problèmes de déploiement (erreur SSG/Build). L'ut
 ## Checklist
 - [x] Supprimer le fichier `src/pages/calendar.tsx`
 - [x] Nettoyer `public/robots.txt` en retirant la ligne `Disallow: /calendar`
+
+## Acceptance
+- La page `/calendar` n'existe plus dans le projet
+- Le fichier `robots.txt` ne fait plus référence à `/calendar`
+- Le build se déploie sans erreur liée à cette page
