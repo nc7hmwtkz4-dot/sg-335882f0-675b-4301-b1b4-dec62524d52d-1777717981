@@ -180,13 +180,13 @@ export default function ArticlePage({ article, enabled }: ArticlePageProps) {
                           
                           if (galleryImages.length > 0) {
                             html += `<div class="gallery-grid my-12 not-prose">
-                              <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                              <div class="grid grid-cols-1 md:grid-cols-3 gap-4 items-start">
                                 ${galleryImages.map(img => `
-                                  <figure class="group">
-                                    <div class="relative w-full h-80 overflow-hidden rounded-lg">
+                                  <figure class="group flex flex-col">
+                                    <div class="relative w-full h-80 overflow-hidden rounded-lg flex-shrink-0">
                                       <img src="${img.src}" alt="${img.alt}" class="object-cover w-full h-full transition-transform duration-300 group-hover:scale-105" loading="lazy" />
                                     </div>
-                                    ${img.alt ? `<figcaption class="mt-2 text-xs text-muted-foreground text-center italic">${img.alt}</figcaption>` : ''}
+                                    ${img.alt ? `<figcaption class="mt-2 text-xs text-muted-foreground text-center italic leading-tight">${img.alt}</figcaption>` : ''}
                                   </figure>
                                 `).join('')}
                               </div>
