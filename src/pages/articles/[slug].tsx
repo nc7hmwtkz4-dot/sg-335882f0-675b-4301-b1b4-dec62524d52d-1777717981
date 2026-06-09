@@ -102,11 +102,11 @@ export default function ArticlePage({ article, enabled }: ArticlePageProps) {
 
   return (
     <>
-      <SEO
-        title={article.seo.metaTitle || `${article.title} - Thomas Aubert`}
-        description={article.seo.metaDescription || article.summary}
+      <SEO 
+        title={article.title}
+        description={article.excerpt}
         canonical={`/articles/${article.slug}`}
-        ogImage={article.seo.ogImage || article.coverImage}
+        ogImage={article.ogImage}
         ogType="article"
       />
       <div className="min-h-screen bg-background">
@@ -136,19 +136,21 @@ export default function ArticlePage({ article, enabled }: ArticlePageProps) {
                   {article.title}
                 </h1>
                 
-                <p className="text-xl text-muted-foreground mb-8">
-                  {article.summary}
+                <p className="text-muted-foreground text-lg leading-relaxed max-w-3xl">
+                  {article.excerpt}
                 </p>
 
-                <div className="relative aspect-[21/9] w-full overflow-hidden rounded-lg mb-10">
-                  <Image
-                    src={article.coverImage}
-                    alt={article.title}
-                    fill
-                    priority
-                    className="object-cover"
-                  />
-                </div>
+                {article.ogImage && (
+                  <div className="relative w-full h-[400px] rounded-lg overflow-hidden">
+                    <Image
+                      src={article.ogImage}
+                      alt={article.title}
+                      fill
+                      className="object-cover"
+                      priority
+                    />
+                  </div>
+                )}
               </header>
 
               <div className="prose prose-lg max-w-none">

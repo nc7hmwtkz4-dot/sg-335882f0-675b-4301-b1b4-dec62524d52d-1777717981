@@ -57,12 +57,12 @@ export default function ArticlesPage({ articles, enabled }: ArticlesPageProps) {
             {articles.map((article) => (
               <Link key={article.id} href={`/articles/${article.slug}`}>
                 <Card className="h-full hover:shadow-lg transition-shadow duration-300 cursor-pointer overflow-hidden group">
-                  <div className="relative aspect-[16/10] overflow-hidden">
+                  <div className="relative h-48 w-full overflow-hidden">
                     <Image
-                      src={article.coverImage}
+                      src={article.ogImage}
                       alt={article.title}
                       fill
-                      className="object-cover group-hover:scale-105 transition-transform duration-300"
+                      className="object-cover transition-transform duration-300 group-hover:scale-105"
                     />
                   </div>
                   <CardHeader>
@@ -79,8 +79,8 @@ export default function ArticlesPage({ articles, enabled }: ArticlesPageProps) {
                     </CardTitle>
                   </CardHeader>
                   <CardContent>
-                    <CardDescription className="line-clamp-3">
-                      {article.summary}
+                    <CardDescription className="line-clamp-2">
+                      {article.excerpt}
                     </CardDescription>
                   </CardContent>
                   <CardFooter>
