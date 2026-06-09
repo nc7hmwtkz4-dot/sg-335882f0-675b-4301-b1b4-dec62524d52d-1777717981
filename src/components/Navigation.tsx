@@ -3,10 +3,12 @@ import { useRouter } from "next/router";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
+import { isArticlesEnabled } from "@/lib/articles";
 
 export function Navigation() {
   const router = useRouter();
   const [openSection, setOpenSection] = useState<string | null>(null);
+  const articlesEnabled = isArticlesEnabled();
 
   const isActiveLink = (href: string) => router.pathname === href;
   const isActiveSection = (paths: string[]) => paths.includes(router.pathname);
@@ -58,6 +60,19 @@ export function Navigation() {
               >
                 Parcours Sportif
               </button>
+
+              {articlesEnabled && (
+                <Link
+                  href="/articles"
+                  className={cn(
+                    "text-xs font-semibold uppercase tracking-widest transition-colors hover:text-accent",
+                    isActiveLink("/articles") || router.pathname.startsWith("/articles/") ? "text-accent" : "text-foreground"
+                  )}
+                  onClick={() => setOpenSection(null)}
+                >
+                  Articles
+                </Link>
+              )}
 
               <Link
                 href="/vision"

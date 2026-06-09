@@ -1,7 +1,10 @@
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
+import { isArticlesEnabled } from "@/lib/articles";
 
 export function Footer() {
+  const articlesEnabled = isArticlesEnabled();
+
   return (
     <footer className="bg-background border-t border-white/5 pt-24 pb-12">
       <div className="container mx-auto">
@@ -17,6 +20,9 @@ export function Footer() {
             <ul className="space-y-4 text-sm font-medium">
               <li><Link href="/" className="hover:text-accent transition-colors flex items-center gap-2"><ArrowRight className="w-3 h-3" /> Index</Link></li>
               <li><Link href="/palmares" className="hover:text-accent transition-colors flex items-center gap-2"><ArrowRight className="w-3 h-3" /> Palmarès Sportif</Link></li>
+              {articlesEnabled && (
+                <li><Link href="/articles" className="hover:text-accent transition-colors flex items-center gap-2"><ArrowRight className="w-3 h-3" /> Articles</Link></li>
+              )}
             </ul>
           </div>
           <div>
