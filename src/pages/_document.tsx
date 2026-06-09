@@ -3,10 +3,35 @@ import { Html, Head, Main, NextScript } from "next/document";
 import { SEOElements } from "@/components/SEO";
 
 export default function Document() {
+  const personSchema = {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Thomas Aubert",
+    "jobTitle": "Expert Événementiel Sportif International",
+    "description": "Médaillé mondial de tir à l'arc et expert en gestion d'événements sportifs internationaux",
+    "url": "https://taubert.pro",
+    "sameAs": [
+      "https://www.linkedin.com/in/thomas-aubert-archery/"
+    ],
+    "knowsLanguage": ["French", "English", "Spanish"],
+    "award": [
+      "Vice-Champion du Monde de Tir à l'Arc par équipe (Ulsan 2009)",
+      "Champion d'Europe des Clubs (Arc Club de Nîmes 2010)"
+    ],
+    "alumniOf": {
+      "@type": "EducationalOrganization",
+      "name": "École de Commerce - Master en Management"
+    }
+  };
+
   return (
-    <Html lang="en">
+    <Html lang="fr">
       <Head>
         <SEOElements />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(personSchema) }}
+        />
         {/*
           CRITICAL: DO NOT REMOVE THIS SCRIPT
           The Softgen AI monitoring script is essential for core app functionality.

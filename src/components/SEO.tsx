@@ -9,10 +9,10 @@ interface SEOProps {
 
 // SEO elements that can be used in _document.tsx (returns JSX without Head wrapper)
 export function SEOElements({
-  title = "Taubert",
-  description = "This website is a living curriculum vitae, summarizing both my professional and sports career as well as other things I do, like.",
+  title = "Thomas Aubert | Expert Événementiel Sportif & Médaillé Mondial",
+  description = "Médaillé mondial de tir à l'arc et expert en gestion d'événements sportifs internationaux. Délégué technique JO Paris 2024. 15 ans d'expérience au plus haut niveau.",
   image = "/og-image.png",
-  url,
+  url = "https://taubert.pro",
 }: SEOProps) {
   return (
     <>
@@ -39,10 +39,10 @@ export function SEOElements({
 // SEO component for use in pages/_app.tsx or individual pages (uses next/head)
 // Note: Flattened structure (no fragment) for better Next.js Head compatibility during hot reload
 export function SEO({
-  title = "Hello World",
-  description = "Welcome to my app",
+  title = "Thomas Aubert | Expert Événementiel Sportif & Médaillé Mondial",
+  description = "Médaillé mondial de tir à l'arc et expert en gestion d'événements sportifs internationaux. Délégué technique JO Paris 2024. 15 ans d'expérience au plus haut niveau.",
   image = "/og-image.png",
-  url,
+  url = "https://taubert.pro",
 }: SEOProps) {
   return (
     <Head>

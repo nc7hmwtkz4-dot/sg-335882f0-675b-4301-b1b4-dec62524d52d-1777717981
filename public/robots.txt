@@ -1,0 +1,7 @@
+# robots.txt pour taubert.pro
+User-agent: *
+Allow: /
+Disallow: /api/
+Disallow: /calendar
+
+Sitemap: https://taubert.pro/sitemap.xml
