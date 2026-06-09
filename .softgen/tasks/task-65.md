@@ -1,6 +1,6 @@
 ---
 title: Articles feed page
-status: todo
+status: done
 priority: high
 type: feature
 tags: [blog, ui]
@@ -14,11 +14,11 @@ Création de la page principale répertoriant tous les articles. Cette page affi
 Contrainte critique : la page ne doit pas s'afficher si la variable d'environnement d'activation n'est pas "true".
 
 ## Checklist
-- [ ] Créer la page liste des articles accessible via une URL dédiée.
-- [ ] Mettre en place un système de sécurité (feature flag) : si la fonctionnalité n'est pas activée via les variables d'environnement, afficher une erreur 404 (Page introuvable).
-- [ ] Construire une mise en page sous forme de grille ou de liste, respectant l'esthétique épurée du site.
-- [ ] Créer les cartes d'aperçu pour chaque article affichant : l'image de couverture, le titre, la date de publication et un court résumé.
-- [ ] Assurer que l'ensemble s'adapte parfaitement sur mobile.
+- [x] Créer la page liste des articles accessible via une URL dédiée.
+- [x] Mettre en place un système de sécurité (feature flag) : si la fonctionnalité n'est pas activée via les variables d'environnement, afficher une erreur 404 (Page introuvable).
+- [x] Construire une mise en page sous forme de grille ou de liste, respectant l'esthétique épurée du site.
+- [x] Créer les cartes d'aperçu pour chaque article affichant : l'image de couverture, le titre, la date de publication et un court résumé.
+- [x] Assurer que l'ensemble s'adapte parfaitement sur mobile.
 
 ## Acceptance
 - La page affiche les articles du plus récent au plus ancien.

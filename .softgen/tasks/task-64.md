@@ -1,6 +1,6 @@
 ---
 title: Data structure for articles
-status: in_progress
+status: done
 priority: high
 type: feature
 tags: [blog, data]
