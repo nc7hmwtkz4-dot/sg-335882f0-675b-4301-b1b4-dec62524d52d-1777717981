@@ -9,13 +9,20 @@ interface SEOProps {
   ogType?: string;
 }
 
+interface SEOElementsProps {
+  title?: string;
+  description?: string;
+  image?: string;
+  url?: string;
+}
+
 // SEO elements that can be used in _document.tsx (returns JSX without Head wrapper)
 export function SEOElements({
   title = "Thomas Aubert | Expert Événementiel Sportif & Médaillé Mondial",
   description = "Médaillé mondial de tir à l'arc et expert en gestion d'événements sportifs internationaux. Délégué technique JO Paris 2024. 15 ans d'expérience au plus haut niveau.",
   image = "/og-image.png",
   url = "https://taubert.pro",
-}: SEOProps) {
+}: SEOElementsProps) {
   return (
     <>
       <title>{title}</title>

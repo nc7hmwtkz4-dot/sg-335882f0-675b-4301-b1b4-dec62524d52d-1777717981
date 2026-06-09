@@ -11,8 +11,8 @@ export default function Home() {
     <div className="bg-background min-h-screen">
       <SEO 
         title="Thomas Aubert | Expert Événementiel Sportif & Médaillé Mondial"
-        description="Médaillé mondial de tir à l'arc et expert en gestion d'événements sportifs internationaux. Délégué technique JO Paris 2024. 15 ans d'expérience dans le sport de haut niveau et l'événementiel mondial."
-        url="https://taubert.pro"
+        description="Médaillé mondial de tir à l'arc et expert en gestion d'événements sportifs internationaux. Délégué technique JO Paris 2024. 15 ans d'expérience au plus haut niveau."
+        canonical="/"
       />
 
       <Navigation />
