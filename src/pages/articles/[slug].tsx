@@ -153,8 +153,41 @@ export default function ArticlePage({ article, enabled }: ArticlePageProps) {
                 )}
               </header>
 
-              <div className="prose prose-lg max-w-none">
-                {renderContent(article.content)}
+              <div className="prose prose-lg prose-invert max-w-none">
+                <div 
+                  className="article-content"
+                  dangerouslySetInnerHTML={{ 
+                    __html: article.content
+                      .split('\n')
+                      .map(line => {
+                        // Gérer les images markdown
+                        const imgMatch = line.match(/!\[([^\]]*)\]\(([^)]+)\)/);
+                        if (imgMatch) {
+                          const alt = imgMatch[1];
+                          const src = imgMatch[2];
+                          return `<figure class="my-12 not-prose">
+                            <div class="relative aspect-[16/9] w-full overflow-hidden rounded-lg">
+                              <img src="${src}" alt="${alt}" class="object-cover w-full h-full" loading="lazy" />
+                            </div>
+                            ${alt ? `<figcaption class="mt-3 text-sm text-muted-foreground text-center italic">${alt}</figcaption>` : ''}
+                          </figure>`;
+                        }
+                        
+                        // Gérer les titres H2
+                        if (line.startsWith('## ')) {
+                          return `<h2 class="text-2xl font-bold mt-16 mb-6 text-foreground">${line.substring(3)}</h2>`;
+                        }
+                        
+                        // Gérer les paragraphes
+                        if (line.trim() && !line.startsWith('#')) {
+                          return `<p class="text-base leading-relaxed mb-6 text-foreground/90">${line}</p>`;
+                        }
+                        
+                        return line;
+                      })
+                      .join('\n')
+                  }}
+                />
               </div>
             </article>
 
@@ -171,6 +204,34 @@ export default function ArticlePage({ article, enabled }: ArticlePageProps) {
 
         <Footer />
       </div>
+      <style jsx global>{`
+        .article-content figure {
+          margin: 3rem 0;
+        }
+        
+        .article-content figure:first-of-type {
+          margin-top: 2rem;
+        }
+        
+        .article-content img {
+          transition: transform 0.3s ease;
+        }
+        
+        .article-content img:hover {
+          transform: scale(1.02);
+        }
+        
+        .article-content p strong {
+          color: hsl(var(--accent));
+          font-weight: 600;
+        }
+        
+        .article-content h2 {
+          border-bottom: 2px solid hsl(var(--accent));
+          padding-bottom: 0.5rem;
+          display: inline-block;
+        }
+      `}</style>
     </>
   );
 }
