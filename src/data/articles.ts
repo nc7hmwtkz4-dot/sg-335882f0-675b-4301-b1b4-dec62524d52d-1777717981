@@ -24,8 +24,6 @@ Je me fixe donc un objectif : associer cette compétition à une découverte cul
 
 ## La compétition
 
-![Qualifications à la Conquest Cup](/SYG6569.jpg)
-
 Mais d'abord, la compétition. Je me suis inscrit et suis venu avec un plan et une stratégie claires : respecter le travail technique en cours, et le mettre à l'épreuve sous pression, et accepter de se détacher du résultat et d'une éventuelle performance à produire. L'objectif des qualifications était donc respecter au maximum le placement et le maintien de l'action sous le clicker. Même si le résultat pourrait laisser penser le contraire, je réussis cet exercice 69 fois sur 72. Le vent ajoutait une contrainte frustrante : arrière, mais oscillant de droite à gauche. Cela rendait la lecture instable, et ça se payait sur le cumul : beaucoup de flèches pas loin, peu de 10. Dans ce contexte, la 26e place n'est pas illogique—et surtout, elle signe un retour à la compétition internationale, encourageant pour la suite.
 
 ![Photo de compétition](/WhatsApp_Image_2026-06-04_at_17.02.54_1_.jpeg)
@@ -38,15 +36,13 @@ La bataille menée sur ce match, et l'intensité requise pour que la technique n
 
 ## Découverte culturelle
 
-Tranquille d'esprit après cette compétition menée comme je le souhaitais, je profite de la journée du dimanche (n'étant pas finaliste) pour partir dès le matin. Ayant dû faire un choix, et n'ayant que cette journée de libre avant mon retour en Suisse, je choisis de me concentrer sur les monuments les plus connus de la partie Européenne de l'ancienne Constantinople. Je me construis une trame simple, que je peux réaliser à pied une fois sur place.
+Tranquille d'esprit après cette compétition menée comme je le souhaitais, je profite de la journée du dimanche (n'étant pas finaliste) pour partir dès le matin. Ayant dû faire un choix, et n'ayant que cette journée de libre avant mon retour en Suisse, je choisis de me concentrer sur les monuments les plus connus de la partie Européenne de l'ancienne Constantinople. Je me construis une trame simple, que je peux réaliser à pied une fois sur place. Je parcours ainsi Hagia Sophia, le Palais de Topkapi avec ses vues magistrales sur le détroit du Bosphore, la Mosquée Bleue, et la Citerne de Théodose.
 
+<!-- GALLERY:START -->
 ![Citerne de Théodose](/IMG_1698.jpeg)
-
-Je parcours ainsi Hagia Sophia, le Palais de Topkapi avec ses vues magistrales sur le détroit du Bosphore, la Mosquée Bleue, et la Citerne de Théodose.
-
 ![Vue du Bosphore depuis le palais de Topkapi](/IMG_1679.jpg)
-
 ![Salle du trône du palais de Topkapi](/IMG_1659.jpeg)
+<!-- GALLERY:END -->
 
 Sans oublier, le théâtre de cette compétition, le complexe de l'Okçular Vakfı, un ensemble dédié au tir à l'arc hors du commun en plein cœur d'une mégapole de plus de 15 millions d'habitants. Avec un terrain extérieur de 32 cibles, où la compétition se déroule. Mais également une chambre d'hôte, une salle de sport, un institut de recherche, un musée du tir à l'arc, plusieurs salles d'entraînement et même une mosquée. Le tout mêlant tir à l'arc moderne et traditionnel.
 
